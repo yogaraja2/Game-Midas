@@ -1,0 +1,205 @@
+@import './responsive';
+
+@mixin centerFlexCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin centerFlexRow {
+  display: flex;
+  align-items: center;
+}
+
+@mixin lrPartition {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin centerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin button {
+  font-weight: 500;
+  font-family: var(--fontMain);
+  text-transform: none;
+  color: #fff;
+  background: #0077af;
+  border-radius: 2px;
+  padding: 7px 20px;
+
+  &:hover {
+    background: #016595;
+  }
+
+  &.Mui-disabled {
+    background: var(--disabledBtn);
+    color: #fff;
+  }
+}
+
+@mixin linkBtn {
+  color: var(--teal);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin textarea {
+  resize: none;
+  padding: 9px 16px;
+  color: var(--text-dark);
+  border-color: var(--text-lighter);
+  font-family: var(--fontMain);
+  font-weight: normal;
+  font-size: 16px;
+
+  &::placeholder {
+    color: var(--text-lighter);
+    font-family: var(--fontMain);
+  }
+
+  &:focus {
+    outline-color: var(--primary);
+  }
+
+  &:hover {
+    border: 1px solid var(--primary);
+  }
+}
+
+@mixin imgWhite {
+  filter: brightness(0) invert(1);
+}
+
+@mixin rotate180 {
+  transition: 0.5s;
+  transform: rotate(180deg);
+}
+
+@mixin textOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin fieldWrap {
+  .field-wrap {
+    @include centerFlexRow;
+
+    .field-icon {
+      margin-right: 8px;
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+@mixin listCard {
+  border-radius: 0;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+
+  &.card-first {
+    border-top-right-radius: 1.5px;
+    border-top-left-radius: 1.5px;
+  }
+
+  &.card-last {
+    border-bottom-left-radius: 1.5px;
+    border-bottom-right-radius: 1.5px;
+  }
+}
+
+@mixin statusBubble {
+  display: inline-block;
+  padding: 3px 27px;
+  border-radius: 20px;
+  color: #fff;
+  width: 224px;
+  text-align: center;
+
+  @include w960 {
+    font-size: 14px;
+    width: 190px;
+  }
+
+  @include w320 {
+    width: 150px;
+  }
+
+  &.status-0 {
+    width: 256px;
+    background: #eb5a2d;
+
+    @include w960 {
+      width: 220px;
+    }
+
+    @include w320 {
+      width: 170px;
+    }
+  }
+
+  &.status-1 {
+    background: #ffc023;
+  }
+
+  &.status-2 {
+    background: #9785eb;
+  }
+
+  &.status-3 {
+    background: var(--amazon);
+  }
+}
+
+@mixin linkSubmitBtn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--teal);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin uploadLinkBtn {
+  position: relative;
+  overflow: hidden;
+
+  input[type='file'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@mixin picture($size) {
+  height: $size;
+  width: $size;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
