@@ -5,6 +5,11 @@
   .dropdown-box {
     background: #fff;
     border-radius: 1.5px;
+    background: var(--bg-field);
+
+    svg {
+      font-size: 26px;
+    }
 
     &.is-disabled {
       .MuiOutlinedInput-input{

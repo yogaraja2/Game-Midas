@@ -3,10 +3,16 @@
 .txt-field-wrap {
   .txt-field {
     width: 100%;
-    
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
     .txt-field-inp {
       font-family: var(--fontMain);
       border-radius: 1.5px;
+      background: var(--bg-field);
 
       &:hover {
         .MuiOutlinedInput-notchedOutline {

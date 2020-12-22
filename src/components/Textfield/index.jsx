@@ -85,7 +85,7 @@ const Textfield = ({
         variant="outlined"
         size="small"
       >
-        {!!label && <label className="txt-field-label">{label}</label>}
+        {!!label && <div className="label">{label}</div>}
         <OutlinedInput
           className="txt-field-inp"
           placeholder={placeholder}

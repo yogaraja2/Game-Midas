@@ -1,5 +1,4 @@
 export const commonRoute = {
-    home: '/',
-    login: '/login',
-    signup: '/signup',
+  home: '/',
+  account: '/account/:screen?'
 }

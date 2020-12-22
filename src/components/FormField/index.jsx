@@ -166,7 +166,7 @@ export const FormCheckBox = ({
 }) => {
   return (
     <div className="form-checkbox-wrap">
-      <div className="label">{label}</div>
+      {label && <div className="label">{label}</div>}
       <Controller
         name={name}
         defaultValue={defaultValue}
@@ -175,14 +175,16 @@ export const FormCheckBox = ({
         render={({ value, onChange, name, onBlur }) => (
           <Checkbox
             name={name}
+            color="primary"
             checked={value}
             onClick={(e) => onChange(e.target.checked)}
             onBlur={onBlur}
+            {...rest}
           />
         )}
       />
       <span className="check-box-text">{text}</span>
-      <div className="err-msg">{error[name] && error[name]?.message}</div>
+      <div className="err-msg">{error && error[name] && error[name]?.message}</div>
     </div>
   )
 }

@@ -25,13 +25,14 @@
 }
 
 @mixin button {
-  font-weight: 500;
-  font-family: var(--fontMain);
   text-transform: none;
+  font-size: 1rem;
+  padding: 4px 20px;
+  background: var(--primary);
   color: #fff;
-  background: #0077af;
-  border-radius: 2px;
-  padding: 7px 20px;
+  font-weight: bold;
+  width: 100px;
+  border-radius: 3px;
 
   &:hover {
     background: #016595;

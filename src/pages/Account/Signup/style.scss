@@ -1,0 +1,39 @@
+@import '../../../mixins/common';
+
+.account-wrapper {
+    .signup-box-sec {
+        .signup-title {
+            color: var(--primary);
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        .field-wrap {
+            .form-field {
+                margin-bottom: 14px;
+            }
+
+            .signup-terms {
+                @include flexCenterRow;
+
+                .terms-checkbox {
+                    padding: 4px;
+                    margin-left: -8px;
+                    
+                    // .MuiSvgIcon-root {
+                    //     background: var(--bg-field);
+                    //     fill: var(--bg-field);
+                    // }
+                }
+
+                .term-cont {
+                    margin: 0 8px;
+                }
+
+                .terms-link {
+                    color: var(--primary);
+                }
+            }
+        }
+    }
+}
