@@ -30,6 +30,7 @@ function Signup() {
 
   const handleSignup = (values) => {
     console.log(values)
+    history.push(commonRoute.home)
   }
 
   const allyProps = { control, error: errors }
