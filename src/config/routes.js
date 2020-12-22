@@ -1,4 +1,5 @@
 export const commonRoute = {
   home: '/',
-  account: '/account/:screen?'
+  account: '/account/:screen?',
+  gameOptions: '/gamehome'
 }
