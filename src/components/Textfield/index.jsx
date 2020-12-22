@@ -5,7 +5,7 @@ import {
   InputAdornment,
   IconButton
 } from '@material-ui/core'
-import { Cancel, Visibility, VisibilityOff } from '@material-ui/icons'
+import { MdVisibility, MdVisibilityOff, MdClose } from 'react-icons/md'
 import './style.scss'
 
 const Textfield = ({
@@ -44,14 +44,6 @@ const Textfield = ({
   }
 
   const handleChange = (e) => {
-    // if (textType === 'number') {
-    //   const newValue =
-    //     !!e.target?.value || e.target?.value === 0
-    //       ? parseInt(e.target?.value.replace(/[^0-9]/g, ''))
-    //       : null
-    //   !!onChange && onChange(newValue)
-    //   !!setChange && setChange(newValue)
-    // } else {
     !!onChange && onChange(e)
     !!setChange && setChange(e.target.value)
   }
@@ -65,7 +57,7 @@ const Textfield = ({
       return (
         <InputAdornment position="end">
           <IconButton className="clr-btn" onClick={handleClear} edge="end">
-            <Cancel />
+            <MdClose />
           </IconButton>
         </InputAdornment>
       )
@@ -75,7 +67,7 @@ const Textfield = ({
       return (
         <InputAdornment position="end">
           <IconButton className="pass-rvl-btn" onClick={toggleType} edge="end">
-            {textType === 'text' ? <Visibility /> : <VisibilityOff />}
+            {textType === 'text' ? <MdVisibility /> : <MdVisibilityOff />}
           </IconButton>
         </InputAdornment>
       )
@@ -99,10 +91,8 @@ const Textfield = ({
           placeholder={placeholder}
           value={value}
           name={name}
-          // type={textType === 'number' ? 'text' : textType}
           type={textType}
           onChange={handleChange}
-          // inputComponent={textType === 'number' ? NumFormat : undefined}
           inputProps={inputProps}
           defaultValue={defaultValue}
           startAdornment={

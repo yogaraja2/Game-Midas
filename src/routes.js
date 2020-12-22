@@ -1,5 +1,6 @@
 import { commonRoute } from "./config/routes";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 export const mainRoute = [
   {
@@ -14,7 +15,7 @@ export const mainRoute = [
     name: "Login",
     props: {
       path: commonRoute.login,
-      component: null,
+      component: Login,
     }
   },
 ];

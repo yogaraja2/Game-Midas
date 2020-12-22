@@ -2,19 +2,16 @@
 
 .txt-field-wrap {
   .txt-field {
+    width: 100%;
+    
     .txt-field-inp {
       font-family: var(--fontMain);
-      font-size: 14px;
       border-radius: 1.5px;
 
       &:hover {
         .MuiOutlinedInput-notchedOutline {
           border-color: var(--primary);
         }
-      }
-
-      @include w600 {
-        font-size: 12px;
       }
 
       .MuiInputBase-input {

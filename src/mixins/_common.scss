@@ -1,13 +1,13 @@
 @import './responsive';
 
-@mixin centerFlexCol {
+@mixin flexCenter {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-@mixin centerFlexRow {
+@mixin flexCenterRow {
   display: flex;
   align-items: center;
 }
@@ -18,7 +18,7 @@
   justify-content: space-between;
 }
 
-@mixin centerCol {
+@mixin flexCenterCol {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +45,6 @@
 
 @mixin linkBtn {
   color: var(--teal);
-  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   display: inline-block;
@@ -62,7 +61,6 @@
   border-color: var(--text-lighter);
   font-family: var(--fontMain);
   font-weight: normal;
-  font-size: 16px;
 
   &::placeholder {
     color: var(--text-lighter);
@@ -119,49 +117,6 @@
   &.card-last {
     border-bottom-left-radius: 1.5px;
     border-bottom-right-radius: 1.5px;
-  }
-}
-
-@mixin statusBubble {
-  display: inline-block;
-  padding: 3px 27px;
-  border-radius: 20px;
-  color: #fff;
-  width: 224px;
-  text-align: center;
-
-  @include w960 {
-    font-size: 14px;
-    width: 190px;
-  }
-
-  @include w320 {
-    width: 150px;
-  }
-
-  &.status-0 {
-    width: 256px;
-    background: #eb5a2d;
-
-    @include w960 {
-      width: 220px;
-    }
-
-    @include w320 {
-      width: 170px;
-    }
-  }
-
-  &.status-1 {
-    background: #ffc023;
-  }
-
-  &.status-2 {
-    background: #9785eb;
-  }
-
-  &.status-3 {
-    background: var(--amazon);
   }
 }
 

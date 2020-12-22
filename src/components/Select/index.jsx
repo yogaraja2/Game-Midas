@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Select as Dropdown, MenuItem, FormControl } from '@material-ui/core'
-import { ExpandMore } from '@material-ui/icons'
+import { MdExpandMore } from 'react-icons/md'
 import './style.scss'
 
 const Select = ({
@@ -70,7 +70,7 @@ const Select = ({
         value={currentValue}
         name={name}
         onChange={handleChange}
-        IconComponent={ExpandMore}
+        IconComponent={MdExpandMore}
         variant="outlined"
         inputProps={inputProps}
         multiple={multiple}
