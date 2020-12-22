@@ -1,0 +1,15 @@
+@import './assets/fonts/Phenomena/font.css';
+
+body {
+    font-family: var(--font-main);
+    color: var(--text);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.hide {
+    display: none !important;
+}
