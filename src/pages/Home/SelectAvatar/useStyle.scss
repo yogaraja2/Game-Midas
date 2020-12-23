@@ -1,0 +1,103 @@
+@import '../../../mixins/common';
+
+.game-control-home {
+  .select-avatar-card {
+    background: var(--bg-panel-card);
+    height: 90%;
+    position: relative;
+    .header-sec {
+      font-size: 1.5em;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    .options-selector {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+
+      .option-wrap {
+        text-align: center;
+
+        .option-label {
+          font-size: 1.4em;
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        .option-image {
+          border-radius: 50%;
+          height: 220px;
+          width: 220px;
+          position: relative;
+
+          .image-warp {
+            @include flexCenter;
+            background: #fff;
+            position: absolute;
+            border-radius: 50%;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+
+            img {
+              max-width: 200px;
+              max-height: 180px;
+            }
+          }
+        }
+
+        &.selected {
+          .selector-bg {
+            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
+              center;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .btn-wrap {
+      position: absolute;
+      bottom: 38px;
+      right: 128px;
+      .nxt-btn {
+        @include button;
+      }
+    }
+
+    .income-wrap {
+      margin: 20px;
+      .income-input {
+        width: 200px;
+        height: 10px;
+        margin: 10px;
+        padding: 10px;
+      }
+    }
+  }
+
+  .gameLength-wrap {
+    margin: 20px;
+    .gameLength-button-wrap {
+      width: 50%;
+      margin: 10px;
+      display: flex;
+      justify-content: space-between;
+      .shrt-button {
+        height: 100%;
+        background-color: #009ffd;
+        border-radius: 10px;
+      }
+      .mdm-button,
+      .long-button {
+        height: 100%;
+        background-color: grey;
+        border-radius: 10px;
+      }
+    }
+  }
+}

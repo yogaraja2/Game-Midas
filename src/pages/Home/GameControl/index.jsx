@@ -22,7 +22,7 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
         </div>
       </div>
     )
-  }
+}
 
 function GameControl() {
   const [selected, setSelected] = useState(null)

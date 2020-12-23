@@ -4,6 +4,8 @@ import { homeRoutes } from './routes'
 import RouteMapper from '../../utils/Router/RouteMapper'
 import './style.scss'
 import GameControl from './GameControl'
+import SelectAvatar from './SelectAvatar'
+import LeaderBoard from './LeaderBoard'
 
 function Home() {
   return (
@@ -14,7 +16,9 @@ function Home() {
       className="game-control-home"
     >
       {/* <RouteMapper data={homeRoutes} /> */}
-      <GameControl/>
+      {/* <GameControl /> */}
+      <SelectAvatar />
+      {/* <LeaderBoard /> */}
 
     </Grid>
   )
