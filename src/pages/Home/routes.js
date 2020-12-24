@@ -1,4 +1,3 @@
-
 import { commonRoute } from "../../config/routes";
 import GameControl from "./GameControl";
 import SelectAvatar from "./SelectAvatar";

@@ -5,22 +5,30 @@ import RouteMapper from '../../utils/Router/RouteMapper'
 import './style.scss'
 import GameControl from './GameControl'
 import SelectAvatar from './SelectAvatar'
+import SelectDreams from './SelectDream'
 import LeaderBoard from './LeaderBoard'
+
 
 function Home() {
   return (
-    <Grid
-      container
-      justify="center"
-      alignContent="center"
-      className="game-control-home"
-    >
-      {/* <RouteMapper data={homeRoutes} /> */}
-      {/* <GameControl /> */}
-      <SelectAvatar />
-      {/* <LeaderBoard /> */}
+    <>
+      {/* <Grid
+        container
+        justify="center"
+        alignContent="center"
+        className="game-control-home"
+      >
+        <RouteMapper data={homeRoutes} />
+        <GameControl />
+        <LeaderBoard />
 
-    </Grid>
+        <SelectAvatar />
+        
+      </Grid> */}
+
+      <SelectDreams />
+    </>
+
   )
 }
 

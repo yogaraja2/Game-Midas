@@ -123,6 +123,7 @@ function SelectAvatar() {
                     </div>
                 </div>
             </div>
+            
 
 
             <div className="btn-wrap">
