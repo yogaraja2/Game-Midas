@@ -1,173 +1,70 @@
 @import '../../../mixins/common';
 
-.dream-control-home {
-  background: url('../../../assets/img/dashboard-bg.svg') no-repeat center;
-  background-size: cover;
-  height: 100%;
-  .select-dreams-card {
-    background: var(--bg-panel-card);
-    height: 90%;
+.select-dreams-card {
+  background: var(--bg-panel-card);
+  height: 95%;
+  position: relative;
+  overflow: auto;
+  .header-sec {
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-left: 30px;
+  }
+
+  .options-selector {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+
+    .option-wrap {
+      text-align: center;
+
+      .option-label {
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      .option-image {
+        border-radius: 10px;
+        width: 200px;
+        height: 160px;
+        position: relative;
+
+        .image-warp {
+          @include flexCenter;
+          background: #fff;
+          position: absolute;
+          border-radius: 10px;
+          top: 12px;
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+
+          img {
+            max-width: 150px;
+            max-height: 130px;
+          }
+        }
+      }
+
+      &.selected {
+        .selector-bg {
+          border: 4px solid #009ffd;
+          border-radius: 10px;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .btn-wrap {
     position: relative;
-    .header-sec {
-      font-size: 1.2em;
-      margin-top: 5px;
-      margin-left: 30px;
-    }
-
-    .options-selector {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 5px;
-
-      .option-wrap {
-        text-align: center;
-
-        .option-label {
-          font-size: 1em;
-          font-weight: bold;
-        //   margin-bottom: 12px;
-        }
-
-        .option-image {
-          border-radius: 50%;
-          height: 150px;
-          width: 150px;
-          position: relative;
-
-          .image-warp {
-            @include flexCenter;
-            background: #fff;
-            position: absolute;
-            border-radius: 50%;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-
-            img {
-              max-width: 100px;
-              max-height: 90px;
-            }
-          }
-        }
-
-        &.selected {
-          .selector-bg {
-            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
-              center;
-            background-size: cover;
-            height: 100%;
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .carOptions-selector {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 5px;
-
-      .carOption-wrap {
-        text-align: center;
-
-        .option-label {
-          font-size: 1em;
-          font-weight: bold;
-          margin-bottom: 12px;
-        }
-
-        .option-image {
-          border-radius: 50%;
-          height: 150px;
-          width: 150px;
-          position: relative;
-
-          .image-warp {
-            @include flexCenter;
-            background: #fff;
-            position: absolute;
-            border-radius: 50%;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-
-            img {
-              max-width: 100px;
-              max-height: 90px;
-            }
-          }
-        }
-
-        &.selected {
-          .selector-bg {
-            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
-              center;
-            background-size: cover;
-            height: 100%;
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .houseOptions-selector {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 5px;
-
-      .houseOption-wrap {
-        text-align: center;
-
-        .option-label {
-          font-size: 1em;
-          font-weight: bold;
-          margin-bottom: 12px;
-        }
-
-        .option-image {
-          border-radius: 50%;
-          height: 150px;
-          width: 150px;
-          position: relative;
-
-          .image-warp {
-            @include flexCenter;
-            background: #fff;
-            position: absolute;
-            border-radius: 50%;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-
-            img {
-              max-width: 100px;
-              max-height: 90px;
-            }
-          }
-        }
-
-        &.selected {
-          .selector-bg {
-            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
-              center;
-            background-size: cover;
-            height: 100%;
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .btn-wrap {
-      position: absolute;
-      bottom: 10px;
-      right: 20px;
-      .nxt-btn {
-        @include button;
-      }
+    float: right;
+    top: 20px;
+    right: 20px;
+    .nxt-btn {
+      @include button;
     }
   }
 }

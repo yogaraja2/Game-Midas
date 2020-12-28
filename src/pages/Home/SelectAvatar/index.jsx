@@ -3,6 +3,7 @@ import { Button, Grid } from '@material-ui/core'
 import clsx from 'clsx'
 import './useStyle.scss'
 import doller from '../../../assets/img/doller 2.svg'
+import unlock from '../../../assets/img/lock.svg'
 import lock from '../../../assets/img/lock1.svg'
 import { commonRoute } from '../../../config/routes'
 import { useHistory } from 'react-router-dom'
@@ -36,15 +37,13 @@ const LengthOptions = ({ id, dollerImg, text1, text2, gameLength, setGameLength 
             onClick={setGameLength.bind(this, id)}
         >
             <div className="selected-lenrole">
-                <div className="doller-wrap">
-                    <img src={dollerImg} className="doller-icon" />
-                </div>
                 <div className="button-text-wrap">
                     <span className="button-text1">{text1}</span><br />
                     <span className="button-text2">{text2}</span>
                 </div>
+                <img src={dollerImg} className="doller-icon" />
             </div >
-        </Grid>
+        </Grid >
     )
 }
 
@@ -54,12 +53,10 @@ const RoleOptions = ({ id, title, role, setRole }) => {
             className={clsx('lenrole-button', { "selected-lenrole": role === id })}
             onClick={setRole.bind(this, id)}
         >
-            <div className="doller-wrap">
-                <img src={lock} className="doller-icon" />
-            </div>
-            <div className="button-text-wrap">
+            <div className="button-text-wrap" style={{ marginTop: '20px' }}>
                 <span className="button-text1">{title}</span>
             </div>
+            <img src={(role === id) ? unlock : lock} className="doller-icon" style={{ bottom: '20px' }} />
         </Grid>
     )
 }

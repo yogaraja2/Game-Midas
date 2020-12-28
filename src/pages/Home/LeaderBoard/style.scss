@@ -1,67 +1,67 @@
 @import '../../../mixins/common';
 
 .leader-player-card {
-    background: var(--bg-panel-card);
-    height: 70%;
-    position: relative;
+  background: var(--bg-panel-card);
+  height: 70%;
+  position: relative;
 
-    .play-main-class {
-        padding-left: 10%;
+  .play-main-class {
+    padding-left: 10%;
 
-        .paper-class {
-            height: 225px;
-            width: 250px;
-            border-radius: 10px;
+    .paper-class {
+      height: 225px;
+      width: 250px;
+      border-radius: 10px;
 
-            .player-border {
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 25px;
-                margin-top: -50px;
-                border-radius: 150px;
-                width: 115px;
-                height: 115px;
+      .player-border {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 25px;
+        margin-top: -50px;
+        border-radius: 150px;
+        width: 115px;
+        height: 115px;
 
-                .player-image {
-                    height: 10px;
-                    width: 10px;
-                    position: relative;
+        .player-image {
+          height: 10px;
+          width: 10px;
+          position: relative;
 
-                    .image-warp {
-                        @include flexCenter;
-                        position: absolute;
-                        top: 12px;
-                        left: 12px;
-                        right: 12px;
-                        bottom: 12px;
-                        margin-right: auto;
-                        margin-left: 20px;
-                        margin-top: 63px;
-            
-                        img {
-                            max-width: 75px;
-                            max-height: 75px;
-                            display: block;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
-                    }
-                }
+          .image-warp {
+            @include flexCenter;
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            margin-right: auto;
+            margin-left: 20px;
+            margin-top: 63px;
+
+            img {
+              max-width: 75px;
+              max-height: 75px;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
             }
+          }
         }
+      }
     }
-    
-    .player-label {
-        font-size: 1.4em;
-        font-weight: bold;
-        margin-bottom: 12px;
-        text-align: center;
-    }
-            
-    .player-points {
-        font-size: 1.4em;
-        margin-bottom: 12px;
-        text-align: center;
-        color: blue;
-    }
+  }
+
+  .player-label {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .player-points {
+    font-size: 1.4em;
+    margin-bottom: 12px;
+    text-align: center;
+    color: blue;
+  }
 }

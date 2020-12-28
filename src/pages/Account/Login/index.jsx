@@ -14,7 +14,7 @@ function Login() {
 
   const handleLogin = (values) => {
     console.log(values)
-    history.push(commonRoute.home)
+    history.push(commonRoute.gameOptions)
   }
 
   const goToSignup = () => {

@@ -1,9 +1,9 @@
-@import "../../../mixins/common";
+@import '../../../mixins/common';
 
 .game-control-home {
   .select-avatar-card {
     background: var(--bg-panel-card);
-    height: 98%;
+    height: 95%;
     position: relative;
     overflow: auto;
     .header-sec {
@@ -51,7 +51,8 @@
 
         &.selected {
           .selector-bg {
-            background: url("../../../assets/img/Selected-Blue.svg") no-repeat center;
+            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
+              center;
             background-size: cover;
             height: 100%;
             width: 100%;
@@ -81,8 +82,7 @@
           border-radius: 10px;
           background-color: #ffffff;
           .button-text-wrap {
-            margin: 10px;
-            padding-top: 5px;
+            margin-top: 15px;
             .button-text1 {
               font-weight: bold;
               font-size: 20px;
@@ -96,14 +96,13 @@
               padding-left: 20px;
             }
           }
-          .doller-wrap {
+          .doller-icon {
+            position: relative;
+            width: 23px;
+            height: 24px;
             float: right;
-            padding-top: 25px;
             padding-right: 15px;
-            .doller-icon {
-              width: 23px;
-              height: 24px;
-            }
+            bottom: 30px;
           }
 
           &:hover {
