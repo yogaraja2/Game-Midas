@@ -4,18 +4,39 @@ import Account from "./pages/Account";
 
 export const mainRoute = [
   {
-    name: "Home",
+    name: "Login",
     props: {
       path: commonRoute.home,
-      component: Home,
+      component: Account,
       exact: true
     }
   },
   {
-    name: "Login",
+    name: "SignUp",
     props: {
       path: commonRoute.account,
       component: Account,
     }
   },
+  {
+    name: "Home",
+    props: {
+      path: commonRoute.gameOptions,
+      component: Home,
+    }
+  },
+  {
+    name: "Avatar",
+    props: {
+      path: commonRoute.selectAvatar,
+      component: Home,
+    }
+  },
+  {
+    name: "Dream",
+    props: {
+      path: commonRoute.selectDreams,
+      component: Home,
+    }
+  }
 ];

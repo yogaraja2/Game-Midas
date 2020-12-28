@@ -12,21 +12,18 @@ import LeaderBoard from './LeaderBoard'
 function Home() {
   return (
     <>
-      {/* <Grid
+      <Grid
         container
         justify="center"
         alignContent="center"
         className="game-control-home"
       >
         <RouteMapper data={homeRoutes} />
-        <GameControl />
+        {/* <GameControl />
         <LeaderBoard />
+        <SelectAvatar /> */}
 
-        <SelectAvatar />
-        
-      </Grid> */}
-
-      <SelectDreams />
+      </Grid>
     </>
 
   )

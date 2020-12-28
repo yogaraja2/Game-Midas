@@ -1,6 +1,7 @@
 import { commonRoute } from "../../config/routes";
 import GameControl from "./GameControl";
 import SelectAvatar from "./SelectAvatar";
+import SelectDreams from "./SelectDream";
 
 export const homeRoutes = [
   {
@@ -11,10 +12,10 @@ export const homeRoutes = [
       exact: true
     },
     redirection: {
-        path: commonRoute.home,
-        exact: true,
-        to: commonRoute.gameOptions
-      }
+      path: commonRoute.home,
+      exact: true,
+      to: commonRoute.gameOptions
+    }
   },
   {
     name: "Select Avatar",
@@ -24,9 +25,22 @@ export const homeRoutes = [
       exact: true
     },
     redirection: {
-        path: commonRoute.home,
-        exact: true,
-        to: commonRoute.selectAvatar
-      }
+      path: commonRoute.home,
+      exact: true,
+      to: commonRoute.selectAvatar
+    }
+  },
+  {
+    name: "Select Dream",
+    props: {
+      path: commonRoute.selectDreams,
+      component: SelectDreams,
+      exact: true
+    },
+    redirection: {
+      path: commonRoute.home,
+      exact: true,
+      to: commonRoute.selectDreams
+    }
   },
 ];

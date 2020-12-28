@@ -1,49 +1,67 @@
 @import '../../../mixins/common';
 
+.leader-player-card {
+    background: var(--bg-panel-card);
+    height: 70%;
+    position: relative;
 
-.leader-player-home {
-    .leader-player-card {
-        background: var(--bg-panel-card);
-        height: 70%;
-        position: relative;
+    .play-main-class {
+        padding-left: 10%;
 
-        .player-border {
-            border-radius: 45%;
-            background-color: darkcyan;
+        .paper-class {
+            height: 225px;
+            width: 250px;
+            border-radius: 10px;
 
-            .player-image {
-                border-radius: 50%;
-                height: 270px;
-                width: 270px;
-                position: relative;
+            .player-border {
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 25px;
+                margin-top: -50px;
+                border-radius: 150px;
+                width: 115px;
+                height: 115px;
 
-                .image-warp {
-                    @include flexCenter;
-                    background: #fff;
-                    position: absolute;
-                    border-radius: 50%;
-                    top: 12px;
-                    left: 12px;
-                    right: 12px;
-                    bottom: 12px;
-        
-                    img {
-                        max-width: 200px;
-                        max-height: 180px;
+                .player-image {
+                    height: 10px;
+                    width: 10px;
+                    position: relative;
+
+                    .image-warp {
+                        @include flexCenter;
+                        position: absolute;
+                        top: 12px;
+                        left: 12px;
+                        right: 12px;
+                        bottom: 12px;
+                        margin-right: auto;
+                        margin-left: 20px;
+                        margin-top: 63px;
+            
+                        img {
+                            max-width: 75px;
+                            max-height: 75px;
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
                     }
                 }
             }
         }
-                
-        .player-points {
-            font-size: 1.4em;
-            margin-bottom: 12px;
-        }
-
-        .player-label {
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
+    }
+    
+    .player-label {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+            
+    .player-points {
+        font-size: 1.4em;
+        margin-bottom: 12px;
+        text-align: center;
+        color: blue;
     }
 }

@@ -3,4 +3,5 @@ export const commonRoute = {
   account: '/account/:screen?',
   gameOptions: '/gamehome',
   selectAvatar: '/selectAvatar',
+  selectDreams: '/selectDreams'
 }

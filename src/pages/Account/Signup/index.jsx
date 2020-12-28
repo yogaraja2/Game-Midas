@@ -15,22 +15,44 @@ import './style.scss'
 function Signup() {
   const roleOptions = [
     { id: 'individual', value: 'Individual' },
-    { id: 'group', value: 'Group' }
+    { id: 'student', value: 'Student' },
+    { id: 'instructor', value: 'Instructor' },
+    { id: 'schoolAdmin', value: 'School Admin' }
   ]
-  const { control, errors, handleSubmit } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-      retypePass: '',
-      role: roleOptions[0].id,
-      isAgreed: false
-    }
-  })
+  const schoolOptions = [
+    // { id: '', value: '' },
+    { id: 'schoolA', value: 'School A' },
+    { id: 'schoolB', value: 'School B' },
+    { id: 'schoolC', value: 'School C' },
+    { id: 'schoolD', value: 'School D' },
+  ]
+  const SelectSchool = () => {
+    return (
+      <FormDropdown
+        name="school"
+        className="school-field"
+        label="Choose the School"
+        list={schoolOptions}
+        rules={{ required: 'Please select your school' }}
+        {...allyProps}
+      />
+    )
+  }
+
+  const defaultValues = {
+    email: '',
+    password: '',
+    retypePass: '',
+    role: roleOptions[0].id,
+    school: schoolOptions[0].id,
+    isAgreed: false
+  }
+  const { control, errors, handleSubmit } = useForm({ defaultValues })
   const history = useHistory()
 
   const handleSignup = (values) => {
     console.log(values)
-    history.push(commonRoute.home)
+    history.push(commonRoute.gameOptions)
   }
 
   const allyProps = { control, error: errors }
@@ -92,6 +114,10 @@ function Signup() {
           />
         </div>
 
+        {/* <div className="form-field">
+          {defaultValues.role === 'Student' || defaultValues.role === 'Instructor' ? <SelectSchool /> : null}
+        </div> */}
+
         <div className="form-field">
           <div className="signup-terms">
             <FormCheckBox
@@ -110,7 +136,7 @@ function Signup() {
 
         <div className="form-btns">
           <Button type="submit" className="signin-btn">
-            Next
+            Signup
           </Button>
           <span className="cont">or</span>
           <LinkButton
