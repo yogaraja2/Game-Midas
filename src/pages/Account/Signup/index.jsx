@@ -13,6 +13,7 @@ import { getOriginPath } from '../../../utils/commonFunctions'
 import './style.scss'
 
 function Signup() {
+
   const roleOptions = [
     { id: 'individual', value: 'Individual' },
     { id: 'student', value: 'Student' },
@@ -20,7 +21,7 @@ function Signup() {
     { id: 'schoolAdmin', value: 'School Admin' }
   ]
   const schoolOptions = [
-    // { id: '', value: '' },
+    { id: 'select', value: 'Select' },
     { id: 'schoolA', value: 'School A' },
     { id: 'schoolB', value: 'School B' },
     { id: 'schoolC', value: 'School C' },
@@ -114,9 +115,10 @@ function Signup() {
           />
         </div>
 
-        {/* <div className="form-field">
-          {defaultValues.role === 'Student' || defaultValues.role === 'Instructor' ? <SelectSchool /> : null}
-        </div> */}
+
+        <div className="form-field">
+          {(defaultValues.role === 'Student' || defaultValues.role === 'Instructor') ? <SelectSchool /> : null}
+        </div>
 
         <div className="form-field">
           <div className="signup-terms">

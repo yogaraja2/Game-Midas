@@ -2,6 +2,7 @@ import { commonRoute } from "../../config/routes";
 import GameControl from "./GameControl";
 import SelectAvatar from "./SelectAvatar";
 import SelectDreams from "./SelectDream";
+import DashBoard from '../DashBoard'
 
 export const homeRoutes = [
   {
@@ -41,6 +42,19 @@ export const homeRoutes = [
       path: commonRoute.home,
       exact: true,
       to: commonRoute.selectDreams
+    }
+  },
+  {
+    name: "DashBoard",
+    props: {
+      path: commonRoute.dashBoard,
+      component: DashBoard,
+      exact: true
+    },
+    redirection: {
+      path: commonRoute.home,
+      exact: true,
+      to: commonRoute.dashBoard
     }
   }
 ];

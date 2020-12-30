@@ -7,35 +7,57 @@ import RouteMapper from '../../utils/Router/RouteMapper'
 import { dashboardRoutes } from './routes'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../config/routes'
-
-const Fields = ({ id, img, label, selected, setSelected }) => {
-    return (
-        <div className={clsx("nav-fields-wrap", { "selected": selected === id })}
-            onClick={setSelected.bind(this, id)}
-        >
-            <div className="nav-fields">
-                <img src={require(`../../assets/img/${img}.svg`).default} alt={label} />
-                <h4 style={{ color: '#ffffff', fontWeight: 200 }}>{label}</h4>
-            </div>
-        </div>
-
-    )
-}
+import CashFlow from './CashFlow'
+import Balance from './Balance'
+import Stats from './Stats'
+import Advisor from './Advisor'
 
 function DashBoard() {
+
+    const history = useHistory()
+
+    const Fields = ({ id, img, label, selected, setSelected }) => {
+        return (
+            <div className={clsx("nav-fields-wrap", { "selected": selected === id })}
+                onClick={setSelected.bind(this, id)}
+            >
+                <div className="nav-fields">
+                    <img src={require(`../../assets/img/${img}.svg`).default} alt={label} />
+                    <h4 style={{ color: '#ffffff', fontWeight: 200 }}>{label}</h4>
+                </div>
+            </div>
+
+        )
+    }
 
     const [selected, setSelected] = useState(null)
     const otherFieldProp = { selected, setSelected }
 
-    const history = useHistory()
+
     const goToLogin = () => {
         history.push(commonRoute.home)
+    }
+
+    function renderSwitch(selected) {
+        switch (selected) {
+            case "cashFlow":
+                return <CashFlow />
+            case "balance":
+                return <Balance />
+            case "stats":
+                return <Stats />
+            case "advisor":
+                return <Advisor />
+            default:
+                break;
+        }
     }
 
     return (
         <>
             <Grid container className="dashboard-root">
-                <Grid item className="side-nav">
+
+                <Grid container className="side-nav">
                     <div className="profile-wrap">
                         <img src={require('../../assets/img/User1.svg').default} className="user-profile" />
                         <h3 className="profile-text">Profile</h3>
@@ -45,7 +67,7 @@ function DashBoard() {
                         <Fields
                             img="CashflowIcon"
                             label="Cash Flow"
-                            id="casfhlow"
+                            id="cashFlow"
                             {...otherFieldProp}
                         />
                         <Fields
@@ -71,22 +93,20 @@ function DashBoard() {
                     <div className="log-out-wrap">
                         <LinkButton className="log-out-btn" onClick={goToLogin}>Sign out</LinkButton>
                     </div>
-
                 </Grid>
 
-                <Grid item className="dashboard-main" >
-                    <div style={{ margin: '30px' }}>
-                        <img src={require('../../assets/img/TitleLogo.svg').default} />
-                    </div>
-                    {/* <Grid container
-                        justify="center"
-                        alignContent="center"
-                    >
-                        <RouteMapper data={dashboardRoutes} />
+                <Grid container justify="center" alignContent="center" className="dashboard-main">
+                    {
+                        renderSwitch(selected)
+                        // or using below ternary condition
+                        //  (selected === "cashFlow" ? <CashFlow /> :
+                        //     selected === "balance" ? <Balance /> :
+                        //         selected === "stats" ? <Stats /> :
+                        //             selected === "advisor" ? <Advisor /> : null)
+                    }
 
-                    </Grid> */}
-                    <h1 style={{ textAlign: 'center' }}>Dashboard</h1>
-
+                    {/* <RouteMapper data={dashboardRoutes} /> */}
+                    
                 </Grid>
 
             </Grid>

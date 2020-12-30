@@ -19,6 +19,13 @@ export const mainRoute = [
       component: Account,
     }
   },
+  // {
+  //   name: "Select Role",
+  //   props: {
+  //     path: commonRoute.selectRole,
+  //     component: Account,
+  //   }
+  // },
   {
     name: "Home",
     props: {
@@ -45,7 +52,6 @@ export const mainRoute = [
     props: {
       path: commonRoute.dashBoard,
       component: DashBoard,
-      exact: true
     }
   },
   // {
