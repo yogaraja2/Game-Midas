@@ -3,5 +3,10 @@ export const commonRoute = {
   account: '/account/:screen?',
   gameOptions: '/gamehome',
   selectAvatar: '/selectAvatar',
-  selectDreams: '/selectDreams'
+  selectDreams: '/selectDreams',
+  dashBoard: '/dashBoard',
+  cashFlow: '/cashFlow',
+  balance: '/balance',
+  stats: '/stats',
+  advisor: '/advisor',
 }

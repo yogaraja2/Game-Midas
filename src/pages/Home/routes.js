@@ -42,5 +42,5 @@ export const homeRoutes = [
       exact: true,
       to: commonRoute.selectDreams
     }
-  },
+  }
 ];

@@ -3,6 +3,8 @@ import { Button, Grid } from '@material-ui/core'
 import clsx from 'clsx'
 import './style.scss'
 import doller from '../../../assets/img/doller 2.svg'
+import { useHistory } from 'react-router-dom'
+import { commonRoute } from '../../../config/routes'
 
 const SelectDream = ({ label, imgUrl, id, dream, setDream }) => {
     return (
@@ -39,7 +41,7 @@ const SelectCar = ({ label, imgUrl, cost, id, car, setCar }) => {
                             alt={label}
                         />
                         <div style={{ marginTop: '10px', bottom: '5px' }}>
-                            <img src={doller} style={{ width: 20, height: 21, position: 'absolute', }} />
+                            <img src={doller} alt={label} style={{ width: 20, height: 21, position: 'absolute', }} />
                             <span style={{
                                 position: 'relative', fontSize: 18,
                                 fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
@@ -69,7 +71,10 @@ const SelectHouse = ({ label, imgUrl, cost, id, house, setHouse }) => {
                         />
                         <div>
                             <img src={doller} style={{ width: 20, height: 21, position: 'absolute', }} />
-                            <span style={{ position: 'relative', fontSize: 18, fontWeight: 'bold', color: ' #747d8c', marginLeft: 30 }}>
+                            <span style={{
+                                position: 'relative', fontSize: 18,
+                                fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
+                            }}>
                                 {cost}
                             </span>
                         </div>
@@ -90,6 +95,11 @@ function SelectDreams() {
     const allyProps = { dream, setDream }
     const restCar = { car, setCar }
     const restHouse = { house, setHouse }
+
+    const history = useHistory();
+    const goToDashboard = () => {
+        history.push(commonRoute.dashBoard)
+    }
 
     return (
         <Grid item xs={12} md={10} className="select-dreams-card">
@@ -227,7 +237,7 @@ function SelectDreams() {
             </Grid>
 
             <div className="btn-wrap">
-                <Button className="nxt-btn">Next</Button>
+                <Button className="nxt-btn" onClick={goToDashboard}>Next</Button>
             </div>
         </Grid>
     )

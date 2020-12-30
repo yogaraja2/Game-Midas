@@ -41,6 +41,9 @@
               max-height: 180px;
             }
           }
+          &:hover {
+            cursor: pointer;
+          }
         }
 
         &.selected {

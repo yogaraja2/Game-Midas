@@ -1,0 +1,70 @@
+@import '../../mixins/common';
+
+.dashboard-root {
+  .side-nav {
+    width: 150px;
+    height: 100vh;
+    position: absolute;
+    background-color: #005692;
+
+    .profile-wrap {
+      width: 100px;
+      height: 100px;
+      background-color: #ffffff;
+      margin-top: 50px;
+      margin-left: 25px;
+      border-radius: 50%;
+      .user-profile {
+        width: 80px;
+        height: 99px;
+      }
+      .profile-text {
+        text-align: center;
+        color: #ffffff;
+        font-weight: 400;
+      }
+    }
+
+    .field-main-wrap {
+      width: 100%;
+      margin-top: 50px;
+      .nav-fields-wrap {
+        // background-color: green;
+        .nav-fields {
+          @include flexCenter;
+          width: 100%;
+          height: 100px;
+          margin-top: 10px;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(0, 159, 253, 0.2);
+        }
+      }
+      .selected {
+        background-color: rgb(0, 159, 253);
+      }
+    }
+
+    .log-out-wrap {
+      width: 50%;
+      height: 30px;
+      margin-top: 40px;
+      margin-left: 40px;
+      .log-out-btn {
+        font-size: 20px;
+        font-weight: 200;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .dashboard-main {
+    background: url('../../assets/img/dashboard-bg.svg') no-repeat center;
+    background-size: cover;
+    width: 90.5%;
+    height: 100%;
+    left: 150px;
+    position: absolute;
+  }
+}

@@ -32,7 +32,7 @@ const AvatarOptions = ({ label, imgUrl, id, selected, setSelected }) => {
 
 const LengthOptions = ({ id, dollerImg, text1, text2, gameLength, setGameLength }) => {
     return (
-        <Grid item item md={3} sm={12} xs={12}
+        <Grid item md={3} sm={12} xs={12}
             className={clsx('lenrole-button', { "selected-lenrole": gameLength === id })}
             onClick={setGameLength.bind(this, id)}
         >
@@ -41,7 +41,7 @@ const LengthOptions = ({ id, dollerImg, text1, text2, gameLength, setGameLength 
                     <span className="button-text1">{text1}</span><br />
                     <span className="button-text2">{text2}</span>
                 </div>
-                <img src={dollerImg} className="doller-icon" />
+                <img src={dollerImg} alt={id} className="doller-icon" />
             </div >
         </Grid >
     )
@@ -56,7 +56,7 @@ const RoleOptions = ({ id, title, role, setRole }) => {
             <div className="button-text-wrap" style={{ marginTop: '20px' }}>
                 <span className="button-text1">{title}</span>
             </div>
-            <img src={(role === id) ? unlock : lock} className="doller-icon" style={{ bottom: '20px' }} />
+            <img src={(role === id) ? unlock : lock} alt={id} className="doller-icon" style={{ bottom: '20px' }} />
         </Grid>
     )
 }
