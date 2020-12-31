@@ -5,6 +5,7 @@ import Login from './Login'
 import { useParams } from 'react-router-dom'
 import Signup from './Signup'
 import { Copyright } from '../../components/Footer'
+import SelectRole from './SelectRole'
 
 function Account() {
   const { screen } = useParams()
@@ -16,7 +17,10 @@ function Account() {
       </Grid>
 
       <Grid item xs={12} md={8} className="account-screens">
-        {screen === 'signup' ? <Signup /> : <Login />}
+
+        {screen === 'signup' ? <Signup /> :
+          screen === 'selectRole' ? <SelectRole /> : <Login />
+        }
 
         <div className="copyright-wrap">
           <Copyright />

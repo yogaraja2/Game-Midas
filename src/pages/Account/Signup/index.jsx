@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import {
   FormCheckBox,
-  FormDropdown,
   FormTextfield
 } from '../../../components/FormField'
 import LinkButton from '../../../components/LinkButton'
@@ -14,38 +13,10 @@ import './style.scss'
 
 function Signup() {
 
-  const roleOptions = [
-    { id: 'individual', value: 'Individual' },
-    { id: 'student', value: 'Student' },
-    { id: 'instructor', value: 'Instructor' },
-    { id: 'schoolAdmin', value: 'School Admin' }
-  ]
-  const schoolOptions = [
-    { id: 'select', value: 'Select' },
-    { id: 'schoolA', value: 'School A' },
-    { id: 'schoolB', value: 'School B' },
-    { id: 'schoolC', value: 'School C' },
-    { id: 'schoolD', value: 'School D' },
-  ]
-  const SelectSchool = () => {
-    return (
-      <FormDropdown
-        name="school"
-        className="school-field"
-        label="Choose the School"
-        list={schoolOptions}
-        rules={{ required: 'Please select your school' }}
-        {...allyProps}
-      />
-    )
-  }
-
   const defaultValues = {
     email: '',
     password: '',
     retypePass: '',
-    role: roleOptions[0].id,
-    school: schoolOptions[0].id,
     isAgreed: false
   }
   const { control, errors, handleSubmit } = useForm({ defaultValues })
@@ -53,7 +24,7 @@ function Signup() {
 
   const handleSignup = (values) => {
     console.log(values)
-    history.push(commonRoute.gameOptions)
+    history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
   }
 
   const allyProps = { control, error: errors }
@@ -102,22 +73,6 @@ function Signup() {
             rules={{ required: 'Please confirm your password' }}
             {...allyProps}
           />
-        </div>
-
-        <div className="form-field">
-          <FormDropdown
-            name="role"
-            className="role-field"
-            label="Choose the Role"
-            list={roleOptions}
-            rules={{ required: 'Please select your role' }}
-            {...allyProps}
-          />
-        </div>
-
-
-        <div className="form-field">
-          {(defaultValues.role === 'Student' || defaultValues.role === 'Instructor') ? <SelectSchool /> : null}
         </div>
 
         <div className="form-field">

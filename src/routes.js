@@ -1,7 +1,7 @@
 import { commonRoute } from "./config/routes";
 import Home from "./pages/Home";
 import Account from "./pages/Account";
-import DashBoard from './pages/DashBoard'
+import DashBoard from './pages/DashBoard';
 
 export const mainRoute = [
   {
@@ -19,13 +19,13 @@ export const mainRoute = [
       component: Account,
     }
   },
-  // {
-  //   name: "Select Role",
-  //   props: {
-  //     path: commonRoute.selectRole,
-  //     component: Account,
-  //   }
-  // },
+  {
+    name: "Select Role",
+    props: {
+      path: commonRoute.selectRole,
+      component: Account,
+    }
+  },
   {
     name: "Home",
     props: {
@@ -54,32 +54,4 @@ export const mainRoute = [
       component: DashBoard,
     }
   },
-  // {
-  //   name: "Cash Flow",
-  //   props: {
-  //     path: commonRoute.cashFlow,
-  //     component: DashBoard,
-  //   }
-  // },
-  // {
-  //   name: "Balance",
-  //   props: {
-  //     path: commonRoute.balance,
-  //     component: DashBoard,
-  //   }
-  // },
-  // {
-  //   name: "Stats",
-  //   props: {
-  //     path: commonRoute.stats,
-  //     component: DashBoard,
-  //   }
-  // },
-  // {
-  //   name: "Advisor",
-  //   props: {
-  //     path: commonRoute.advisor,
-  //     component: DashBoard,
-  //   }
-  // },
 ];

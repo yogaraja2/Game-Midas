@@ -1,7 +1,7 @@
 export const commonRoute = {
   home: '/',
   account: '/account/:screen?',
-  // selectRole: '/selectRole',
+  selectRole: '/selectRole',
   gameOptions: '/gamehome',
   selectAvatar: '/selectAvatar',
   selectDreams: '/selectDreams',
