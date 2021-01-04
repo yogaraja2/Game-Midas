@@ -5,7 +5,7 @@ import './styles.scss'
 function Balance() {
     return (
         <Grid item xs={12} md={10} className="balance-flow-card">
-            <img src={require('../../../assets/img/TitleLogo.svg').default}
+            <img src={require('../../../assets/img/TitleLogo.svg').default} alt="title-logo"
                 style={{ width: 150, height: 70 }} />
             <h1 style={{ textAlign: 'center' }}>Balance Flow Page</h1>
         </Grid>

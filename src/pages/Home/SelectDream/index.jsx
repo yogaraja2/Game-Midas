@@ -7,19 +7,15 @@ import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 
 const SelectDream = ({ label, imgUrl, id, dream, setDream }) => {
+    const selected = dream === id ? 'selected' : '';
     return (
-        <div
-            className={clsx('option-wrap', dream === id && 'selected')}
-            onClick={setDream.bind(this, id)}
-        >
-            <div className="option-image">
-                <div className="image-warp">
-                    <div className="selector-bg">
-                        <img
-                            src={require(`../../../assets/img/${imgUrl}.svg`).default}
-                            alt={label}
-                        />
-                    </div>
+        <div className="option-wrap" onClick={setDream.bind(this, id)}>
+            <div className="option-image" >
+                <div className={`image-warp ${selected}`}>
+                    <img
+                        src={require(`../../../assets/img/${imgUrl}.svg`).default}
+                        alt={label}
+                    />
                 </div>
             </div>
             <div className="option-label">{label}</div>
@@ -28,25 +24,21 @@ const SelectDream = ({ label, imgUrl, id, dream, setDream }) => {
 }
 
 const SelectCar = ({ label, imgUrl, cost, id, car, setCar }) => {
+    const selected = car === id ? 'selected' : ''
     return (
-        <div
-            className={clsx('option-wrap', car === id && 'selected')}
-            onClick={setCar.bind(this, id)}
-        >
+        <div className='option-wrap' onClick={setCar.bind(this, id)}>
             <div className="option-image">
-                <div className="image-warp">
-                    <div className="selector-bg">
-                        <img
-                            src={require(`../../../assets/img/${imgUrl}.svg`).default}
-                            alt={label}
-                        />
-                        <div style={{ marginTop: '10px', bottom: '5px' }}>
-                            <img src={doller} alt={label} style={{ width: 20, height: 21, position: 'absolute', }} />
-                            <span style={{
-                                position: 'relative', fontSize: 18,
-                                fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
-                            }}>{cost}</span>
-                        </div>
+                <div className={`image-warp ${selected}`}>
+                    <img
+                        src={require(`../../../assets/img/${imgUrl}.svg`).default}
+                        alt={label}
+                    />
+                    <div style={{ marginTop: '10px', bottom: '5px' }}>
+                        <img src={doller} alt={label} style={{ width: 20, height: 21, position: 'absolute', }} />
+                        <span style={{
+                            position: 'relative', fontSize: 18,
+                            fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
+                        }}>{cost}</span>
                     </div>
                 </div>
             </div>
@@ -56,28 +48,24 @@ const SelectCar = ({ label, imgUrl, cost, id, car, setCar }) => {
 }
 
 const SelectHouse = ({ label, imgUrl, cost, id, house, setHouse }) => {
+    const selected = house === id ? 'selected' : ''
     return (
-        <div
-            className={clsx('option-wrap', house === id && 'selected')}
-            onClick={setHouse.bind(this, id)}
-        >
+        <div className='option-wrap' onClick={setHouse.bind(this, id)} >
             <div className="option-image">
-                <div className="image-warp">
-                    <div className="selector-bg">
-                        <img
-                            src={require(`../../../assets/img/${imgUrl}.svg`).default}
-                            alt={label}
-                            style={{ width: 150, height: 100 }}
-                        />
-                        <div>
-                            <img src={doller} style={{ width: 20, height: 21, position: 'absolute', }} />
-                            <span style={{
-                                position: 'relative', fontSize: 18,
-                                fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
-                            }}>
-                                {cost}
-                            </span>
-                        </div>
+                <div className={`image-warp ${selected}`}>
+                    <img
+                        src={require(`../../../assets/img/${imgUrl}.svg`).default}
+                        alt={label}
+                        style={{ width: 150, height: 100 }}
+                    />
+                    <div>
+                        <img src={doller} style={{ width: 20, height: 21, position: 'absolute', }} />
+                        <span style={{
+                            position: 'relative', fontSize: 18,
+                            fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
+                        }}>
+                            {cost}
+                        </span>
                     </div>
                 </div>
             </div>

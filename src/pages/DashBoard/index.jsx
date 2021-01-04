@@ -1,10 +1,8 @@
-import { CssBaseline, Grid } from '@material-ui/core'
+import {Grid} from '@material-ui/core'
 import React, { useState } from 'react'
 import './style.scss'
 import LinkButton from '../../components/LinkButton'
 import clsx from 'clsx'
-import RouteMapper from '../../utils/Router/RouteMapper'
-import { dashboardRoutes } from './routes'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../config/routes'
 import CashFlow from './CashFlow'
@@ -56,10 +54,9 @@ function DashBoard() {
     return (
         <>
             <Grid container className="dashboard-root">
-
                 <Grid container className="side-nav">
                     <div className="profile-wrap">
-                        <img src={require('../../assets/img/User1.svg').default} className="user-profile" />
+                        <img src={require('../../assets/img/User1.svg').default} alt="profile" className="user-profile" />
                         <h3 className="profile-text">Profile</h3>
                     </div>
 
