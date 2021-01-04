@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import {
@@ -7,27 +7,103 @@ import {
   FormTextfield
 } from '../../../components/FormField'
 import LinkButton from '../../../components/LinkButton'
+import SnackBar from '../../../components/SnackBar'
 import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
 import './style.scss'
+import API, { URL } from '../../../Api'
 
 function Signup() {
 
   const defaultValues = {
-    email: '',
+    username: '',
+    gmail: '',
     password: '',
-    retypePass: '',
+    confirmPassword: '',
     isAgreed: false
   }
-  const { control, errors, handleSubmit } = useForm({ defaultValues })
+  const { register, watch, control, errors, handleSubmit } = useForm({ defaultValues })
   const history = useHistory()
 
-  const handleSignup = (values) => {
-    console.log(values)
-    history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
+  const validationErr = {
+    name: 'Invalid name',
+    gmail: 'Invalid mail address',
+    passwordValidation: 'Password must contain Alphanumeric',
+    passwordLength: 'Password must has 6 to 12 length',
   }
 
   const allyProps = { control, error: errors }
+
+  const [message, setMessage] = useState(null)
+  const [Error, setError] = useState(false)
+  const [detail, setDetail] = useState(null)
+  const [response, setResponse] = useState(null)
+  const [count, setCount] = useState(false)
+
+  const handleSignup = (data) => {
+    console.log(data)
+    if (data.password !== data.confirmPassword) {
+      console.log('wrong password')
+      setMessage("Incorrect password, please enter valid password")
+      setError(true)
+    }
+    else {
+      console.log('correct password')
+      API.post(URL.signup, data)
+        .then((res) => {
+          const { data } = res
+          setCount(true)
+          setResponse(data)
+          if (data.user?.accessToken) {
+            localStorage.setItem('virujhToken', data.user.accessToken)
+            localStorage.setItem('userId', data.user.userId)
+            localStorage.setItem(
+              'userName',
+              `${data.details.userName}`
+            )
+            setMessage('Thanks! Your account has been created successfully')
+            setDetail(data)
+            setError(true)
+          } else if (data?.user.update === 'updated password') {
+            setError(true)
+            setMessage('Created successfully...Please do signin')
+          } else if (data?.statusCode) {
+            setError(true)
+            setMessage(data?.message)
+          }
+        })
+        .catch((err) => {
+          setCount(true)
+        })
+    }
+  }
+
+  useEffect(() => {
+    if (count) {
+      if (response) {
+        setError(true)
+        setMessage(response.message)
+        setCount(false)
+      } else {
+        setError(true)
+        setMessage('Something went Wrong')
+        setCount(false)
+      }
+    }
+  }, [response, count])
+
+  function handleOnClose(reason) {
+    if (reason === 'clickaway') {
+      return
+    }
+    if (message === 'Created successfully...Please do signin') {
+      history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
+    }
+    if (detail?.user?.accessToken) {
+      //
+    }
+    setError(false)
+  }
 
   return (
     <div className="signup-box-sec">
@@ -36,17 +112,44 @@ function Signup() {
       <form className="field-wrap" onSubmit={handleSubmit(handleSignup)}>
         <div className="form-field">
           <FormTextfield
-            className="email-field"
-            name="email"
-            label="E-Mail"
-            placeholder="johnsmith@abc.com"
+            className="user-name"
+            label="Username"
+            name="username"
+            placeholder="Midas"
+            onChange={(e) => e.target.value}
             rules={{
-              required: 'Please enter your email',
+              required: 'Please enter username',
+              minLength: {
+                value: 3,
+                message: validationErr.name
+              },
               pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'invalid email address'
+                value: /^[A-Za-z]*$/,
+                message: validationErr.name
               }
             }}
+            error={errors.username && errors.username.message}
+            hasValidation
+            {...allyProps}
+          />
+        </div>
+
+        <div className="form-field">
+          <FormTextfield
+            className="gmail-field"
+            name="gmail"
+            label="E-Mail"
+            placeholder="midas123@gmail.com"
+            onChange={(e) => e.target.value}
+            rules={{
+              required: 'Please enter your gmail',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: validationErr.gmail
+              }
+            }}
+            error={errors.gmail && errors.gmail.message}
+            hasValidation
             {...allyProps}
           />
         </div>
@@ -58,7 +161,24 @@ function Signup() {
             name="password"
             type="password"
             placeholder="********"
-            rules={{ required: 'Please enter your password' }}
+            onChange={(e) => e.target.value}
+            rules={{
+              required: 'Please enter your password',
+              minLength: {
+                value: 6,
+                message: validationErr.passwordLength
+              },
+              maxLength: {
+                value: 12,
+                message: validationErr.passwordLength
+              },
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/,
+                message: validationErr.passwordValidation
+              }
+            }}
+            error={errors.password && errors.password.message}
+            hasValidation
             {...allyProps}
           />
         </div>
@@ -67,10 +187,26 @@ function Signup() {
           <FormTextfield
             className="pswd-field"
             label="Repeat Password"
-            name="retypePass"
+            name="confirmPassword"
             type="password"
             placeholder="********"
-            rules={{ required: 'Please confirm your password' }}
+            onChange={(e) => e.target.value}
+            rules={{
+              required: 'Please enter your password',
+              minLength: {
+                value: 6,
+                message: validationErr.passwordLength
+              },
+              maxLength: {
+                value: 12,
+                message: validationErr.passwordLength
+              },
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/,
+                message: validationErr.passwordValidation
+              }
+            }}
+            error={errors.confirmPassword && errors.confirmPassword.message}
             {...allyProps}
           />
         </div>
@@ -81,6 +217,7 @@ function Signup() {
               name="isAgreed"
               className="terms-checkbox"
               rules={{ required: 'Need to agree to the terms to continue' }}
+              error={!!errors.isAgreed && errors.isAgreed.message}
               control={control}
             />
             <span className="term-cont">By Signing up I Agree with</span>
@@ -106,6 +243,14 @@ function Signup() {
           </LinkButton>
         </div>
       </form>
+      {response && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          onclose={handleOnClose}
+          severity={'error'}
+        />
+      )}
     </div>
   )
 }

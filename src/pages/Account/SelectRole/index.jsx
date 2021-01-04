@@ -21,6 +21,12 @@ function SelectRole() {
         { id: 'schoolC', value: 'School C' },
         { id: 'schoolD', value: 'School D' },
     ]
+    const allInstructor = [
+        { id: 'antony', value: 'Antony' },
+        { id: 'bairstow', value: 'Bairstow' },
+        { id: 'christober', value: 'Christober' },
+        { id: 'david', value: 'David' },
+    ]
     const subscriptionPeriod = [
         { id: 'one', value: '1 Year' },
         { id: 'two', value: '2 Year' },
@@ -30,6 +36,7 @@ function SelectRole() {
     const defaultValues = {
         role: '',
         school: '',
+        instructor: '',
         organization: '',
         subscription: '',
     }
@@ -73,6 +80,19 @@ function SelectRole() {
                         onChange={(e) => e.target.value}
                         rules={(role === 'student' || role === 'instructor') && { required: 'Please select your school' }}
                         disabled={!(role === 'student' || role === 'instructor') ? true : false}
+                        {...otherProps}
+                    />
+                </div>
+                <div className="form-field">
+                    <FormDropdown
+                        name="instructor"
+                        className="instructor-field"
+                        label="Choose Your Instructor (Optional)"
+                        list={allInstructor}
+                        placeholder="Select"
+                        onChange={(e) => e.target.value}
+                        rules={(role === 'student') && { required: 'Please select your instructor' }}
+                        disabled={!(role === 'student') ? true : false}
                         {...otherProps}
                     />
                 </div>

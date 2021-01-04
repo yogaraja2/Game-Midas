@@ -56,6 +56,7 @@ export const FormTextfield = ({
   label,
   placeholder,
   rules,
+  inputProps,
   control,
   error,
   hasValidation,
@@ -71,6 +72,7 @@ export const FormTextfield = ({
           name={name}
           label={label}
           placeholder={placeholder}
+          inputProps={inputProps}
           error={error && error[name] && error[name]?.message}
           hasValidation={hasValidation}
           {...rest}
