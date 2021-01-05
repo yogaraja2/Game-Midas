@@ -52,24 +52,24 @@ function SnackBar({ openDialog, message, onclose, severity }) {
           <Alert severity={severity}>{message}</Alert>
         </Snackbar>
       ) : (
-        <Dialog open={openDialog}>
-          <DialogContent>
-            <Typography
-              className={
-                severity === 'info' ? classes.infoHeader : classes.errorHeader
-              }
-            >
-              {severity === 'info' ? 'Info' : 'Error'}
-            </Typography>
-            <Typography className={classes.message}>{message}</Typography>
-            <Box className={classes.buttonContainer}>
-              <Button onClick={handleClose} className={classes.button}>
-                OK
+          <Dialog open={openDialog}>
+            <DialogContent>
+              <Typography
+                className={
+                  severity === 'info' ? classes.infoHeader : classes.errorHeader
+                }
+              >
+                {severity === 'info' ? 'Info' : 'Error'}
+              </Typography>
+              <Typography className={classes.message}>{message}</Typography>
+              <Box className={classes.buttonContainer}>
+                <Button onClick={handleClose} className={classes.button}>
+                  OK
               </Button>
-            </Box>
-          </DialogContent>
-        </Dialog>
-      )}
+              </Box>
+            </DialogContent>
+          </Dialog>
+        )}
     </Box>
   )
 }

@@ -6,8 +6,9 @@ import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { commonRoute } from '../../../config/routes'
 import './styles.scss'
+// import { dataObj } from '../Signup/index'
 
-function SelectRole() {
+function SelectRole({ response }) {
 
     const roleOptions = [
         { id: 'individual', value: 'Individual' },
@@ -27,6 +28,7 @@ function SelectRole() {
         { id: 'christober', value: 'Christober' },
         { id: 'david', value: 'David' },
     ]
+    // const allInstructor = props.data.instructors;
     const subscriptionPeriod = [
         { id: 'one', value: '1 Year' },
         { id: 'two', value: '2 Year' },
@@ -56,6 +58,8 @@ function SelectRole() {
     return (
         <div className="role-box-sec">
             <h1 className="title">Select Your Role</h1>
+            {/* {console.log('value = '+this.props.dataObj)} */}
+            {console.log('props = ' + response)}
             <form className="field-wrap" onSubmit={handleSubmit(onSubmitHandler)}>
                 <div className="form-field">
                     <FormDropdown

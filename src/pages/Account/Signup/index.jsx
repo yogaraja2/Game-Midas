@@ -12,15 +12,16 @@ import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
 import './style.scss'
 import API, { URL } from '../../../Api'
+import SelectRole from '../SelectRole'
 
 function Signup() {
-
+  // const [dataObj, setDataObj] = useState({})
   const defaultValues = {
     username: '',
     gmail: '',
     password: '',
     confirmPassword: '',
-    isAgreed: false
+    // isAgreed: false
   }
   const { register, watch, control, errors, handleSubmit } = useForm({ defaultValues })
   const history = useHistory()
@@ -28,8 +29,8 @@ function Signup() {
   const validationErr = {
     name: 'Invalid name',
     gmail: 'Invalid mail address',
-    passwordValidation: 'Password must contain Alphanumeric',
-    passwordLength: 'Password must has 6 to 12 length',
+    passwordValidation: 'Password must contain alphaNumeric',
+    passwordLength: 'Required password length 8 to 20 characters',
   }
 
   const allyProps = { control, error: errors }
@@ -37,7 +38,7 @@ function Signup() {
   const [message, setMessage] = useState(null)
   const [Error, setError] = useState(false)
   const [detail, setDetail] = useState(null)
-  const [response, setResponse] = useState(null)
+  const [response, setResponse] = useState({})
   const [count, setCount] = useState(false)
 
   const handleSignup = (data) => {
@@ -49,30 +50,34 @@ function Signup() {
     }
     else {
       console.log('correct password')
+      // history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
       API.post(URL.signup, data)
         .then((res) => {
+          console.log(res)
           const { data } = res
+          // setDataObj(data)
           setCount(true)
-          setResponse(data)
-          if (data.user?.accessToken) {
-            localStorage.setItem('virujhToken', data.user.accessToken)
-            localStorage.setItem('userId', data.user.userId)
-            localStorage.setItem(
-              'userName',
-              `${data.details.userName}`
-            )
+          setResponse(res)
+          console.log('after 60 = ' + response);
+          if (data.token) {
+            localStorage.setItem('midasToken', data.token)
+            localStorage.setItem('userId', data.id)
+            localStorage.setItem('userName', data.username)
             setMessage('Thanks! Your account has been created successfully')
             setDetail(data)
             setError(true)
           } else if (data?.user.update === 'updated password') {
             setError(true)
             setMessage('Created successfully...Please do signin')
-          } else if (data?.statusCode) {
+          } else if (data.status) {
             setError(true)
-            setMessage(data?.message)
+            setMessage(data.message)
+            setMessage("Testing")
           }
         })
         .catch((err) => {
+          console.log(err.message)
+          // setMessage(err.message)
           setCount(true)
         })
     }
@@ -81,6 +86,7 @@ function Signup() {
   useEffect(() => {
     if (count) {
       if (response) {
+        console.log(response)
         setError(true)
         setMessage(response.message)
         setCount(false)
@@ -97,10 +103,12 @@ function Signup() {
       return
     }
     if (message === 'Created successfully...Please do signin') {
-      history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
+      history.push(`${getOriginPath(commonRoute.account)}/login`)
     }
-    if (detail?.user?.accessToken) {
-      //
+    if (detail.token) {
+      history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
+      console.log('res = ' + response);
+      <SelectRole response={response} />
     }
     setError(false)
   }
@@ -108,7 +116,7 @@ function Signup() {
   return (
     <div className="signup-box-sec">
       <h1 className="signup-title">Sign-up</h1>
-
+      {/* {console.log(dataObj)} */}
       <form className="field-wrap" onSubmit={handleSubmit(handleSignup)}>
         <div className="form-field">
           <FormTextfield
@@ -165,11 +173,11 @@ function Signup() {
             rules={{
               required: 'Please enter your password',
               minLength: {
-                value: 6,
+                value: 8,
                 message: validationErr.passwordLength
               },
               maxLength: {
-                value: 12,
+                value: 20,
                 message: validationErr.passwordLength
               },
               pattern: {
@@ -211,7 +219,7 @@ function Signup() {
           />
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <div className="signup-terms">
             <FormCheckBox
               name="isAgreed"
@@ -226,7 +234,7 @@ function Signup() {
           {errors?.isAgreed?.message && (
             <div className="err-msg">{errors?.isAgreed?.message}</div>
           )}
-        </div>
+        </div> */}
 
         <div className="form-btns">
           <Button type="submit" className="signin-btn">
@@ -243,7 +251,31 @@ function Signup() {
           </LinkButton>
         </div>
       </form>
-      {response && (
+      {response && response.token && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          onclose={handleOnClose}
+          severity={'success'}
+        />
+      )}
+      {response && response.update && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          onclose={handleOnClose}
+          severity={'success'}
+        />
+      )}
+      {response && response.status && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          onclose={handleOnClose}
+          severity={'info'}
+        />
+      )}
+      {!response && (
         <SnackBar
           openDialog={Error}
           message={message}
