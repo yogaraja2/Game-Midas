@@ -15,7 +15,10 @@ import API, { URL } from '../../../Api'
 import SelectRole from '../SelectRole'
 
 function Signup() {
-  // const [dataObj, setDataObj] = useState({})
+
+  // const [instructors, setInstructors] = useState([])
+  // const [organizations, setOrganizations] = useState([])
+
   const defaultValues = {
     username: '',
     gmail: '',
@@ -38,7 +41,7 @@ function Signup() {
   const [message, setMessage] = useState(null)
   const [Error, setError] = useState(false)
   const [detail, setDetail] = useState(null)
-  const [response, setResponse] = useState({})
+  const [response, setResponse] = useState(null)
   const [count, setCount] = useState(false)
 
   const handleSignup = (data) => {
@@ -49,16 +52,14 @@ function Signup() {
       setError(true)
     }
     else {
-      console.log('correct password')
-      // history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
+      // console.log('correct password')
       API.post(URL.signup, data)
         .then((res) => {
+          console.log('response below')
           console.log(res)
           const { data } = res
-          // setDataObj(data)
+          setResponse(data)
           setCount(true)
-          setResponse(res)
-          console.log('after 60 = ' + response);
           if (data.token) {
             localStorage.setItem('midasToken', data.token)
             localStorage.setItem('userId', data.id)
@@ -76,8 +77,8 @@ function Signup() {
           }
         })
         .catch((err) => {
-          console.log(err.message)
-          // setMessage(err.message)
+          // console.log(err.message)
+          setMessage(err.message)
           setCount(true)
         })
     }
@@ -86,9 +87,10 @@ function Signup() {
   useEffect(() => {
     if (count) {
       if (response) {
+        console.log('response obj')
         console.log(response)
         setError(true)
-        setMessage(response.message)
+        // setMessage(response.message)
         setCount(false)
       } else {
         setError(true)
@@ -106,9 +108,14 @@ function Signup() {
       history.push(`${getOriginPath(commonRoute.account)}/login`)
     }
     if (detail.token) {
-      history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
-      console.log('res = ' + response);
-      <SelectRole response={response} />
+      history.push(`${getOriginPath(commonRoute.account)}/selectRole`, { data: detail })
+      // setTimeout(() => {
+      //   <SelectRole responseData={detail} />
+      //   history.push(`${getOriginPath(commonRoute.account)}/selectRole`, { data: detail });
+      // }, 2000);
+      // <SelectRole responseData={detail} />
+      console.log('details')
+      console.log(detail)
     }
     setError(false)
   }
@@ -116,7 +123,6 @@ function Signup() {
   return (
     <div className="signup-box-sec">
       <h1 className="signup-title">Sign-up</h1>
-      {/* {console.log(dataObj)} */}
       <form className="field-wrap" onSubmit={handleSubmit(handleSignup)}>
         <div className="form-field">
           <FormTextfield

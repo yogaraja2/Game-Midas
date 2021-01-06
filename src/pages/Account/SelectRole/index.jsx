@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormDropdown } from '../../../components/FormField'
 import Textfield from '../../../components/Textfield'
 import { Button } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { commonRoute } from '../../../config/routes'
 import './styles.scss'
-// import { dataObj } from '../Signup/index'
 
-function SelectRole({ response }) {
+function SelectRole(props) {
+
+    // const location = useLocation();
+
+    // useEffect(() => {
+    //     console.log('location')
+    //     console.log(location.data)
+    // }, [location])
+
+    // const { responseData } = props
+    // { console.log('props below') }
+    // console.log(responseData)
 
     const roleOptions = [
         { id: 'individual', value: 'Individual' },
@@ -28,7 +38,10 @@ function SelectRole({ response }) {
         { id: 'christober', value: 'Christober' },
         { id: 'david', value: 'David' },
     ]
-    // const allInstructor = props.data.instructors;
+
+    // const schoolOptions = props.responseData.organizations;
+    // const allInstructor = props.responseData.instructors;
+
     const subscriptionPeriod = [
         { id: 'one', value: '1 Year' },
         { id: 'two', value: '2 Year' },
@@ -58,8 +71,6 @@ function SelectRole({ response }) {
     return (
         <div className="role-box-sec">
             <h1 className="title">Select Your Role</h1>
-            {/* {console.log('value = '+this.props.dataObj)} */}
-            {console.log('props = ' + response)}
             <form className="field-wrap" onSubmit={handleSubmit(onSubmitHandler)}>
                 <div className="form-field">
                     <FormDropdown
