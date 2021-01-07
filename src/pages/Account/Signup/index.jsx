@@ -12,12 +12,18 @@ import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
 import './style.scss'
 import API, { URL } from '../../../Api'
-import SelectRole from '../SelectRole'
+import { useSelector, useDispatch } from 'react-redux'
+import { setResponseData } from '../../../action'
 
 function Signup() {
 
-  // const [instructors, setInstructors] = useState([])
-  // const [organizations, setOrganizations] = useState([])
+  const ApiResponse = useSelector(state => state.signupData)
+  useEffect(() => {
+    console.log('from signup')
+    console.log(ApiResponse)
+  }, [ApiResponse])
+
+  const dispatch = useDispatch()
 
   const defaultValues = {
     username: '',
@@ -45,7 +51,7 @@ function Signup() {
   const [count, setCount] = useState(false)
 
   const handleSignup = (data) => {
-    console.log(data)
+    // console.log(data)
     if (data.password !== data.confirmPassword) {
       console.log('wrong password')
       setMessage("Incorrect password, please enter valid password")
@@ -55,9 +61,10 @@ function Signup() {
       // console.log('correct password')
       API.post(URL.signup, data)
         .then((res) => {
-          console.log('response below')
-          console.log(res)
+          // console.log('response below')
+          // console.log(res)
           const { data } = res
+          dispatch(setResponseData(data))
           setResponse(data)
           setCount(true)
           if (data.token) {
@@ -87,8 +94,8 @@ function Signup() {
   useEffect(() => {
     if (count) {
       if (response) {
-        console.log('response obj')
-        console.log(response)
+        // console.log('response obj')
+        // console.log(response)
         setError(true)
         // setMessage(response.message)
         setCount(false)
@@ -109,13 +116,8 @@ function Signup() {
     }
     if (detail.token) {
       history.push(`${getOriginPath(commonRoute.account)}/selectRole`, { data: detail })
-      // setTimeout(() => {
-      //   <SelectRole responseData={detail} />
-      //   history.push(`${getOriginPath(commonRoute.account)}/selectRole`, { data: detail });
-      // }, 2000);
-      // <SelectRole responseData={detail} />
-      console.log('details')
-      console.log(detail)
+      // console.log('details')
+      // console.log(detail)
     }
     setError(false)
   }

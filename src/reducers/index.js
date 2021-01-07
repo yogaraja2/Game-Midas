@@ -1,8 +1,8 @@
-import response from './response'
+import signupReducer from './signupReducer'
 import { combineReducers } from 'redux'
 
 const allReducers = combineReducers({
-    response: response,
+    signupData: signupReducer,
 })
 
 export default allReducers

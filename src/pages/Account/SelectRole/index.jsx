@@ -6,19 +6,27 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { commonRoute } from '../../../config/routes'
 import './styles.scss'
+import { useSelector, connect } from 'react-redux'
 
-function SelectRole(props) {
+function SelectRole() {
 
-    // const location = useLocation();
+    const getApiData = useSelector(state => state.signupData)
 
-    // useEffect(() => {
-    //     console.log('location')
-    //     console.log(location.data)
-    // }, [location])
+    const [instructors, setInstructors] = useState(null)
+    const [organizations, setOrganizations] = useState(null)
 
-    // const { responseData } = props
-    // { console.log('props below') }
-    // console.log(responseData)
+    useEffect(() => {
+        console.log('from 2nd page')
+        console.log(getApiData)
+        setInstructors(getApiData.instructors)
+        setOrganizations(getApiData.organizations)
+    }, [getApiData])
+
+    console.log('instructor')
+    console.log(instructors)
+
+    console.log('organization')
+    console.log(organizations)
 
     const roleOptions = [
         { id: 'individual', value: 'Individual' },
@@ -26,21 +34,18 @@ function SelectRole(props) {
         { id: 'instructor', value: 'Instructor' },
         { id: 'schoolAdmin', value: 'School Admin' }
     ]
-    const schoolOptions = [
-        { id: 'schoolA', value: 'School A' },
-        { id: 'schoolB', value: 'School B' },
-        { id: 'schoolC', value: 'School C' },
-        { id: 'schoolD', value: 'School D' },
-    ]
-    const allInstructor = [
-        { id: 'antony', value: 'Antony' },
-        { id: 'bairstow', value: 'Bairstow' },
-        { id: 'christober', value: 'Christober' },
-        { id: 'david', value: 'David' },
-    ]
-
-    // const schoolOptions = props.responseData.organizations;
-    // const allInstructor = props.responseData.instructors;
+    // const organizations = [
+    //     { id: 'schoolA', value: 'School A' },
+    //     { id: 'schoolB', value: 'School B' },
+    //     { id: 'schoolC', value: 'School C' },
+    //     { id: 'schoolD', value: 'School D' },
+    // ]
+    // const instructors = [
+    //     { id: 'antony', value: 'Antony' },
+    //     { id: 'bairstow', value: 'Bairstow' },
+    //     { id: 'christober', value: 'Christober' },
+    //     { id: 'david', value: 'David' },
+    // ]
 
     const subscriptionPeriod = [
         { id: 'one', value: '1 Year' },
@@ -50,9 +55,9 @@ function SelectRole(props) {
 
     const defaultValues = {
         role: '',
-        school: '',
-        instructor: '',
-        organization: '',
+        organizations: {},
+        instructors: {},
+        newOrganization: '',
         subscription: '',
     }
 
@@ -74,6 +79,7 @@ function SelectRole(props) {
             <form className="field-wrap" onSubmit={handleSubmit(onSubmitHandler)}>
                 <div className="form-field">
                     <FormDropdown
+                        id="role"
                         name="role"
                         className="role-field"
                         label="Choose the Role"
@@ -87,10 +93,11 @@ function SelectRole(props) {
                 </div>
                 <div className="form-field">
                     <FormDropdown
-                        name="school"
-                        className="school-field"
-                        label="Choose the School"
-                        list={schoolOptions}
+                        id="organizations"
+                        name="organizations"
+                        className="organizations-field"
+                        label="Choose the organization"
+                        list={organizations}
                         placeholder="Select"
                         onChange={(e) => e.target.value}
                         rules={(role === 'student' || role === 'instructor') && { required: 'Please select your school' }}
@@ -100,22 +107,23 @@ function SelectRole(props) {
                 </div>
                 <div className="form-field">
                     <FormDropdown
-                        name="instructor"
+                        id="instructors"
+                        name="instructors"
                         className="instructor-field"
                         label="Choose Your Instructor (Optional)"
-                        list={allInstructor}
+                        list={instructors}
                         placeholder="Select"
                         onChange={(e) => e.target.value}
-                        rules={(role === 'student') && { required: 'Please select your instructor' }}
+                        // rules={(role === 'student') && { required: 'Please select your instructor' }}
                         disabled={!(role === 'student') ? true : false}
                         {...otherProps}
                     />
                 </div>
                 <div className="form-field">
                     <Textfield
-                        id="organization"
-                        name="organization"
-                        label="Organization name"
+                        id="newOrganization"
+                        name="newOrganization"
+                        label="Create Organization"
                         placeholder="enter organization name"
                         required
                         onChange={(e) => e.target.value}
@@ -126,6 +134,7 @@ function SelectRole(props) {
                 </div>
                 <div className="form-field">
                     <FormDropdown
+                        id="subscription"
                         name="subscription"
                         className="subscription-field"
                         label="Choose subscription period"
@@ -147,5 +156,11 @@ function SelectRole(props) {
         </div>
     )
 }
+
+// const mapStateToProps = (state) => {
+//     return {
+//         response: state.response
+//     }
+// }
 
 export default SelectRole
