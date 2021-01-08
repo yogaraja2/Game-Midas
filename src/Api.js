@@ -13,5 +13,5 @@ export const METHOD = {
 export const URL = {
     signup: 'signup',
     userprofile: 'userprofile',
-    login: 'login'
+    login: 'login',
 }

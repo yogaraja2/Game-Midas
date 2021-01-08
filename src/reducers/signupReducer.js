@@ -1,7 +1,7 @@
 
-const initialState = {
-    responseData: null,
-}
+// const initialState = {
+//     responseData: null,
+// }
 
 const signupReducer = (state = null, action) => {
 

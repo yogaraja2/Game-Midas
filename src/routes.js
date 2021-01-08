@@ -34,6 +34,13 @@ export const mainRoute = [
     }
   },
   {
+    name: "LeaderBoard",
+    props: {
+      path: commonRoute.leaderboard,
+      component: Home,
+    }
+  },
+  {
     name: "Avatar",
     props: {
       path: commonRoute.selectAvatar,

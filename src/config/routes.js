@@ -6,6 +6,7 @@ export const commonRoute = {
   selectAvatar: '/selectAvatar',
   selectDreams: '/selectDreams',
   dashBoard: '/dashBoard',
+  leaderboard: '/leaderBoard',
   cashFlow: '/cashFlow',
   balance: '/balance',
   stats: '/stats',

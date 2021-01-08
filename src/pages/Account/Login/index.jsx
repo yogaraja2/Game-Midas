@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@material-ui/core'
 import { FormTextfield } from '../../../components/FormField'
 import { useForm } from 'react-hook-form'
@@ -7,15 +7,58 @@ import './style.scss'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
+import API, { URL } from '../../../Api'
+import SnackBar from '../../../components/SnackBar'
 
 function Login() {
-  const { control, errors, handleSubmit } = useForm()
+
+  const credentials = {
+    emailId: '',
+    password: '',
+  }
+
+  const { control, errors, handleSubmit } = useForm({ credentials })
   const history = useHistory()
+
+  const [message, setMessage] = useState(null)
+  const [Error, setError] = useState(false)
+  const [response, setResponse] = useState(null)
+  const [count, setCount] = useState(false)
 
   const handleLogin = (values) => {
     console.log(values)
-    history.push(commonRoute.gameOptions)
+
+    API.post(URL.login, values)
+      .then((res) => {
+        const { data } = res
+        setResponse(data)
+        setCount(true)
+
+        if (data.token) {
+          localStorage.setItem('midasToken', data.token)
+          localStorage.setItem('userId', data.id)
+          localStorage.setItem('userName', data.username)
+          setMessage('Login Successfull...')
+          history.push(commonRoute.gameOptions)
+        }
+      })
+      .catch((err) => {
+        setMessage(err.message)
+      })
   }
+
+  useEffect(() => {
+    if (count) {
+      if (response) {
+        setError(true)
+        setCount(false)
+      } else {
+        setError(true)
+        setCount(false)
+        // setMessage('Something went wrong')
+      }
+    }
+  }, [response, count])
 
   const goToSignup = () => {
     history.push(`${getOriginPath(commonRoute.account)}/signup`)
@@ -38,8 +81,10 @@ function Login() {
           <div className="label">Email Id</div>
           <FormTextfield
             className="email-field"
-            name="email"
+            id="emailId"
+            name="emailId"
             placeholder="johnsmith@abc.com"
+            onChange={(e) => e.target.value}
             rules={{
               required: 'Please enter your email',
               pattern: {
@@ -60,9 +105,11 @@ function Login() {
           </div>
           <FormTextfield
             className="pswd-field"
+            id="password"
             name="password"
             type="password"
             placeholder="********"
+            onChange={(e) => e.target.value}
             rules={{ required: 'Please enter your password' }}
             {...allyProps}
           />
@@ -74,6 +121,27 @@ function Login() {
           <LinkButton className="signup-btn" onClick={goToSignup}>Signup</LinkButton>
         </div>
       </form>
+      {response && response.token && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          severity={'success'}
+        />
+      )}
+      {response && response.status && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          severity={'info'}
+        />
+      )}
+      {!response && (
+        <SnackBar
+          openDialog={Error}
+          message={message}
+          severity={'error'}
+        />
+      )}
     </div>
   )
 }

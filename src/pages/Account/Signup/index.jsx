@@ -94,8 +94,6 @@ function Signup() {
   useEffect(() => {
     if (count) {
       if (response) {
-        // console.log('response obj')
-        // console.log(response)
         setError(true)
         // setMessage(response.message)
         setCount(false)
@@ -115,9 +113,7 @@ function Signup() {
       history.push(`${getOriginPath(commonRoute.account)}/login`)
     }
     if (detail.token) {
-      history.push(`${getOriginPath(commonRoute.account)}/selectRole`, { data: detail })
-      // console.log('details')
-      // console.log(detail)
+      history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
     }
     setError(false)
   }

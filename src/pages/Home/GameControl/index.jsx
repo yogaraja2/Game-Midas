@@ -27,12 +27,22 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 }
 
 function GameControl() {
-  const [selected, setSelected] = useState(null)
+
+  const [selected, setSelected] = useState('new')
 
   const allyProps = { selected, setSelected }
   const history = useHistory()
-  const goToSelectAvatarPage = () => {
-    history.push(commonRoute.selectAvatar);
+
+  const clickHandler = (selected) => {
+    if (selected === 'leaderboard') {
+      history.push(commonRoute.leaderboard);
+    }
+    else if (selected == 'resume') {
+      history.push(commonRoute.dashBoard);
+    }
+    else {
+      history.push(commonRoute.selectAvatar);
+    }
   }
 
   return (
@@ -46,24 +56,24 @@ function GameControl() {
         <Options
           label="Leader Board"
           imgUrl={`Leader-Board`}
-          id={'leaderboard'}
+          id='leaderboard'
           {...allyProps}
         />
         <Options
           label="New"
           imgUrl={`New`}
-          id={'new'}
+          id='new'
           {...allyProps}
         />
         <Options
           label="Resume"
           imgUrl={'Resume'}
-          id={'resume'}
+          id='resume'
           {...allyProps}
         />
       </Grid>
       <div className="btn-wrap">
-        <Button className="nxt-btn" onClick={goToSelectAvatarPage}>Next</Button>
+        <Button className="nxt-btn" onClick={clickHandler}>Next</Button>
       </div>
     </Grid>
   )
