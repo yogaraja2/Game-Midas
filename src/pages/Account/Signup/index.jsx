@@ -32,14 +32,14 @@ function Signup() {
     confirmPassword: '',
     // isAgreed: false
   }
-  const { register, watch, control, errors, handleSubmit } = useForm({ defaultValues })
+  const { register, watch, control, errors, handleSubmit } = useForm(defaultValues)
   const history = useHistory()
 
   const validationErr = {
     name: 'Invalid name',
     gmail: 'Invalid mail address',
     passwordValidation: 'Password must contain alphaNumeric',
-    passwordLength: 'Required password length 8 to 20 characters',
+    passwordLength: 'Required password length 8 to 20 letters',
   }
 
   const allyProps = { control, error: errors }
@@ -64,7 +64,7 @@ function Signup() {
           // console.log('response below')
           // console.log(res)
           const { data } = res
-          dispatch(setResponseData(data))
+          dispatch(setResponseData(data)) // dispatching action to store a.k.a: Provider page
           setResponse(data)
           setCount(true)
           if (data.token) {
@@ -95,7 +95,6 @@ function Signup() {
     if (count) {
       if (response) {
         setError(true)
-        // setMessage(response.message)
         setCount(false)
       } else {
         setError(true)
@@ -112,7 +111,7 @@ function Signup() {
     if (message === 'Created successfully...Please do signin') {
       history.push(`${getOriginPath(commonRoute.account)}/login`)
     }
-    if (detail.token) {
+    if (detail?.token) {
       history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
     }
     setError(false)

@@ -23,13 +23,13 @@
       .MuiInputBase-input {
         &::placeholder {
           color: var(--text-lighter);
-          opacity: 1;
+          opacity: 0.8;
         }
       }
 
-      .MuiOutlinedInput-notchedOutline {
-        // border-color: #e2e2e2;
-      }
+      // .MuiOutlinedInput-notchedOutline {
+      //   border-color: #e2e2e2;
+      // }
 
       .MuiInputAdornment-positionStart {
         color: var(--text-darker);

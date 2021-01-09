@@ -62,9 +62,10 @@ const RoleOptions = ({ id, title, role, setRole }) => {
 }
 
 function SelectAvatar() {
-    const [selected, setSelected] = useState(null)
-    const [gameLength, setGameLength] = useState(null)
-    const [role, setRole] = useState(null)
+    const [selected, setSelected] = useState('Avatar1')
+    const [gameLength, setGameLength] = useState('short')
+    const [role, setRole] = useState('easy')
+    const [income, setIncome] = useState(null)
 
     const allyProps = { selected, setSelected }
     const otherLen = { gameLength, setGameLength }
@@ -72,7 +73,17 @@ function SelectAvatar() {
 
     const history = useHistory()
     const goToSelectDream = () => {
-        history.push(commonRoute.selectDreams);
+        if (income) {
+            console.log(income);
+            history.push(commonRoute.selectDreams);
+        }
+        else {
+            alert('Please enter your income...')
+        }
+    }
+
+    const handleIncomeValueChanges = (e) => {
+        setIncome(+e.target.value)
     }
 
     return (
@@ -89,31 +100,31 @@ function SelectAvatar() {
                 <AvatarOptions
                     label="Admin"
                     imgUrl={`Avatar1`}
-                    id={'Avartar1'}
+                    id={'Avatar1'}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={`Avatar2`}
-                    id={'Avartar2'}
+                    id={'Avatar2'}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={'Avatar3'}
-                    id={'Avartar3'}
+                    id={'Avatar3'}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={`Avatar4`}
-                    id={'Avartar4'}
+                    id={'Avatar4'}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={'Avatar5'}
-                    id={'Avartar5'}
+                    id={'Avatar5'}
                     {...allyProps}
                 />
             </Grid>
@@ -126,6 +137,8 @@ function SelectAvatar() {
                     name="income"
                     placeholder="$120000"
                     className="income-field"
+                    required
+                    onChange={(e) => handleIncomeValueChanges(e)}
                 />
             </div>
 

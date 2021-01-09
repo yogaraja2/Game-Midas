@@ -6,16 +6,23 @@ import doller from '../../../assets/img/doller 2.svg'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 
-const SelectDream = ({ label, imgUrl, id, dream, setDream }) => {
+const SelectDream = ({ label, imgUrl, cost, id, dream, setDream }) => {
     const selected = dream === id ? 'selected' : '';
     return (
         <div className="option-wrap" onClick={setDream.bind(this, id)}>
             <div className="option-image" >
                 <div className={`image-warp ${selected}`}>
-                    <img
+                    <img style={{ height: '100px' }}
                         src={require(`../../../assets/img/${imgUrl}.svg`).default}
                         alt={label}
                     />
+                    <div>
+                        <img src={doller} alt={label} style={{ width: 20, height: 21, position: 'absolute', }} />
+                        <span style={{
+                            position: 'relative', fontSize: 18,
+                            fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
+                        }}>{cost}</span>
+                    </div>
                 </div>
             </div>
             <div className="option-label">{label}</div>
@@ -76,9 +83,9 @@ const SelectHouse = ({ label, imgUrl, cost, id, house, setHouse }) => {
 
 function SelectDreams() {
 
-    const [dream, setDream] = useState(null)
-    const [car, setCar] = useState(null)
-    const [house, setHouse] = useState(null)
+    const [dream, setDream] = useState('visiting')
+    const [car, setCar] = useState('relisibleCar')
+    const [house, setHouse] = useState('studioApt')
 
     const allyProps = { dream, setDream }
     const restCar = { car, setCar }
@@ -104,30 +111,35 @@ function SelectDreams() {
                     label="Visit Taj Mahal"
                     imgUrl={`Traveller`}
                     id={'visiting'}
+                    cost={3000}
                     {...allyProps}
                 />
                 <SelectDream
                     label="Travel To Abroad"
                     imgUrl={`Flight`}
                     id={'flight'}
+                    cost={5000}
                     {...allyProps}
                 />
                 <SelectDream
                     label="Hill Station"
                     imgUrl={'HillStation'}
                     id={'hillStation'}
+                    cost={6000}
                     {...allyProps}
                 />
                 <SelectDream
                     label="Visit Beach"
                     imgUrl={`Beach`}
                     id={'beach'}
+                    cost={1000}
                     {...allyProps}
                 />
                 <SelectDream
                     label="Long Ride"
                     imgUrl={'BikeRide'}
                     id={'bikeRide'}
+                    cost={1000}
                     {...allyProps}
                 />
             </Grid>

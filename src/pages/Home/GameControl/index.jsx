@@ -33,7 +33,7 @@ function GameControl() {
   const allyProps = { selected, setSelected }
   const history = useHistory()
 
-  const clickHandler = (selected) => {
+  const clickHandler = () => {
     if (selected === 'leaderboard') {
       history.push(commonRoute.leaderboard);
     }

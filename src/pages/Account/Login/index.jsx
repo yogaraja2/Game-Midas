@@ -71,7 +71,7 @@ function Login() {
       <div className="header-sec">
         <h3 className="main-head">Welcome to Midas</h3>
         <div className="sign-up-sec">
-          <div className="cont">new Here?</div>
+          <div className="cont">New Here?</div>
           <LinkButton className="create-btn" onClick={goToSignup}>Create an Account</LinkButton>
         </div>
       </div>

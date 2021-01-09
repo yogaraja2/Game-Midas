@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FormDropdown } from '../../../components/FormField'
-import Textfield from '../../../components/Textfield'
+import { FormDropdown, FormTextfield } from '../../../components/FormField'
 import { Button } from '@material-ui/core'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -11,41 +10,41 @@ import { useSelector, connect } from 'react-redux'
 import SnackBar from '../../../components/SnackBar'
 
 function SelectRole() {
-
+    // useSelector hook is used for get state from reducers. a.k.a: Receiver page
     const getApiData = useSelector(state => state.signupData)
 
     const [tempInstructors, setTempInstructors] = useState(null)
     const [tempOrganizations, setTempOrganizations] = useState(null)
-    const [instructors, setInstructors] = useState(null)
-    const [organizations, setOrganizations] = useState(null)
+    const [instructor, setInstructor] = useState(null)
+    const [organization, setOrganization] = useState(null)
 
     useEffect(() => {
-        console.log('from 2nd page')
-        console.log(getApiData)
-        setTempInstructors(getApiData.instructors);
-        setTempOrganizations(getApiData.organizations);
-
+        // console.log('from 2nd page')
+        // console.log(getApiData)
+        if (getApiData) {
+            setTempInstructors(getApiData.instructors);
+            setTempOrganizations(getApiData.organizations);
+        }
         if (tempInstructors) {
-            setInstructors(tempInstructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })));
+            setInstructor(tempInstructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })));
         }
         if (tempOrganizations) {
-            setOrganizations(tempOrganizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key })));
+            setOrganization(tempOrganizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key })));
         }
 
     }, [getApiData, tempInstructors, tempOrganizations])
 
-    console.log('instructor')
-    console.log(instructors)
-
-    console.log('organization')
-    console.log(organizations)
+    // console.log('instructor')
+    // console.log(instructors)
+    // console.log('organization')
+    // console.log(organizations)
 
     const defaultValues = {
-        role: '',
-        organizations: {},
-        instructors: {},
-        newOrganization: '',
-        subscription: '',
+        role: null,
+        organizationId: null,
+        instructorId: null,
+        newOrganization: null,
+        subscription: null,
     }
 
     const roleOptions = [
@@ -69,7 +68,7 @@ function SelectRole() {
 
     const [role, setRole] = useState(defaultValues.role)
 
-    const { control, errors, handleSubmit } = useForm({ defaultValues })
+    const { control, errors, handleSubmit } = useForm(defaultValues)
     const history = useHistory()
 
     const otherProps = { control, error: errors }
@@ -80,29 +79,27 @@ function SelectRole() {
     const onSubmitHandler = (values) => {
         console.log('entry')
         console.log(values)
-        // history.push(commonRoute.gameOptions)
 
-        API.post(URL.userprofile, values,{
-            headers:{
-                Authorization : auth
+        API.post(URL.userprofile, values, {
+            headers: {
+                Authorization: auth
             }
         })
             .then((res) => {
                 console.log('res entry')
                 console.log(res)
                 const { data } = res;
-                setResponse(data)
+                setResponse(res)
                 setCount(true)
 
-                if (data) {
+                if (res?.status === 200) {
                     setDetail(data)
-                    setMessage('Role Selected Successfully')
-                    // history.push(commonRoute.gameOptions)
+                    setMessage('Submitted Successfully...')
                 }
             })
             .catch((err) => {
-                console.log('error section')
-                console.log(err)
+                // console.log('error section')
+                // console.log(err)
                 setMessage(err.message)
                 setCount(true)
             })
@@ -116,7 +113,7 @@ function SelectRole() {
             } else {
                 setError(true)
                 setCount(false)
-                // setMessage('Something went wrong')
+                setMessage('Something went wrong')
             }
         }
     }, [response, count])
@@ -125,15 +122,19 @@ function SelectRole() {
         if (reason === 'clickaway') {
             return
         }
-        if (detail) {
+        if (response?.status === 200) {
             history.push(commonRoute.gameOptions)
         }
         setError(false)
     }
 
+    // console.log('default')
+    // console.log(defaultValues)
+
     return (
         <div className="role-box-sec">
             <h1 className="title">Select Your Role</h1>
+
             <form className="field-wrap" onSubmit={handleSubmit(onSubmitHandler)}>
                 <div className="form-field">
                     <FormDropdown
@@ -151,44 +152,39 @@ function SelectRole() {
                 </div>
                 <div className="form-field">
                     <FormDropdown
-                        id="organizations"
-                        name="organizations"
-                        value="organizationName"
+                        id="organizationId"
+                        name="organizationId"
                         className="organizations-field"
                         label="Choose the organization"
-                        list={organizations}
+                        list={organization ? organization : []}
                         placeholder="Select"
-                        onChange={(e) => e.target.value}
-                        rules={(role === 'student' || role === 'instructor') && { required: 'Please select your school' }}
-                        disabled={!(role === 'student' || role === 'instructor') ? true : false}
+                        rules={(role === 'Student' || role === 'Instructor') && { required: 'Please select your school' }}
+                        disabled={!(role === 'Student' || role === 'Instructor') ? true : false}
                         {...otherProps}
                     />
                 </div>
                 <div className="form-field">
                     <FormDropdown
-                        id="instructors"
-                        name="instructors"
-                        value="username"
+                        id="instructorId"
+                        name="instructorId"
                         className="instructor-field"
                         label="Choose Your Instructor (Optional)"
-                        list={instructors}
+                        list={instructor ? instructor : []}
                         placeholder="Select"
-                        onChange={(e) => e.target.value}
-                        // rules={(role === 'student') && { required: 'Please select your instructor' }}
-                        disabled={!(role === 'student') ? true : false}
+                        // rules={(role === 'Student') && { required: 'Please select your instructor' }}
+                        disabled={!(role === 'Student') ? true : false}
                         {...otherProps}
                     />
                 </div>
                 <div className="form-field">
-                    <Textfield
+                    <FormTextfield
                         id="newOrganization"
                         name="newOrganization"
                         label="Create Organization"
                         placeholder="enter organization name"
                         required
-                        onChange={(e) => e.target.value}
-                        rules={(role === 'schoolAdmin') && { required: 'Please enter organization name' }}
-                        disabled={!(role === 'schoolAdmin') ? true : false}
+                        rules={(role === 'School_Admin') && { required: 'Please enter organization name' }}
+                        disabled={!(role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -201,8 +197,8 @@ function SelectRole() {
                         list={subscriptionPeriod}
                         placeholder="Select"
                         onChange={(e) => e.target.value}
-                        rules={(role === 'schoolAdmin') && { required: 'Please select subscription period' }}
-                        disabled={!(role === 'schoolAdmin') ? true : false}
+                        rules={(role === 'School_Admin') && { required: 'Please select subscription period' }}
+                        disabled={!(role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
                 </div>
