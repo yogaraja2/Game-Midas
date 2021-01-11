@@ -8,6 +8,10 @@
     position: relative;
     overflow: auto;
 
+    @include w960 {
+      height: 90%;
+    }
+
     .options-selector {
       display: flex;
       justify-content: space-around;
@@ -28,6 +32,11 @@
           width: 270px;
           position: relative;
 
+          @include w960 {
+            width: 150px;
+            height: 150px;
+          }
+
           .image-warp {
             @include flexCenter;
             background: #fff;
@@ -41,6 +50,11 @@
             img {
               max-width: 200px;
               max-height: 180px;
+
+              @include w960 {
+                max-width: 150px;
+                max-height: 150px;
+              }
             }
           }
           &:hover {
@@ -61,9 +75,8 @@
     }
 
     .btn-wrap {
-      position: relative;
-      float: right;
-      top: 70px;
+      position: absolute;
+      bottom: 30px;
       right: 70px;
       .nxt-btn {
         @include button;

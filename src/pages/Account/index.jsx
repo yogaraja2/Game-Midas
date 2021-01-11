@@ -17,10 +17,13 @@ function Account() {
       </Grid>
 
       <Grid item xs={12} md={8} className="account-screens">
-
-        {screen === 'signup' ? <Signup /> :
-          screen === 'selectRole' ? <SelectRole /> : <Login />
-        }
+        {screen === 'signup' ? (
+          <Signup />
+        ) : screen === 'selectRole' ? (
+          <SelectRole />
+        ) : (
+          <Login />
+        )}
 
         <div className="copyright-wrap">
           <Copyright />
