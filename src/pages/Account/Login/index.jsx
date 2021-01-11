@@ -13,11 +13,11 @@ import SnackBar from '../../../components/SnackBar'
 function Login() {
 
   const credentials = {
-    emailId: '',
+    gmail: '',
     password: '',
   }
 
-  const { control, errors, handleSubmit } = useForm({ credentials })
+  const { control, errors, handleSubmit } = useForm(credentials)
   const history = useHistory()
 
   const [message, setMessage] = useState(null)
@@ -30,7 +30,11 @@ function Login() {
 
     API.post(URL.login, values)
       .then((res) => {
+        console.log('login response')
+        console.log(res)
         const { data } = res
+        console.log('login data')
+        console.log(data)
         setResponse(data)
         setCount(true)
 
@@ -39,11 +43,15 @@ function Login() {
           localStorage.setItem('userId', data.id)
           localStorage.setItem('userName', data.username)
           setMessage('Login Successfull...')
-          history.push(commonRoute.gameOptions)
+        }
+        else if(data.status){
+          setMessage(data.message)
         }
       })
       .catch((err) => {
-        setMessage(err.message)
+        // setMessage(err.message)
+        setCount(true)
+        setMessage('Invalid password, plese enter valid password !!!')
       })
   }
 
@@ -55,7 +63,7 @@ function Login() {
       } else {
         setError(true)
         setCount(false)
-        // setMessage('Something went wrong')
+        setMessage('Something went wrong')
       }
     }
   }, [response, count])
@@ -65,6 +73,16 @@ function Login() {
   }
 
   const allyProps = { control, error: errors }
+
+  function handleOnClose(reason) {
+    if (reason === 'clickaway') {
+      return
+    }
+    if (response?.token) {
+      history.push(commonRoute.gameOptions)
+    }
+    setError(false)
+  }
 
   return (
     <div className="login-box-sec">
@@ -81,8 +99,8 @@ function Login() {
           <div className="label">Email Id</div>
           <FormTextfield
             className="email-field"
-            id="emailId"
-            name="emailId"
+            id="gmail"
+            name="gmail"
             placeholder="johnsmith@abc.com"
             onChange={(e) => e.target.value}
             rules={{
@@ -125,6 +143,7 @@ function Login() {
         <SnackBar
           openDialog={Error}
           message={message}
+          onclose={handleOnClose}
           severity={'success'}
         />
       )}
@@ -132,6 +151,7 @@ function Login() {
         <SnackBar
           openDialog={Error}
           message={message}
+          onclose={handleOnClose}
           severity={'info'}
         />
       )}
@@ -139,6 +159,7 @@ function Login() {
         <SnackBar
           openDialog={Error}
           message={message}
+          onclose={handleOnClose}
           severity={'error'}
         />
       )}

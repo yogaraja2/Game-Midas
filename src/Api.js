@@ -14,4 +14,5 @@ export const URL = {
     signup: 'signup',
     userprofile: 'userprofile',
     login: 'login',
+    gameDetails: 'createGame-details',
 }
