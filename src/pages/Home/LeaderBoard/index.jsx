@@ -1,83 +1,70 @@
-import React, { useState } from 'react'
 import { Grid, Paper } from '@material-ui/core'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
+import React from 'react'
 import './style.scss'
 
-const Players = ({ label, imgUrl, points, id, bgClr }) => {
-  return (
-    <div>
-      <div style={{ backgroundColor: `${bgClr}` }} className="player-border">
-        <div className="player-image">
-          <div className="image-warp">
-            <img
-              src={require(`../../../assets/img/${imgUrl}.svg`).default}
-              alt={label}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="player-label">{label}</div>
-      <div className="player-points">{points}</div>
-    </div>
-  )
+
+const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
+    return (
+        <Paper elevation={2} className="paper-class">
+            <div style={{ backgroundColor: `${bgClr}` }} className="player-border">
+                <div className="player-image">
+                    <div className="image-warp">
+                        <img
+                            src={require(`../../../assets/img/${imgUrl}.svg`).default}
+                            alt={label}
+                        />
+                    </div>
+                </div>
+                <div className="player-place">
+                    <img src={require(`../../../assets/img/${id}.svg`).default} alt={place} />
+                </div>
+            </div>
+            <div className="player-label">{label}</div>
+            <div className="player-points">{points}</div>
+            <div className="player-position">
+                <img src={require(`../../../assets/img/${place}.svg`).default} alt={place} />
+            </div>
+        </Paper>
+    )
 }
 
 function LeaderBoard() {
-  return (
-    <Grid item xs={11} md={10} className="leader-player-card">
-      <Grid>
-        <Grid style={{ display: 'flex' }} className="play-main-class">
-          <Grid container item xs={12}>
-            <Paper className="paper-class">
-              <Players
-                label="Player 2"
-                imgUrl={`user2`}
-                points={`8888`}
-                id={'second'}
-                bgClr={'green'}
-              />
-            </Paper>
-          </Grid>
-          <Grid
-            container
-            item
-            xs={12}
-            style={{ marginTop: '-50px', marginBottom: '50px' }}
-          >
-            <Paper className="paper-class">
-              <Players
-                label="Player 1"
-                imgUrl={`User1`}
-                points={`9999`}
-                id={'first'}
-                bgClr={'red'}
-              />
-            </Paper>
-          </Grid>
-          <Grid container item xs={12}>
-            <Paper className="paper-class">
-              <Players
-                label="Player 3"
-                imgUrl={`user3`}
-                points={`7777`}
-                id={'third'}
-                bgClr={'orange'}
-              />
-            </Paper>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid>
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table"></Table>
-        </TableContainer>
-      </Grid>
-    </Grid>
-  )
+    return (
+        <div className="leader-board-card">
+            <Grid container className="leader-board-container">
+                <Grid item xs={12} md={10} className="top-three-players">
+                    <Players
+                        label="Benjamin"
+                        imgUrl={`User1`}
+                        points={`6209475`}
+                        id={'2'}
+                        place={'secondPlace'}
+                        bgClr={'#8DB596'}
+                    />
+                    <Players
+                        label="William"
+                        imgUrl={`user2`}
+                        points={`7548653`}
+                        id={'1'}
+                        place={'firstPlace'}
+                        bgClr={'#F05454'}
+                    />
+                    <Players
+                        label="James"
+                        imgUrl={`user3`}
+                        points={'364855'}
+                        id={'3'}
+                        place={'thirdPlace'}
+                        bgClr={'#5352ED'}
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={10} className="other-players">
+
+                </Grid>
+            </Grid>
+        </div>
+    )
 }
 
 export default LeaderBoard

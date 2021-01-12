@@ -7,8 +7,12 @@ import pointIcon from '../../../assets/img/pointsIcon.svg'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 
-const SelectDream = ({ label, imgUrl, cost, points, id, dream, setDream }) => {
+const SelectDream = ({ label, imgUrl, cost, points, id, dream, setDream}) => {
     const selected = dream === id ? 'selected' : '';
+    // if (dreams === id) {
+    //     setDreams({ dream: id, cost: cost })
+    // }
+
     return (
         <div className="option-wrap" onClick={setDream.bind(this, id)}>
             <div className="option-image" >
@@ -89,40 +93,21 @@ const SelectHouse = ({ label, imgUrl, cost, points, id, house, setHouse }) => {
 
 function SelectDreams() {
 
-
-    // const [initialValues, setInitialValues] = useState([
-    //     {
-    //         dream: 'visiting',
-    //         cost: 3000,
-    //         points: 0,
-    //     },
-    //     {
-    //         car: 'relisibleCar',
-    //         cost: 60000,
-    //         points: 0,
-    //     },
-    //     {
-    //         house: 'studioApt',
-    //         cost: 1200000,
-    //         points: 0,
-    //     }
-    // ]);
-
-    const [dreams, setDreams] = useState({
-        dream: 'visiting',
-        cost: 3000,
-        // points: 0,
-    });
-    const [cars, setCars] = useState({
-        car: 'relisibleCar',
-        cost: 60000,
-        // points: 0,
-    });
-    const [houses, setHouses] = useState({
-        house: 'studioApt',
-        cost: 1200000,
-        // points: 0,
-    });
+    // const [dreams, setDreams] = useState({
+    //     dream: 'visiting',
+    //     cost: 3000,
+    //     points: 0,
+    // });
+    // const [cars, setCars] = useState({
+    //     car: 'relisibleCar',
+    //     cost: 60000,
+    //     points: 0,
+    // });
+    // const [houses, setHouses] = useState({
+    //     house: 'studioApt',
+    //     cost: 1200000,
+    //     points: 0,
+    // });
 
     const [dream, setDream] = useState('visiting')
     // const [dreamCost, setDreamCost] = useState(3000)
@@ -138,9 +123,9 @@ function SelectDreams() {
     const history = useHistory();
 
     const initialValues = {
-        dreams: dreams,
-        cars: cars,
-        houses: houses
+        dream: dream,
+        car: car,
+        house: house,
     }
 
     const goToDashboard = (initialValues) => {

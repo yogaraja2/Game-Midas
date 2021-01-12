@@ -3,6 +3,7 @@ import GameControl from "./GameControl";
 import SelectAvatar from "./SelectAvatar";
 import SelectDreams from "./SelectDream";
 import DashBoard from '../DashBoard'
+import LeaderBoard from './LeaderBoard'
 
 export const homeRoutes = [
   {
@@ -56,5 +57,18 @@ export const homeRoutes = [
       exact: true,
       to: commonRoute.dashBoard
     }
-  }
+  },
+  {
+    name: "LeaderBoard",
+    props: {
+      path: commonRoute.leaderboard,
+      component: LeaderBoard,
+      exact: true
+    },
+    redirection:{
+      path: commonRoute.home,
+      exact: true,
+      to: commonRoute.leaderboard
+    }
+  },
 ];

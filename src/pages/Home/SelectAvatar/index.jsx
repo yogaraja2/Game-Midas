@@ -246,7 +246,7 @@ function SelectAvatar() {
                     openDialog={error}
                     message={errMsg}
                     onclose={handleOnClose}
-                    severity={'error'}
+                    severity={'info'}
                 />)
             }
         </Grid>
