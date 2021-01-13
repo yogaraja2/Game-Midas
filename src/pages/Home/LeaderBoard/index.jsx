@@ -2,7 +2,6 @@ import { Grid, Paper } from '@material-ui/core'
 import React from 'react'
 import './style.scss'
 
-
 const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
     return (
         <Paper elevation={2} className="paper-class">
@@ -28,6 +27,20 @@ const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
     )
 }
 
+const playersList = [
+    { rank: 1, name: "Victoria", country: 'India', score: 7548653 },
+    { rank: 2, name: "Benjamin", country: 'USA', score: 6209475 },
+    { rank: 3, name: "James", country: 'UK', score: 364855 },
+    { rank: 4, name: "Dom", country: 'Srilanka', score: 304855 },
+    { rank: 5, name: "Elisa", country: 'Russia', score: 254855 },
+    { rank: 6, name: "Fazil", country: 'Japan', score: 204855 },
+    { rank: 7, name: "Google", country: 'Brazil', score: 154855 },
+    { rank: 8, name: "Hameed", country: 'Mexico', score: 104855 },
+    { rank: 9, name: "Irin", country: 'Italy', score: 104700 },
+    { rank: 10, name: "JackSparrow", country: 'UK', score: 54855 },
+
+];
+
 function LeaderBoard() {
     return (
         <div className="leader-board-card">
@@ -42,7 +55,7 @@ function LeaderBoard() {
                         bgClr={'#8DB596'}
                     />
                     <Players
-                        label="William"
+                        label="Victoria"
                         imgUrl={`user2`}
                         points={`7548653`}
                         id={'1'}
@@ -60,7 +73,26 @@ function LeaderBoard() {
                 </Grid>
 
                 <Grid item xs={12} md={10} className="other-players">
-
+                    <table className="leader-board-table">
+                        <thead className="table-heading">
+                            <tr className="title">
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody className="table-body">
+                            {playersList.map((item, index) =>
+                                <tr key={index} className="table-rows">
+                                    <td>{item.rank}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.country}</td>
+                                    <td style={{ color: '#009ffd' }}>{item.score}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </Grid>
             </Grid>
         </div>

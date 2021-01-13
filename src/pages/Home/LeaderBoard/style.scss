@@ -85,12 +85,35 @@
     .other-players {
       display: flex;
       position: relative;
-      //   width: 20%;
-      height: 100%;
-      margin-top: 5%;
+      height: 70%;
+      overflow: scroll;
+      margin-top: 2%;
       margin-left: 10%;
-      border-radius: 20px;
-      background-color: white;
+      // background-color: burlywood;
+      overflow: auto;
+      .leader-board-table {
+        width: 80%;
+        height: 100%;
+        margin-left: 10%;
+        border-radius: 20px;
+        background-color: white;
+        // table-layout: fixed;
+        .table-heading {
+          position: sticky;
+          .title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #c51f7a;
+          }
+        }
+        .table-body {
+          .table-rows {
+            text-align: center;
+            font-size: 1.3em;
+            opacity: 0.9;
+          }
+        }
+      }
     }
   }
 }

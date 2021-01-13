@@ -184,6 +184,7 @@ function SelectAvatar() {
                     placeholder="$120000"
                     className="income-field"
                     required
+                    autoFocus
                     onChange={(e) => handleIncomeValueChanges(e)}
                 />
             </div>
