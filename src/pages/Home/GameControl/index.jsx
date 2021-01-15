@@ -8,7 +8,7 @@ import './style.scss'
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
   return (
     <div
-      className={clsx('option-wrap', { 'selected': selected === id })}
+      className={clsx('option-wrap', { selected: selected === id })}
       onClick={setSelected.bind(this, id)}
     >
       <div className="option-label">{label}</div>
@@ -27,7 +27,6 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 }
 
 function GameControl() {
-
   const [selected, setSelected] = useState('new')
 
   const allyProps = { selected, setSelected }
@@ -35,18 +34,16 @@ function GameControl() {
 
   const clickHandler = () => {
     if (selected === 'leaderboard') {
-      history.push(commonRoute.leaderboard);
-    }
-    else if (selected == 'resume') {
-      history.push(commonRoute.dashBoard);
-    }
-    else {
-      history.push(commonRoute.selectAvatar);
+      history.push(commonRoute.leaderboard)
+    } else if (selected == 'resume') {
+      history.push(commonRoute.dashBoard)
+    } else {
+      history.push(commonRoute.selectAvatar)
     }
   }
 
   return (
-    <Grid item xs={12} md={10} className="game-option-card">
+    <Grid item xs={11} md={10} className="game-option-card">
       <Grid
         container
         justify="space-around"
@@ -56,24 +53,16 @@ function GameControl() {
         <Options
           label="Leader Board"
           imgUrl={`Leader-Board`}
-          id='leaderboard'
+          id="leaderboard"
           {...allyProps}
         />
-        <Options
-          label="New"
-          imgUrl={`New`}
-          id='new'
-          {...allyProps}
-        />
-        <Options
-          label="Resume"
-          imgUrl={'Resume'}
-          id='resume'
-          {...allyProps}
-        />
+        <Options label="New" imgUrl={`New`} id="new" {...allyProps} />
+        <Options label="Resume" imgUrl={'Resume'} id="resume" {...allyProps} />
       </Grid>
       <div className="btn-wrap">
-        <Button className="nxt-btn" onClick={clickHandler}>Next</Button>
+        <Button className="nxt-btn" onClick={clickHandler}>
+          Next
+        </Button>
       </div>
     </Grid>
   )
