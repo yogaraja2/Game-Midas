@@ -11,33 +11,7 @@ import SnackBar from '../../../components/SnackBar'
 
 function SelectRole() {
     // useSelector hook is used for get state from reducers. a.k.a: Receiver page
-    const getApiData = useSelector(state => state.signupData)
-
-    const [tempInstructors, setTempInstructors] = useState(null)
-    const [tempOrganizations, setTempOrganizations] = useState(null)
-    const [instructor, setInstructor] = useState(null)
-    const [organization, setOrganization] = useState(null)
-
-    useEffect(() => {
-        // console.log('from 2nd page')
-        // console.log(getApiData)
-        if (getApiData) {
-            setTempInstructors(getApiData.instructors);
-            setTempOrganizations(getApiData.organizations);
-        }
-        if (tempInstructors) {
-            setInstructor(tempInstructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })));
-        }
-        if (tempOrganizations) {
-            setOrganization(tempOrganizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key })));
-        }
-
-    }, [getApiData, tempInstructors, tempOrganizations])
-
-    // console.log('instructor')
-    // console.log(instructors)
-    // console.log('organization')
-    // console.log(organizations)
+    // const getApiData = useSelector(state => state.signupData)
 
     const defaultValues = {
         role: null,
@@ -46,6 +20,22 @@ function SelectRole() {
         newOrganization: null,
         subscription: null,
     }
+
+    const [role, setRole] = useState(defaultValues.role)
+    const [organizations, setOrganizations] = useState([])
+    const [instructors, setInstructors] = useState([])
+
+    useEffect(() => {
+        setOrganizations(JSON.parse(localStorage.getItem('Organizations')))
+        setInstructors(JSON.parse(localStorage.getItem('Instructors')))
+
+        console.log('organizations')
+        console.log(organizations)
+        console.log('Instructors')
+        console.log(instructors)
+
+    }, [role])
+
 
     const roleOptions = [
         { id: 'Individual', value: 'Individual' },
@@ -65,8 +55,6 @@ function SelectRole() {
     const [detail, setDetail] = useState(null)
     const [response, setResponse] = useState(null)
     const [count, setCount] = useState(false)
-
-    const [role, setRole] = useState(defaultValues.role)
 
     const { control, errors, handleSubmit } = useForm(defaultValues)
     const history = useHistory()
@@ -127,8 +115,8 @@ function SelectRole() {
         setError(false)
     }
 
-    // console.log('default')
-    // console.log(defaultValues)
+    console.log('default')
+    console.log(defaultValues)
 
     return (
         <div className="role-box-sec">
@@ -155,7 +143,7 @@ function SelectRole() {
                         name="organizationId"
                         className="organizations-field"
                         label="Choose the organization"
-                        list={organization ? organization : []}
+                        list={organizations}
                         placeholder="Select"
                         rules={(role === 'Student' || role === 'Instructor') && { required: 'Please select your school' }}
                         disabled={!(role === 'Student' || role === 'Instructor') ? true : false}
@@ -168,7 +156,7 @@ function SelectRole() {
                         name="instructorId"
                         className="instructor-field"
                         label="Choose Your Instructor (Optional)"
-                        list={instructor ? instructor : []}
+                        list={instructors}
                         placeholder="Select"
                         // rules={(role === 'Student') && { required: 'Please select your instructor' }}
                         disabled={!(role === 'Student') ? true : false}

@@ -11,14 +11,14 @@ function DashHead() {
         />
       </div>
 
-      <div className="total-cash">
+      {/* <div className="total-cash">
         <img
           src={require('../../assets/img/doller 2.svg').default}
           alt="Coin"
           className="cash-icon"
         />
         <span className="cash-value">$10000</span>
-      </div>
+      </div> */}
     </div>
   )
 }
