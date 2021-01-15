@@ -5,10 +5,14 @@ export const commonRoute = {
   gameOptions: '/gamehome',
   selectAvatar: '/selectAvatar',
   selectDreams: '/selectDreams',
-  dashBoard: '/dashBoard',
   leaderboard: '/leaderBoard',
-  cashFlow: '/cashFlow',
-  balance: '/balance',
-  stats: '/stats',
-  advisor: '/advisor',
+
+  dashboard: {
+    default: '/dashBoard',
+    cashFlow: '/dashBoard/cashFlow',
+    cashFlowInfo: '/dashBoard/cashFlow/info',
+    balance: '/dashBoard/balance',
+    stats: '/dashBoard/stats',
+    advisor: '/dashBoard/advisor'
+  }
 }

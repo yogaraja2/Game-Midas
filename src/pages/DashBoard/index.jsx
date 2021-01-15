@@ -1,65 +1,63 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Grid, IconButton } from '@material-ui/core'
 import { MdClose as CloseIcon } from 'react-icons/md'
 import './style.scss'
 import LinkButton from '../../components/LinkButton'
 import clsx from 'clsx'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { commonRoute } from '../../config/routes'
-import CashFlow from './CashFlow'
-import Balance from './Balance'
-import Stats from './Stats'
-import Advisor from './Advisor'
 import DashHead from './DashHead'
+import RouteMapper from '../../utils/Router/RouteMapper'
+import { dashboardRoutes } from './routes'
+
+const Fields = ({ id, img, label, isSelected, onClick }) => {
+  return (
+    <div
+      className={clsx('nav-fields-wrap', isSelected(id) && 'selected')}
+      onClick={onClick.bind(this, id)}
+    >
+      <div className="nav-fields">
+        <img src={require(`../../assets/img/${img}.svg`).default} alt={label} />
+        <h4 className="field-label">{label}</h4>
+      </div>
+    </div>
+  )
+}
 
 function DashBoard() {
   const [isMenuOpen, setMenu] = useState(false)
   const history = useHistory()
+  const location = useLocation()
+  const currentPath = useMemo(() => location.pathname, [location.pathname])
 
   const toggleMenu = () => setMenu((prev) => !prev)
-
-  const Fields = ({ id, img, label, selected, setSelected }) => {
-    return (
-      <div
-        className={clsx('nav-fields-wrap', { selected: selected === id })}
-        onClick={setSelected.bind(this, id)}
-      >
-        <div className="nav-fields">
-          <img
-            src={require(`../../assets/img/${img}.svg`).default}
-            alt={label}
-          />
-          <h4 className="field-label">{label}</h4>
-        </div>
-      </div>
-    )
-  }
-
-  const [selected, setSelected] = useState(null)
-  const otherFieldProp = { selected, setSelected }
 
   const goToLogin = () => {
     history.push(commonRoute.home)
   }
 
-  function renderSwitch(selected) {
-    switch (selected) {
-      case 'cashFlow':
-        return <CashFlow />
-      case 'balance':
-        return <Balance />
-      case 'stats':
-        return <Stats />
-      case 'advisor':
-        return <Advisor />
-      default:
-        break
+  function handleMenu(selected) {
+    !currentPath?.includes(selected) &&
+      history.push(commonRoute.dashboard[selected])
+  }
+
+  //check if the menu icon is the current path
+  const isSelected = (id) => {
+    if (currentPath?.includes(id)) {
+      return true
     }
+    return false
+  }
+
+  const allyProps = {
+    onClick: handleMenu,
+    isSelected
   }
 
   return (
     <>
       <Grid container className="dashboard-root">
+        {/* ---------------------- side bar ---------------------------------- */}
         <Grid
           item
           xs={12}
@@ -68,9 +66,12 @@ function DashBoard() {
           className={clsx('side-nav', isMenuOpen ? 'menu-open' : 'menu-closed')}
         >
           <div className="left-partition">
+            {/*   sidebar menu    */}
             <IconButton className="menu-icon-btn" onClick={toggleMenu}>
               <CloseIcon className="menu-icon" />
             </IconButton>
+
+            {/*   profile image   */}
             <div className="profile-wrap">
               <div className="user-profile">
                 <img
@@ -81,34 +82,31 @@ function DashBoard() {
               </div>
             </div>
 
+            {/*   menu items    */}
             <div className="field-main-wrap">
               <Fields
                 img="CashflowIcon"
                 label="Cash Flow"
                 id="cashFlow"
-                {...otherFieldProp}
+                {...allyProps}
               />
               <Fields
                 img="BalanceIcon"
                 label="Balance"
                 id="balance"
-                {...otherFieldProp}
+                {...allyProps}
               />
-              <Fields
-                img="StatsIcon"
-                label="STATS"
-                id="stats"
-                {...otherFieldProp}
-              />
+              <Fields img="StatsIcon" label="STATS" id="stats" {...allyProps} />
               <Fields
                 img="AdvisorIcon"
                 label="Ask Advisor"
                 id="advisor"
-                {...otherFieldProp}
+                {...allyProps}
               />
             </div>
           </div>
 
+          {/*   logout section    */}
           <div className="right-partition">
             <div className="log-out-wrap">
               <LinkButton className="log-out-btn" onClick={goToLogin}>
@@ -118,22 +116,18 @@ function DashBoard() {
           </div>
         </Grid>
 
+        {/* --------------------- main section ------------------------------------ */}
+
         <Grid item sm={10} md={11} xs={12} className="dashboard-main-wrap">
           <Grid container className="dashboard-main">
+            {/*    header    */}
             <Grid item xs={12} className="dash-header-wrap">
               <DashHead toggleMenu={toggleMenu} />
             </Grid>
-            <Grid item xs={12} className="dash-pages">
-              {
-                renderSwitch(selected)
-                // or using below ternary condition
-                //  (selected === "cashFlow" ? <CashFlow /> :
-                //     selected === "balance" ? <Balance /> :
-                //         selected === "stats" ? <Stats /> :
-                //             selected === "advisor" ? <Advisor /> : null)
-              }
 
-              {/* <RouteMapper data={dashboardRoutes} /> */}
+            {/*   dashboard pages   */}
+            <Grid item xs={12} className="dash-pages">
+              <RouteMapper data={dashboardRoutes} />
             </Grid>
           </Grid>
         </Grid>
