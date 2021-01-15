@@ -1,5 +1,6 @@
-import { Grid } from '@material-ui/core'
 import React, { useState } from 'react'
+import { Grid, IconButton } from '@material-ui/core'
+import { MdClose as CloseIcon } from 'react-icons/md'
 import './style.scss'
 import LinkButton from '../../components/LinkButton'
 import clsx from 'clsx'
@@ -12,7 +13,10 @@ import Advisor from './Advisor'
 import DashHead from './DashHead'
 
 function DashBoard() {
+  const [isMenuOpen, setMenu] = useState(false)
   const history = useHistory()
+
+  const toggleMenu = () => setMenu((prev) => !prev)
 
   const Fields = ({ id, img, label, selected, setSelected }) => {
     return (
@@ -56,8 +60,17 @@ function DashBoard() {
   return (
     <>
       <Grid container className="dashboard-root">
-        <Grid item xs={12} md={1} sm={2} className="side-nav">
+        <Grid
+          item
+          xs={12}
+          md={1}
+          sm={2}
+          className={clsx('side-nav', isMenuOpen ? 'menu-open' : 'menu-closed')}
+        >
           <div className="left-partition">
+            <IconButton className="menu-icon-btn" onClick={toggleMenu}>
+              <CloseIcon className="menu-icon" />
+            </IconButton>
             <div className="profile-wrap">
               <div className="user-profile">
                 <img
@@ -108,7 +121,7 @@ function DashBoard() {
         <Grid item sm={10} md={11} xs={12} className="dashboard-main-wrap">
           <Grid container className="dashboard-main">
             <Grid item xs={12} className="dash-header-wrap">
-              <DashHead />
+              <DashHead toggleMenu={toggleMenu} />
             </Grid>
             <Grid item xs={12} className="dash-pages">
               {
