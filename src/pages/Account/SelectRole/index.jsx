@@ -28,12 +28,10 @@ function SelectRole() {
     useEffect(() => {
         setOrganizations(JSON.parse(localStorage.getItem('Organizations')))
         setInstructors(JSON.parse(localStorage.getItem('Instructors')))
-
         console.log('organizations')
         console.log(organizations)
         console.log('Instructors')
         console.log(instructors)
-
     }, [role])
 
 
