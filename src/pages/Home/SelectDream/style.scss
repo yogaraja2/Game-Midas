@@ -1,0 +1,68 @@
+@import "../../../mixins/common";
+
+.select-dreams-card {
+  background: var(--bg-panel-card);
+  height: 95%;
+  position: relative;
+  overflow: auto;
+  .header-sec {
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-left: 30px;
+  }
+
+  .options-selector {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+
+    .option-wrap {
+      text-align: center;
+
+      .option-label {
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      .option-image {
+        border-radius: 10px;
+        width: 200px;
+        height: 160px;
+        position: relative;
+
+        .image-warp {
+          @include flexCenter;
+          background: #fff;
+          position: absolute;
+          border-radius: 10px;
+          top: 12px;
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+
+          img {
+            max-width: 150px;
+            max-height: 130px;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .selected {
+        border: 4px solid #009ffd;
+      }
+    }
+  }
+
+  .btn-wrap {
+    position: relative;
+    float: right;
+    top: 20px;
+    right: 20px;
+    .nxt-btn {
+      @include button;
+    }
+  }
+}

@@ -1,0 +1,144 @@
+@import '../../../mixins/common';
+
+.game-control-home {
+  .select-avatar-card {
+    background: var(--bg-panel-card);
+    height: 95%;
+    position: relative;
+    overflow: auto;
+    .header-sec {
+      font-size: 1.2em;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    .options-selector {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+
+      .option-wrap {
+        text-align: center;
+
+        .option-label {
+          font-size: 1.2em;
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        .option-image {
+          border-radius: 50%;
+          height: 220px;
+          width: 220px;
+          position: relative;
+
+          .image-warp {
+            @include flexCenter;
+            background: #fff;
+            position: absolute;
+            border-radius: 50%;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+
+            img {
+              max-width: 200px;
+              max-height: 180px;
+            }
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        &.selected {
+          .selector-bg {
+            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
+              center;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .income-wrap {
+      margin: 20px;
+      .MuiOutlinedInput-root{
+        width: 250px;
+        margin-top: 10px;
+        margin-left: 35px;
+        .MuiInputBase-input{
+          font-size: large;
+        }
+      }
+    }
+
+    .gameLength-wrap {
+      width: 60%;
+      margin: 20px;
+      .lenrole-button-wrap {
+        display: flex;
+        justify-content: space-around;
+        .lenrole-button {
+          height: 75px;
+          margin-top: 10px;
+          border-radius: 10px;
+          background-color: #ffffff;
+          .button-text-wrap {
+            margin-top: 15px;
+            .button-text1 {
+              font-weight: bold;
+              font-size: 20px;
+              color: #747d8c;
+              padding-left: 20px;
+            }
+            .button-text2 {
+              font-weight: bold;
+              font-size: 15px;
+              color: #747d8c;
+              padding-left: 20px;
+            }
+          }
+          .doller-icon {
+            position: relative;
+            width: 23px;
+            height: 24px;
+            float: right;
+            padding-right: 15px;
+            bottom: 30px;
+          }
+
+          &:hover {
+            background-color: rgba(0, 159, 253, 0.5);
+            cursor: pointer;
+          }
+
+          &.selected-lenrole {
+            background-color: #009ffd;
+            .button-text-wrap {
+              .button-text1 {
+                color: #ffffff;
+              }
+              .button-text2 {
+                color: #ffffff;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .btn-wrap {
+      position: relative;
+      float: right;
+      bottom: 20px;
+      right: 70px;
+      .nxt-btn {
+        @include button;
+      }
+    }
+  }
+}

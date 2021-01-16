@@ -1,0 +1,119 @@
+@import '../../../mixins/common';
+
+.leader-board-card {
+  background: var(--bg-panel-card);
+  width: 85%;
+  height: 95%;
+  //   margin: 50px;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  .leader-board-container {
+    margin-top: 2%;
+    .top-three-players {
+      display: flex;
+      height: 260px;
+      width: 80%;
+      margin-left: 10%;
+      align-items: flex-end;
+      // background-color: #0000ff;
+      justify-content: space-around;
+
+      .paper-class {
+        height: 220px;
+        width: 225px;
+        border-radius: 10px;
+        padding: 2px;
+        .player-border {
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 10px;
+          margin-top: -50px;
+          border-radius: 60px;
+          width: 110px;
+          height: 110px;
+          .player-image {
+            height: 10px;
+            width: 10px;
+            position: relative;
+            .image-warp {
+              @include flexCenter;
+              position: relative;
+              top: 12px;
+              left: 12px;
+              right: 12px;
+              bottom: 12px;
+              margin-left: 20px;
+              //   margin-top: 63px;
+              img {
+                max-width: 75px;
+                max-height: 75px;
+                display: inline-block;
+                margin-left: auto;
+                margin-right: auto;
+              }
+            }
+          }
+          .player-place {
+            margin-left: 80px;
+            margin-top: -10px;
+          }
+        }
+        .player-label {
+          font-size: 1.4em;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        .player-points {
+          margin-top: 20px;
+          font-size: 30px;
+          font-weight: bold;
+          text-align: center;
+          color: #009ffd;
+        }
+
+        .player-position {
+          @include flexCenter;
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .other-players {
+      display: flex;
+      position: relative;
+      height: 70%;
+      overflow: scroll;
+      margin-top: 2%;
+      margin-left: 10%;
+      // background-color: burlywood;
+      overflow: auto;
+      .leader-board-table {
+        width: 80%;
+        height: 100%;
+        margin-left: 10%;
+        border-radius: 20px;
+        background-color: white;
+        // table-layout: fixed;
+        .table-heading {
+          position: sticky;
+          .title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #c51f7a;
+          }
+        }
+        .table-body {
+          .table-rows {
+            text-align: center;
+            font-size: 1.3em;
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}
