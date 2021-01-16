@@ -85,8 +85,6 @@ function SelectRole() {
                 }
             })
             .catch((err) => {
-                // console.log('error section')
-                // console.log(err)
                 setMessage(err.message)
                 setCount(true)
             })
