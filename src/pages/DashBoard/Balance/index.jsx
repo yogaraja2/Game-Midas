@@ -1,15 +1,17 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
+import Assets from './Assets'
 import './styles.scss'
 
 function Balance() {
-    return (
-        <Grid item xs={12} md={10} className="balance-flow-card">
-            <img src={require('../../../assets/img/TitleLogo.svg').default} alt="title-logo"
-                style={{ width: 150, height: 70 }} />
-            <h1 style={{ textAlign: 'center' }}>Balance Flow Page</h1>
-        </Grid>
-    )
+  return (
+    <div className="dashboard-balance-page">
+      <div className="assets-grid">
+        <h2 className="sec-head">Assets</h2>
+        <Assets />
+      </div>
+    </div>
+  )
 }
 
 export default Balance
