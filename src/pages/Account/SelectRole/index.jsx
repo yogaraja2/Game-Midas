@@ -93,7 +93,6 @@ function SelectRole() {
                 setCount(true)
 
                 if (res?.status === 200) {
-                    setDetail(data)
                     setMessage('Submitted Successfully...')
                 }
             })
