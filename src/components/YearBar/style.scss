@@ -15,14 +15,8 @@
       cursor: pointer;
       width: 36px;
       height: 36px;
-      font-size: 1.5em;
+      font-size: 25px;
       font-weight: 800;
-
-      @include w600 {
-        font-size: 1em;
-        width: 24px;
-        height: 24px;
-      }
     }
 
     &.selected {

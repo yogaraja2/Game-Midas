@@ -1,20 +1,6 @@
 @import '../../mixins/common';
 
 .dashboard-root {
-  .menu-icon-btn {
-    padding: 6px;
-
-    .menu-icon {
-      color: var(--text);
-      font-size: 1.2em;
-    }
-
-    @include w320 {
-      font-size: 1em;
-      margin-right: 4px;
-    }
-  }
-
   // ----------------- side bar -------------------------
   .side-nav {
     background: linear-gradient(180deg, #009ffd 0%, #2a2a72 100%);
@@ -24,41 +10,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    position: relative;
-
-    @include w600 {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      z-index: 10;
-      transition: 0.2s;
-
-      &.menu-closed {
-        left: -300px;
-      }
-
-      &.menu-open {
-        left: 0;
-        right: 300px;
-
-        @include w400 {
-          right: 270px;
-        }
-
-        @include w320 {
-          right: 200px;
-        }
-      }
-    }
-
-    .menu-icon-btn {
-      display: none;
-      @include w600 {
-        display: block;
-        align-self: flex-start;
-        margin: 24px 16px;
-      }
-    }
 
     .left-partition {
       width: 100%;
@@ -67,10 +18,6 @@
       .profile-wrap {
         @include flexCenter;
         margin: 36px 0;
-
-        @include w600 {
-          margin: 0 0 36px;
-        }
 
         .user-profile-img {
           border-radius: 50%;
@@ -148,26 +95,10 @@
         @include lrPartition;
         padding: 36px;
 
-        .left-part {
-          @include flexCenterRow;
-        }
-
-        // hamburger menu toggle
-        .menu-icon-btn {
-          display: none;
-
-          @include w600 {
-            display: block;
-            margin-right: 8px;
-          }
-        }
-
-        // midas logo
         .m-logo {
           height: 50px;
         }
 
-        // revenue
         .total-cash {
           @include flexCenterRow;
 
@@ -176,27 +107,8 @@
           }
 
           .cash-value {
-            font-size: 1.5em;
+            font-size: 24px;
             font-weight: 700;
-          }
-        }
-
-        @include w600 {
-          padding: 24px;
-          padding-left: 16px;
-
-          .m-logo {
-            height: 32px;
-          }
-
-          .total-cash {
-            .cash-icon {
-              height: 24px;
-            }
-
-            .cash-value {
-              font-size: 1.2em;
-            }
           }
         }
       }

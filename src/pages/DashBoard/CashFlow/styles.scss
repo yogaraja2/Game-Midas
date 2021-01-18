@@ -4,10 +4,6 @@
   .dash-cash-flow-page {
     padding: 0 36px 70px;
 
-    @include w600 {
-      padding: 0 24px 70px;
-    }
-
     .sec-head {
       margin: 18px 0;
     }
@@ -24,10 +20,6 @@
         display: grid;
         grid-template-columns: 47% 47%;
         column-gap: 6%;
-
-        @include w600 {
-          @include lrPartition;
-        }
 
         .label {
           text-align: right;
@@ -58,22 +50,8 @@
         }
 
         @include w960 {
-          &.fix-exp-sec {
+          .fix-exp-sec {
             border: none;
-          }
-
-          &.var-exp-sec {
-            margin-top: 36px;
-          }
-        }
-
-        @include w600 {
-          &.income-sec {
-            border: none;
-          }
-
-          &.fix-exp-sec {
-            margin-top: 36px;
           }
         }
 
@@ -87,14 +65,6 @@
           &.m-left {
             margin-left: 48px;
           }
-
-          @include w600 {
-            margin-right: 0;
-
-            &.m-left {
-              margin-left: 0;
-            }
-          }
         }
       }
 
@@ -103,12 +73,6 @@
         display: flex;
         justify-content: flex-end;
         padding: 0 46px;
-
-        @include w600 {
-          display: block;
-          padding: 0;
-          border-top: 1px solid var(--text);
-        }
 
         .label {
           white-space: nowrap;
@@ -123,29 +87,18 @@
     // ---------------------- Satisfaction ----------------------
 
     .satisfiction-card {
-      // display: flex;
-      // justify-content: space-around;
-      // align-items: center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
 
       .score-wrap {
         @include flexCenter;
-
-        @include w600 {
-          &.mar-on-mob {
-            margin-top: 36px;
-          }
-        }
 
         .value {
           width: 100px;
           height: 100px;
           border-radius: 50%;
           @include flexCenter;
-
-          @include w960 {
-            width: 70px;
-            height: 70px;
-          }
         }
 
         &.neg-sat .value {
@@ -161,10 +114,6 @@
         .label {
           margin-top: 14px;
           font-size: 1.38em;
-
-          @include w960 {
-            font-size: 1em;
-          }
         }
       }
     }
