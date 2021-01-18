@@ -61,30 +61,36 @@ function Signup() {
       // console.log('correct password')
       API.post(URL.signup, data)
         .then((res) => {
-          // console.log('response below')
-          // console.log(res)
+          console.log('response below')
+          console.log(res)
           const { data } = res
           dispatch(setResponseData(data)) // dispatching action to store a.k.a: Provider page
           setResponse(data)
           setCount(true)
+
           if (data.token) {
             localStorage.setItem('midasToken', data.token)
             localStorage.setItem('userId', data.id)
             localStorage.setItem('userName', data.username)
+            localStorage.setItem('Organizations', JSON.stringify(data.organizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key }))),
+              localStorage.setItem('Instructors', JSON.stringify(data.instructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })))))
             setMessage('Thanks! Your account has been created successfully')
             setDetail(data)
             setError(true)
-          } else if (data?.user.update === 'updated password') {
-            setError(true)
-            setMessage('Created successfully...Please do signin')
-          } else if (data.status) {
+          }
+          // else if (data?.user.update === 'updated password') {
+          //   setError(true)
+          //   setMessage('Created successfully...Please do signin')
+          // } 
+          else if (data.status) {
             setError(true)
             setMessage(data.message)
-            setMessage("Testing")
+            // setMessage("Testing")
           }
         })
         .catch((err) => {
-          // console.log(err.message)
+          console.log('error section')
+          console.log(err)
           setMessage(err.message)
           setCount(true)
         })
@@ -108,9 +114,9 @@ function Signup() {
     if (reason === 'clickaway') {
       return
     }
-    if (message === 'Created successfully...Please do signin') {
-      history.push(`${getOriginPath(commonRoute.account)}/login`)
-    }
+    // if (message === 'Created successfully...Please do signin') {
+    //   history.push(`${getOriginPath(commonRoute.account)}/login`)
+    // }
     if (detail?.token) {
       history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
     }
