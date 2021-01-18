@@ -28,19 +28,15 @@ function SelectRole() {
     const [organizations, setOrganizations] = useState([])
     const [instructors, setInstructors] = useState([])
 
-    const [role, setRole] = useState(null)
-    const [organizationId, setOrganizationId] = useState(null)
-    const [instructorId, setInstructorId] = useState(null)
-    const [newOrganization, setNewOrganization] = useState('')
-    const [subscription, setSubscription] = useState(null)
-
     const defaultValues = {
-        role,
-        organizationId,
-        instructorId,
-        newOrganization,
-        subscription,
+        role: null,
+        organizationId: null,
+        instructorId: null,
+        newOrganization: '',
+        subscription: null,
     }
+
+    const [defaults, setDefaults] = useState(defaultValues)
 
     useEffect(() => {
         console.log('test0')
@@ -48,31 +44,43 @@ function SelectRole() {
         setInstructors(JSON.parse(localStorage.getItem('Instructors')))
         // console.log('organizations '+organizations)
         // console.log('Instructors '+instructors)
-        if (role === 'Individual') {
-            setOrganizationId(null)
-            setInstructorId(null)
-            setNewOrganization('')
-            setSubscription(null)
+        if (defaults.role === 'Individual') {
+            setDefaults({
+                ...defaults,
+                organizationId: null,
+                instructorId: null,
+                newOrganization: '',
+                subscription: null
+            })
         }
-        else if (role === 'Student') {
-            setNewOrganization('')
-            setSubscription(null)
+        else if (defaults.role === 'Student') {
+            setDefaults({
+                ...defaults,
+                newOrganization: '',
+                subscription: null
+            })
         }
-        else if (role === 'Instructor') {
-            setInstructorId(null)
-            setNewOrganization('')
-            setSubscription(null)
+        else if (defaults.role === 'Instructor') {
+            setDefaults({
+                ...defaults,
+                instructorId: null,
+                newOrganization: '',
+                subscription: null
+            })
         }
         else {
-            setOrganizationId(null)
-            setInstructorId(null)
+            setDefaults({
+                ...defaults,
+                newOrganization: '',
+                subscription: null
+            })
         }
-    }, [role])
+    }, [defaults.role])
 
 
     // console.log('org id '+organizationId)
 
-    const selectedOrg = organizations.filter((item) => item.id === organizationId)
+    const selectedOrg = organizations.filter((item) => item.id === defaults.organizationId)
     // console.log('selectedOrg ' + selectedOrg)
 
     let selectedInstructor = [];
@@ -88,7 +96,7 @@ function SelectRole() {
     const [response, setResponse] = useState(null)
     const [count, setCount] = useState(false)
 
-    const { control, errors, handleSubmit } = useForm(defaultValues)
+    const { control, errors, handleSubmit } = useForm(defaults)
     const history = useHistory()
 
     const otherProps = { control, error: errors }
@@ -150,7 +158,7 @@ function SelectRole() {
     }
 
     console.log('default')
-    console.log(defaultValues)
+    console.log(defaults)
 
     return (
         <div className="role-box-sec">
@@ -166,7 +174,7 @@ function SelectRole() {
                         list={roleOptions}
                         placeholder="Select"
                         autoFocus
-                        onChange={(e) => setRole(e.target.value)}
+                        onChange={(e) => setDefaults({ ...defaults, role: e.target.value })}
                         rules={{ required: 'Please select your role' }}
                         {...otherProps}
                     />
@@ -178,10 +186,10 @@ function SelectRole() {
                         className="organizations-field"
                         label="Choose the organization"
                         list={organizations}
-                        onChange={(e) => setOrganizationId(e.target.value)}
+                        onChange={(e) => setDefaults({ ...defaults, organizationId: e.target.value })}
                         placeholder="Select"
-                        rules={(role === 'Student' || role === 'Instructor') && { required: 'Please select your school' }}
-                        disabled={!(role === 'Student' || role === 'Instructor') ? true : false}
+                        rules={(defaults.role === 'Student' || defaults.role === 'Instructor') && { required: 'Please select your school' }}
+                        disabled={!(defaults.role === 'Student' || defaults.role === 'Instructor') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -192,10 +200,10 @@ function SelectRole() {
                         className="instructor-field"
                         label="Choose Your Instructor (Optional)"
                         list={selectedInstructor ? selectedInstructor : instructors}
-                        onChange={(e) => setInstructorId(e.target.value)}
+                        onChange={(e) => setDefaults({ ...defaults, instructorId: e.target.value })}
                         placeholder="Select"
                         // rules={(role === 'Student') && { required: 'Please select your instructor' }}
-                        disabled={!(role === 'Student') ? true : false}
+                        disabled={!(defaults.role === 'Student') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -206,9 +214,9 @@ function SelectRole() {
                         label="Create Organization"
                         placeholder="enter organization name"
                         required
-                        onChange={(e) => setNewOrganization(e.target.value)}
-                        rules={(role === 'School_Admin') && { required: 'Please enter organization name' }}
-                        disabled={!(role === 'School_Admin') ? true : false}
+                        onChange={(e) => setDefaults({ ...defaults, newOrganization: e.target.value })}
+                        rules={(defaults.role === 'School_Admin') && { required: 'Please enter organization name' }}
+                        disabled={!(defaults.role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -220,9 +228,9 @@ function SelectRole() {
                         label="Choose subscription period"
                         list={subscriptionPeriod}
                         placeholder="Select"
-                        onChange={(e) => setSubscription(e.target.value)}
-                        rules={(role === 'School_Admin') && { required: 'Please select subscription period' }}
-                        disabled={!(role === 'School_Admin') ? true : false}
+                        onChange={(e) => setDefaults({ ...defaults, subscription: e.target.value })}
+                        rules={(defaults.role === 'School_Admin') && { required: 'Please select subscription period' }}
+                        disabled={!(defaults.role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
                 </div>
