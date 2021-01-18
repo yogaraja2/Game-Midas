@@ -23,7 +23,7 @@ function CashFlow() {
 
       <div className="stat-card-wrap">
         <h2 className="sec-head stats">Year {dataYear}</h2>
-        <Card className="stat-card">
+        <Card className="stat-card" transparent>
           <Grid container className="stat-grid-wrap">
             <Income size={statSectionSize} />
             <FExpenses size={statSectionSize} />

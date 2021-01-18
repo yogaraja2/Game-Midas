@@ -1,0 +1,32 @@
+@import '../../mixins/common';
+
+.popup-dialog-container {
+  .MuiPaper-root {
+    border-radius: 15px;
+
+    .dlg-content-wrap {
+      @include flexCenter;
+      padding: 24px 0;
+
+      .head-wrap {
+        border-bottom: 1px solid #e3e3e3;
+        padding: 0 50px 18px;
+
+        @include w600 {
+          font-size: 0.69em;
+          padding: 0 18px 18px;
+        }
+      }
+
+      &.with-padding {
+        .body-wrap {
+          padding: 0 50px;
+
+          @include w600 {
+            padding: 0 18px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,14 +4,27 @@
   .dashboard-balance-page {
     padding: 36px;
 
-    .assets-wrap {
-      margin: 28px 0;
+    @include w600 {
+      padding: 36px 24px;
+    }
 
+    .sec-head {
+      margin-bottom: 28px;
+    }
+
+    //--------------- asset list ------------------------
+    .assets-wrap {
       .asset-card-wrap {
         display: flex;
 
         .asset-card {
           width: 100%;
+
+          @include w600 {
+            .sell-sign {
+              font-size: 1.2em;
+            }
+          }
 
           .asset-img {
             max-height: 130px;
@@ -24,13 +37,157 @@
             @include w960 {
               max-width: 100px;
             }
+
+            @include w320 {
+              max-width: 70px;
+            }
           }
 
           .asset-value {
             @include w1280 {
               font-size: 0.9em;
             }
+
+            @include w600 {
+              font-size: 0.8em;
+            }
           }
+        }
+      }
+    }
+
+    // ---------------- liability table -----------------------------------
+
+    .liabilities-wrap {
+      margin-top: 28px;
+
+      .lblity-card {
+        padding: 8px 0;
+
+        @include w600 {
+          max-width: calc(100vw - 48px);
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+
+        thead {
+          border-bottom: 1px solid #ddd;
+
+          th {
+            color: var(--primary);
+            font-size: 1.75em;
+
+            @include w600 {
+              font-size: 1.5em;
+            }
+          }
+        }
+
+        td,
+        th {
+          padding: 12px;
+
+          &:first-child {
+            .cell {
+              padding-left: 24px;
+
+              @include w960 {
+                padding-left: 8px;
+              }
+            }
+          }
+
+          &:last-child {
+            .cell {
+              padding-right: 24px;
+
+              @include w960 {
+                padding-right: 8px;
+              }
+            }
+          }
+        }
+
+        .liblty-tbl-row.has-title {
+          &:first-child {
+            .cell {
+              margin-top: 18px;
+            }
+          }
+          &:last-child {
+            .cell {
+              margin-bottom: 18px;
+            }
+          }
+        }
+
+        tfoot {
+          border-top: 1px solid #ddd;
+
+          .col {
+            font-size: 1.5em;
+
+            @include w600 {
+              font-size: 1.3em;
+            }
+          }
+        }
+
+        tbody .col {
+          font-size: 1.125em;
+          font-weight: normal;
+
+          @include w600 {
+            font-size: 1em;
+          }
+        }
+
+        .col {
+          .label-wrap {
+            @include flexCenterRow;
+            color: var(--text-darker);
+
+            .info {
+              @include flexCenter;
+              margin-left: 8px;
+            }
+          }
+
+          &.col-center {
+            .cell {
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------- sell asset -------------------------------------
+
+.popup-dialog-container {
+  .das-bal-sell-asst-dlg {
+    .body-wrap {
+      @include flexCenter;
+      width: 100%;
+
+      .asset-wrap {
+        margin: 24px 0;
+      }
+
+      .dlg-action-btn {
+        @include lrPartition;
+        width: 80%;
+
+        @include w320 {
+          width: 90%;
         }
       }
     }

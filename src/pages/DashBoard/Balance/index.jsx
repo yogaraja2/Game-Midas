@@ -1,14 +1,18 @@
-import { Grid } from '@material-ui/core'
 import React from 'react'
 import Assets from './Assets'
+import Liabilities from './Liabilities'
+import { Button, Grid } from '@material-ui/core'
 import './styles.scss'
 
 function Balance() {
   return (
     <div className="dashboard-balance-page">
-      <div className="assets-grid">
-        <h2 className="sec-head">Assets</h2>
-        <Assets />
+      <h2 className="sec-head">Assets</h2>
+      <Assets />
+      <Liabilities />
+
+      <div className="nxt-btn-wrap">
+        <Button className="nxt-btn">Next</Button>
       </div>
     </div>
   )

@@ -5,7 +5,18 @@ import Card from '../Card'
 import GameCoin from '../GameCoin'
 import './style.scss'
 
-function AssetCard({ className, size, isBought, img, value, isBlack, color }) {
+function AssetCard({
+  className,
+  size,
+  isBought,
+  img,
+  value,
+  isBlack,
+  color,
+  transparent,
+  onClick,
+  onSell
+}) {
   return (
     <Grid
       item
@@ -17,8 +28,12 @@ function AssetCard({ className, size, isBought, img, value, isBlack, color }) {
         !isBlack && 'is-blue'
       )}
     >
-      <Card className="asset-card">
-        {isBought && <div className="sell-sign">Sell</div>}
+      <Card className="asset-card" transparent={transparent} onClick={onClick}>
+        {isBought && (
+          <div className="sell-sign" onClick={onSell}>
+            Sell
+          </div>
+        )}
 
         {!!img && (
           <img
