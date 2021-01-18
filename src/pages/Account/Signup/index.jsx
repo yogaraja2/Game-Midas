@@ -67,11 +67,13 @@ function Signup() {
           dispatch(setResponseData(data)) // dispatching action to store a.k.a: Provider page
           setResponse(data)
           setCount(true)
-          
+
           if (data.token) {
             localStorage.setItem('midasToken', data.token)
             localStorage.setItem('userId', data.id)
             localStorage.setItem('userName', data.username)
+            localStorage.setItem('Organizations', JSON.stringify(data.organizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key }))),
+              localStorage.setItem('Instructors', JSON.stringify(data.instructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })))))
             setMessage('Thanks! Your account has been created successfully')
             setDetail(data)
             setError(true)
