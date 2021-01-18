@@ -184,6 +184,7 @@ function SelectAvatar() {
                     placeholder="$120000"
                     className="income-field"
                     required
+                    autoFocus
                     onChange={(e) => handleIncomeValueChanges(e)}
                 />
             </div>
@@ -246,7 +247,7 @@ function SelectAvatar() {
                     openDialog={error}
                     message={errMsg}
                     onclose={handleOnClose}
-                    severity={'error'}
+                    severity={'info'}
                 />)
             }
         </Grid>

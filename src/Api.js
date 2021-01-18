@@ -15,4 +15,5 @@ export const URL = {
     userprofile: 'userprofile',
     login: 'login',
     gameDetails: 'createGame-details',
+    dreamsDetails: 'dreams-details'
 }

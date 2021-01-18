@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Grid } from '@material-ui/core'
 import clsx from 'clsx'
 import './style.scss'
@@ -6,11 +6,19 @@ import doller from '../../../assets/img/doller 2.svg'
 import pointIcon from '../../../assets/img/pointsIcon.svg'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
+import API, { URL } from '../../../Api'
 
-const SelectDream = ({ label, imgUrl, cost, points, id, dream, setDream }) => {
-    const selected = dream === id ? 'selected' : '';
+const SelectDream = ({ label, imgUrl, cost, points, id, dreams, setDreams }) => {
+
+    const dreamHandler = () => {
+        setDreams.bind(this, id)
+        setDreams({ dream: id, cost: cost })
+    }
+    const selected = dreams.dream === id ? 'selected' : '';
+    // console.log('dreams')
+    // console.log(dreams)
     return (
-        <div className="option-wrap" onClick={setDream.bind(this, id)}>
+        <div className="option-wrap" onClick={dreamHandler}>
             <div className="option-image" >
                 <div className={`image-warp ${selected}`}>
                     <img style={{ height: '100px' }}
@@ -38,10 +46,16 @@ const SelectDream = ({ label, imgUrl, cost, points, id, dream, setDream }) => {
     )
 }
 
-const SelectCar = ({ label, imgUrl, cost, points, id, car, setCar }) => {
-    const selected = car === id ? 'selected' : ''
+const SelectCar = ({ label, imgUrl, cost, points, id, cars, setCars }) => {
+
+    const carsHandler = () => {
+        setCars.bind(this, id)
+        setCars({ car: id, cost: cost })
+    }
+    const selected = cars.car === id ? 'selected' : ''
+
     return (
-        <div className='option-wrap' onClick={setCar.bind(this, id)}>
+        <div className='option-wrap' onClick={carsHandler}>
             <div className="option-image">
                 <div className={`image-warp ${selected}`}>
                     <img
@@ -62,10 +76,15 @@ const SelectCar = ({ label, imgUrl, cost, points, id, car, setCar }) => {
     )
 }
 
-const SelectHouse = ({ label, imgUrl, cost, points, id, house, setHouse }) => {
-    const selected = house === id ? 'selected' : ''
+const SelectHouse = ({ label, imgUrl, cost, points, id, houses, setHouses }) => {
+
+    const houseHandler = () => {
+        setHouses.bind(this, id)
+        setHouses({ house: id, cost: cost })
+    }
+    const selected = houses.house === id ? 'selected' : ''
     return (
-        <div className='option-wrap' onClick={setHouse.bind(this, id)} >
+        <div className='option-wrap' onClick={houseHandler} >
             <div className="option-image">
                 <div className={`image-warp ${selected}`}>
                     <img
@@ -89,63 +108,49 @@ const SelectHouse = ({ label, imgUrl, cost, points, id, house, setHouse }) => {
 
 function SelectDreams() {
 
-
-    // const [initialValues, setInitialValues] = useState([
-    //     {
-    //         dream: 'visiting',
-    //         cost: 3000,
-    //         points: 0,
-    //     },
-    //     {
-    //         car: 'relisibleCar',
-    //         cost: 60000,
-    //         points: 0,
-    //     },
-    //     {
-    //         house: 'studioApt',
-    //         cost: 1200000,
-    //         points: 0,
-    //     }
-    // ]);
-
     const [dreams, setDreams] = useState({
         dream: 'visiting',
         cost: 3000,
-        // points: 0,
     });
     const [cars, setCars] = useState({
         car: 'relisibleCar',
         cost: 60000,
-        // points: 0,
     });
     const [houses, setHouses] = useState({
         house: 'studioApt',
         cost: 1200000,
-        // points: 0,
     });
 
-    const [dream, setDream] = useState('visiting')
-    // const [dreamCost, setDreamCost] = useState(3000)
-    const [car, setCar] = useState('relisibleCar')
-    // const [carCost, setCarCost] = useState(60000)
-    const [house, setHouse] = useState('studioApt')
-    // const [houseCost, setHouseCost] = useState(1200000)
-
-    const allyProps = { dream, setDream }
-    const restCar = { car, setCar }
-    const restHouse = { house, setHouse }
+    const restDream = { dreams, setDreams }
+    const restCar = { cars, setCars }
+    const restHouse = { houses, setHouses }
 
     const history = useHistory();
 
     const initialValues = {
         dreams: dreams,
         cars: cars,
-        houses: houses
+        houses: houses,
     }
+
+    const token = localStorage.getItem('midasToken')
+    const auth = 'Bearer '.concat(token)
 
     const goToDashboard = (initialValues) => {
         console.log(initialValues)
         history.push(commonRoute.dashBoard)
+
+        // API.post(URL.dreamsDetails, initialValues, {
+        //     headers: {
+        //         Authorization: auth
+        //     }
+        // })
+        //     .then((res) => {
+        //         console.log(res)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
     }
 
     return (
@@ -165,7 +170,7 @@ function SelectDreams() {
                     id={'visiting'}
                     cost={3000}
                     // points={2000}
-                    {...allyProps}
+                    {...restDream}
                 />
                 <SelectDream
                     label="Travel To Abroad"
@@ -173,7 +178,7 @@ function SelectDreams() {
                     id={'flight'}
                     cost={5000}
                     // points={2000}
-                    {...allyProps}
+                    {...restDream}
                 />
                 <SelectDream
                     label="Hill Station"
@@ -181,7 +186,7 @@ function SelectDreams() {
                     id={'hillStation'}
                     cost={6000}
                     // points={2000}
-                    {...allyProps}
+                    {...restDream}
                 />
                 <SelectDream
                     label="Visit Beach"
@@ -189,7 +194,7 @@ function SelectDreams() {
                     id={'beach'}
                     cost={1000}
                     // points={2000}
-                    {...allyProps}
+                    {...restDream}
                 />
                 <SelectDream
                     label="Long Ride"
@@ -197,7 +202,7 @@ function SelectDreams() {
                     id={'bikeRide'}
                     cost={1000}
                     // points={2000}
-                    {...allyProps}
+                    {...restDream}
                 />
             </Grid>
 
