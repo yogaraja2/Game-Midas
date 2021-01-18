@@ -1,5 +1,4 @@
 @import '../../mixins/common';
-@import '../../mixins/responsive';
 
 .account-wrapper {
   height: 100%;
@@ -13,27 +12,13 @@
     @include flexCenter;
     position: relative;
 
-    @include w960 {
-      justify-content: flex-start;
-      margin-top: 36px;
-    }
-
     .copyright-wrap {
-      position: absolute;
-      bottom: 26px;
+        position: absolute;
+        bottom: 26px;
     }
 
     .field-wrap {
       width: 420px;
-
-      @include w600 {
-        width: 300px;
-      }
-
-      @include w320 {
-        width: 250px;
-      }
-
       .form-field {
         .label {
           font-weight: bold;
@@ -41,7 +26,7 @@
         }
 
         .err-msg {
-          color: var(--error);
+            color: var(--error);
         }
       }
     }

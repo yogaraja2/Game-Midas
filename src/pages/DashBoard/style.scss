@@ -1,126 +1,71 @@
 @import '../../mixins/common';
 
 .dashboard-root {
-  // ----------------- side bar -------------------------
   .side-nav {
-    background: linear-gradient(180deg, #009ffd 0%, #2a2a72 100%);
+    width: 150px;
     height: 100vh;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    position: absolute;
+    background-color: #005692;
 
-    .left-partition {
-      width: 100%;
-
-      //profile
-      .profile-wrap {
-        @include flexCenter;
-        margin: 36px 0;
-
-        .user-profile-img {
-          border-radius: 50%;
-          background: #fff;
-          width: 70px;
-          height: 70px;
-
-          .user-profile-img {
-            background: url('../../assets/img/User1.svg') no-repeat center;
-            width: 67px;
-            height: 67px;
-          }
-        }
+    .profile-wrap {
+      width: 100px;
+      height: 100px;
+      background-color: #ffffff;
+      margin-top: 50px;
+      margin-left: 25px;
+      border-radius: 50%;
+      .user-profile {
+        width: 80px;
+        height: 99px;
       }
-
-      // menus
-      .field-main-wrap {
-        .nav-fields-wrap {
-          padding: 24px 0;
-          cursor: pointer;
-
-          @include h720 {
-            padding: 18px 0;
-
-            img {
-              width: 30px;
-              height: 30px;
-            }
-          }
-
-          .nav-fields {
-            @include flexCenter;
-
-            .field-label {
-              margin-top: 8px;
-              color: #fff;
-            }
-          }
-
-          &.selected {
-            border-left: 3px solid #fff;
-            background: rgba(0, 0, 0, 0.07);
-          }
-
-          &:hover {
-            background: rgba(0, 0, 0, 0.07);
-          }
-        }
+      .profile-text {
+        text-align: center;
+        color: #ffffff;
+        font-weight: 400;
       }
     }
 
-    // logout
-    .log-out-wrap {
-      justify-self: flex-end;
-      margin-bottom: 54px;
-
-      @include h720 {
-        margin-bottom: 32px;
+    .field-main-wrap {
+      width: 100%;
+      margin-top: 50px;
+      .nav-fields-wrap {
+        // background-color: green;
+        .nav-fields {
+          @include flexCenter;
+          width: 100%;
+          height: 100px;
+          margin-top: 10px;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(0, 159, 253, 0.2);
+        }
       }
+      .selected {
+        background-color: rgb(0, 159, 253);
+      }
+    }
 
+    .log-out-wrap {
+      width: 50%;
+      height: 30px;
+      margin-top: 40px;
+      margin-left: 40px;
       .log-out-btn {
-        color: #fff;
+        font-size: 20px;
+        font-weight: 200;
+        color: #ffffff;
       }
     }
   }
 
-  .dashboard-main-wrap {
-    background: url('../../assets/img/dashboard-bg.svg') no-repeat center center;
+  .dashboard-main {
+    background: url('../../assets/img/dashboard-bg.svg') no-repeat center;
     background-size: cover;
-    position: relative;
-
-    // ------------------ header --------------------------
-    .dash-header-wrap {
-      .dashboard-header {
-        @include lrPartition;
-        padding: 36px;
-
-        .m-logo {
-          height: 50px;
-        }
-
-        .total-cash {
-          @include flexCenterRow;
-
-          .cash-icon {
-            margin-right: 8px;
-          }
-
-          .cash-value {
-            font-size: 24px;
-            font-weight: 700;
-          }
-        }
-      }
-    }
-
-    // ---------------- dashboard pages --------------------
-    .dashboard-main {
-      align-items: flex-start;
-      height: 100vh;
-      overflow-y: auto;
-      overflow-x: hidden;
-      background: var(--bg-panel-card);
-    }
+    width: 90.5%;
+    height: 100vh;
+    left: 150px;
+    position: absolute;
+    overflow: auto;
   }
 }
