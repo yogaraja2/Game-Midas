@@ -4,18 +4,21 @@
   background: var(--bg-panel-card);
   width: 85%;
   height: 95%;
-  //   margin: 50px;
   position: relative;
   overflow: auto;
   display: flex;
   flex-direction: column;
+  // background-color: #c51f7a;
 
   .leader-board-container {
-    margin-top: 2%;
+    margin-top: 1%;
+    height: 100%;
+    // background-color: aquamarine;
     .top-three-players {
       display: flex;
       height: 260px;
       width: 80%;
+      margin-top: 2%;
       margin-left: 10%;
       align-items: flex-end;
       // background-color: #0000ff;
@@ -46,7 +49,6 @@
               right: 12px;
               bottom: 12px;
               margin-left: 20px;
-              //   margin-top: 63px;
               img {
                 max-width: 75px;
                 max-height: 75px;
@@ -83,34 +85,40 @@
     }
 
     .other-players {
-      display: flex;
+      // margin-top: 2%;
+      display: inline;
+      flex-direction: column;
       position: relative;
-      height: 70%;
-      overflow: scroll;
-      margin-top: 2%;
-      margin-left: 10%;
-      // background-color: burlywood;
-      overflow: auto;
-      .leader-board-table {
+      // margin-left: 10%;
+      height: 400px;
+      // background-color: blueviolet;
+      .leader-board-table-wrap {
         width: 80%;
         height: 100%;
         margin-left: 10%;
         border-radius: 20px;
         background-color: white;
-        // table-layout: fixed;
-        .table-heading {
-          position: sticky;
-          .title {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #c51f7a;
+        overflow: auto;
+        .leader-board-table {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          .table-heading {
+            // background-color: khaki;
+            // position: sticky;
+            .title {
+              font-size: 1.5em;
+              font-weight: bold;
+              color: #c51f7a;
+            }
           }
-        }
-        .table-body {
-          .table-rows {
-            text-align: center;
-            font-size: 1.3em;
-            opacity: 0.9;
+          .table-body {
+            // background-color: lawngreen;
+            .table-rows {
+              text-align: center;
+              font-size: 1.3em;
+              opacity: 0.9;
+            }
           }
         }
       }
