@@ -11,42 +11,7 @@ import SnackBar from '../../../components/SnackBar'
 
 function SelectRole() {
     // useSelector hook is used for get state from reducers. a.k.a: Receiver page
-    const getApiData = useSelector(state => state.signupData)
-
-    const [tempInstructors, setTempInstructors] = useState(null)
-    const [tempOrganizations, setTempOrganizations] = useState(null)
-    const [instructor, setInstructor] = useState(null)
-    const [organization, setOrganization] = useState(null)
-
-    useEffect(() => {
-        // console.log('from 2nd page')
-        // console.log(getApiData)
-        if (getApiData) {
-            setTempInstructors(getApiData.instructors);
-            setTempOrganizations(getApiData.organizations);
-        }
-        if (tempInstructors) {
-            setInstructor(tempInstructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })));
-        }
-        if (tempOrganizations) {
-            setOrganization(tempOrganizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key })));
-        }
-
-    }, [getApiData, tempInstructors, tempOrganizations])
-
-    // console.log('instructor')
-    // console.log(instructors)
-    // console.log('organization')
-    // console.log(organizations)
-
-    const defaultValues = {
-        role: null,
-        organizationId: null,
-        instructorId: null,
-        newOrganization: null,
-        subscription: null,
-    }
-
+    // const getApiData = useSelector(state => state.signupData)
     const roleOptions = [
         { id: 'Individual', value: 'Individual' },
         { id: 'Student', value: 'Student' },
@@ -60,15 +25,78 @@ function SelectRole() {
         { id: 3, value: '3 Year' },
     ]
 
+    const [organizations, setOrganizations] = useState([])
+    const [instructors, setInstructors] = useState([])
+
+    const defaultValues = {
+        role: null,
+        organizationId: null,
+        instructorId: null,
+        newOrganization: '',
+        subscription: null,
+    }
+
+    const [defaults, setDefaults] = useState(defaultValues)
+
+    useEffect(() => {
+        console.log('test0')
+        setOrganizations(JSON.parse(localStorage.getItem('Organizations')))
+        setInstructors(JSON.parse(localStorage.getItem('Instructors')))
+        // console.log('organizations '+organizations)
+        // console.log('Instructors '+instructors)
+        if (defaults.role === 'Individual') {
+            setDefaults({
+                ...defaults,
+                organizationId: null,
+                instructorId: null,
+                newOrganization: '',
+                subscription: null
+            })
+        }
+        else if (defaults.role === 'Student') {
+            setDefaults({
+                ...defaults,
+                newOrganization: '',
+                subscription: null
+            })
+        }
+        else if (defaults.role === 'Instructor') {
+            setDefaults({
+                ...defaults,
+                instructorId: null,
+                newOrganization: '',
+                subscription: null
+            })
+        }
+        else {
+            setDefaults({
+                ...defaults,
+                newOrganization: '',
+                subscription: null
+            })
+        }
+    }, [defaults.role])
+
+
+    // console.log('org id '+organizationId)
+
+    const selectedOrg = organizations.filter((item) => item.id === defaults.organizationId)
+    // console.log('selectedOrg ' + selectedOrg)
+
+    let selectedInstructor = [];
+    if (selectedOrg.length) {
+        // console.log('tenant ' + selectedOrg[0].tenant_key)
+        selectedInstructor = instructors.filter((item) => item.tenant_key === selectedOrg[0].tenant_key)
+        // console.log('selectedInstructor ' + selectedInstructor)
+    }
+
     const [message, setMessage] = useState(null)
     const [Error, setError] = useState(false)
     const [detail, setDetail] = useState(null)
     const [response, setResponse] = useState(null)
     const [count, setCount] = useState(false)
 
-    const [role, setRole] = useState(defaultValues.role)
-
-    const { control, errors, handleSubmit } = useForm(defaultValues)
+    const { control, errors, handleSubmit } = useForm(defaults)
     const history = useHistory()
 
     const otherProps = { control, error: errors }
@@ -93,16 +121,17 @@ function SelectRole() {
                 setCount(true)
 
                 if (res?.status === 200) {
-                    setDetail(data)
                     setMessage('Submitted Successfully...')
                 }
             })
             .catch((err) => {
-                // console.log('error section')
-                // console.log(err)
                 setMessage(err.message)
+                // setDefaultValues({})
                 setCount(true)
             })
+        // .finally(() => {
+        //     setDefaultValues({})
+        // })
     }
 
     useEffect(() => {
@@ -128,8 +157,8 @@ function SelectRole() {
         setError(false)
     }
 
-    // console.log('default')
-    // console.log(defaultValues)
+    console.log('default')
+    console.log(defaults)
 
     return (
         <div className="role-box-sec">
@@ -145,7 +174,7 @@ function SelectRole() {
                         list={roleOptions}
                         placeholder="Select"
                         autoFocus
-                        onChange={(e) => setRole(e.target.value)}
+                        onChange={(e) => setDefaults({ ...defaults, role: e.target.value })}
                         rules={{ required: 'Please select your role' }}
                         {...otherProps}
                     />
@@ -156,10 +185,11 @@ function SelectRole() {
                         name="organizationId"
                         className="organizations-field"
                         label="Choose the organization"
-                        list={organization ? organization : []}
+                        list={organizations}
+                        onChange={(e) => setDefaults({ ...defaults, organizationId: e.target.value })}
                         placeholder="Select"
-                        rules={(role === 'Student' || role === 'Instructor') && { required: 'Please select your school' }}
-                        disabled={!(role === 'Student' || role === 'Instructor') ? true : false}
+                        rules={(defaults.role === 'Student' || defaults.role === 'Instructor') && { required: 'Please select your school' }}
+                        disabled={!(defaults.role === 'Student' || defaults.role === 'Instructor') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -169,10 +199,11 @@ function SelectRole() {
                         name="instructorId"
                         className="instructor-field"
                         label="Choose Your Instructor (Optional)"
-                        list={instructor ? instructor : []}
+                        list={selectedInstructor ? selectedInstructor : instructors}
+                        onChange={(e) => setDefaults({ ...defaults, instructorId: e.target.value })}
                         placeholder="Select"
                         // rules={(role === 'Student') && { required: 'Please select your instructor' }}
-                        disabled={!(role === 'Student') ? true : false}
+                        disabled={!(defaults.role === 'Student') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -183,8 +214,9 @@ function SelectRole() {
                         label="Create Organization"
                         placeholder="enter organization name"
                         required
-                        rules={(role === 'School_Admin') && { required: 'Please enter organization name' }}
-                        disabled={!(role === 'School_Admin') ? true : false}
+                        onChange={(e) => setDefaults({ ...defaults, newOrganization: e.target.value })}
+                        rules={(defaults.role === 'School_Admin') && { required: 'Please enter organization name' }}
+                        disabled={!(defaults.role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
                 </div>
@@ -196,9 +228,9 @@ function SelectRole() {
                         label="Choose subscription period"
                         list={subscriptionPeriod}
                         placeholder="Select"
-                        onChange={(e) => e.target.value}
-                        rules={(role === 'School_Admin') && { required: 'Please select subscription period' }}
-                        disabled={!(role === 'School_Admin') ? true : false}
+                        onChange={(e) => setDefaults({ ...defaults, subscription: e.target.value })}
+                        rules={(defaults.role === 'School_Admin') && { required: 'Please select subscription period' }}
+                        disabled={!(defaults.role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
                 </div>

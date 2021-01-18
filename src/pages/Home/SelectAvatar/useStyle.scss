@@ -66,10 +66,13 @@
 
     .income-wrap {
       margin: 20px;
-      .income-field {
-        width: 25%;
+      .MuiOutlinedInput-root{
+        width: 250px;
         margin-top: 10px;
         margin-left: 35px;
+        .MuiInputBase-input{
+          font-size: large;
+        }
       }
     }
 

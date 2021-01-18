@@ -8,12 +8,14 @@ import lock from '../../../assets/img/lock1.svg'
 import { commonRoute } from '../../../config/routes'
 import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
+import SnackBar from '../../../components/SnackBar'
+import API, { URL } from '../../../Api'
 
-const AvatarOptions = ({ label, imgUrl, id, selected, setSelected }) => {
+const AvatarOptions = ({ label, imgUrl, id, avatar, setAvatar }) => {
     return (
         <div
-            className={clsx('option-wrap', selected === id && 'selected')}
-            onClick={setSelected.bind(this, id)}
+            className={clsx('option-wrap', avatar === id && 'selected')}
+            onClick={setAvatar.bind(this, id)}
         >
             <div className="option-image">
                 <div className="selector-bg">
@@ -62,28 +64,72 @@ const RoleOptions = ({ id, title, role, setRole }) => {
 }
 
 function SelectAvatar() {
-    const [selected, setSelected] = useState('Avatar1')
-    const [gameLength, setGameLength] = useState('short')
-    const [role, setRole] = useState('easy')
+    const [avatar, setAvatar] = useState(1)
     const [income, setIncome] = useState(null)
+    const [gameLength, setGameLength] = useState(10)
+    const [role, setRole] = useState('easy')
 
-    const allyProps = { selected, setSelected }
+    const [error, setError] = useState(false)
+    const [errMsg, setErrMsg] = useState('')
+
+    const [response, setResponse] = useState(null)
+
+    const allyProps = { avatar, setAvatar }
     const otherLen = { gameLength, setGameLength }
     const otherRol = { role, setRole }
 
     const history = useHistory()
-    const goToSelectDream = () => {
+
+    const initialValues = {
+        avatarIcon: avatar,
+        income: income,
+        gameLength: gameLength,
+        role: role,
+    }
+
+    const token = localStorage.getItem('midasToken')
+    const auth = 'Bearer '.concat(token)
+
+    const goToSelectDream = (initialValues) => {
+        console.log(initialValues)
         if (income) {
-            console.log(income);
-            history.push(commonRoute.selectDreams);
+            // console.log(income);
+            API.post(URL.gameDetails, initialValues, {
+                headers: {
+                    Authorization: auth
+                }
+            })
+                .then((res) => {
+                    console.log('avatar response')
+                    console.log(res)
+                    setResponse(res)
+                    history.push(commonRoute.selectDreams)
+                    // if (response?.status) {
+                    //     history.push(commonRoute.selectDreams)
+                    // }
+                })
+                .catch((err) => {
+                    console.log('avatar error section')
+                    console.log(err)
+                    console.log(err.message)
+                })
+            // history.push(commonRoute.selectDreams);
         }
         else {
-            alert('Please enter your income...')
+            setError(true)
+            setErrMsg('Please enter your Income...')
         }
     }
 
     const handleIncomeValueChanges = (e) => {
         setIncome(+e.target.value)
+    }
+
+    function handleOnClose(reason) {
+        if (reason === 'clickaway') {
+            return
+        }
+        setError(false)
     }
 
     return (
@@ -100,31 +146,31 @@ function SelectAvatar() {
                 <AvatarOptions
                     label="Admin"
                     imgUrl={`Avatar1`}
-                    id={'Avatar1'}
+                    id={1}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={`Avatar2`}
-                    id={'Avatar2'}
+                    id={2}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={'Avatar3'}
-                    id={'Avatar3'}
+                    id={3}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={`Avatar4`}
-                    id={'Avatar4'}
+                    id={4}
                     {...allyProps}
                 />
                 <AvatarOptions
                     label="Admin"
                     imgUrl={'Avatar5'}
-                    id={'Avatar5'}
+                    id={5}
                     {...allyProps}
                 />
             </Grid>
@@ -136,8 +182,8 @@ function SelectAvatar() {
                 <Textfield
                     name="income"
                     placeholder="$120000"
-                    className="income-field"
                     required
+                    autoFocus
                     onChange={(e) => handleIncomeValueChanges(e)}
                 />
             </div>
@@ -148,19 +194,19 @@ function SelectAvatar() {
                 </div>
                 <Grid container className="lenrole-button-wrap">
                     <LengthOptions
-                        id={'short'}
+                        id={10}
                         dollerImg={doller}
                         text1="Short"
                         text2="10 Turns"
                         {...otherLen} />
                     <LengthOptions
-                        id={'medium'}
+                        id={20}
                         dollerImg={doller}
                         text1="Medium"
                         text2="20 Turns"
                         {...otherLen} />
                     <LengthOptions
-                        id={'long'}
+                        id={40}
                         dollerImg={doller}
                         text1="Long"
                         text2="40 Turns"
@@ -179,8 +225,8 @@ function SelectAvatar() {
                         {...otherRol}
                     />
                     <RoleOptions
-                        id="medium"
-                        title="Medium"
+                        id="standard"
+                        title="Standard"
                         {...otherRol}
                     />
                     <RoleOptions
@@ -192,8 +238,17 @@ function SelectAvatar() {
             </div>
 
             <div className="btn-wrap">
-                <Button className="nxt-btn" onClick={goToSelectDream}>Next</Button>
+                <Button className="nxt-btn" onClick={() => goToSelectDream(initialValues)}>Next</Button>
             </div>
+
+            {error &&
+                (<SnackBar
+                    openDialog={error}
+                    message={errMsg}
+                    onclose={handleOnClose}
+                    severity={'info'}
+                />)
+            }
         </Grid>
     )
 }
