@@ -21,7 +21,7 @@ function SatisfactionCard() {
   )
 
   return (
-    <Card className="satisfiction-card">
+    <Card className="satisfiction-card" transparent>
       <Grid container justify="space-around" className="satisfiction-grid">
         <Score xsfull label="Housing" value={300} noMargin />
         <Score label="Living Expenses" value={300} />

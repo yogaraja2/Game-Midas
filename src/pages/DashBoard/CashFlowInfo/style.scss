@@ -1,0 +1,73 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .dash-cash-flow-info-page {
+    padding: 0 82px 36px;
+
+    @include w600 {
+      padding: 0 36px 36px;
+    }
+
+    .avl-bal-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .avl-bal-entry {
+        @include flexCenterRow;
+        min-width: 200px;
+        max-width: 300px;
+        margin-bottom: 14px;
+
+        .label {
+          white-space: nowrap;
+          margin-right: 52px;
+        }
+      }
+    }
+
+    .questions-wrap {
+      @include w960 {
+        margin-top: 36px;
+      }
+
+      .question-wrap {
+        margin-bottom: 60px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .question {
+          font-size: 1.5em;
+        }
+
+        .field-wrap {
+          display: flex;
+          flex-direction: column;
+          max-width: 284px;
+
+          .qus-field {
+            margin: 8px 0 0;
+          }
+        }
+      }
+    }
+
+    .btn-wrap {
+      margin-top: 36px;
+      text-align: right;
+      .info-btn {
+        @include button;
+
+        .btn-cont {
+          @include flexCenterRow;
+          .label {
+            margin-left: 6px;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+}

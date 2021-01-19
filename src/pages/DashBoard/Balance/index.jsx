@@ -1,14 +1,23 @@
-import { Grid } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import Assets from './Assets'
+import Liabilities from './Liabilities'
+import { Button, Grid } from '@material-ui/core'
 import './styles.scss'
+import YearBar from '../../../components/YearBar'
 
 function Balance() {
+  const [dataYear, setDataYear] = useState(1)
+
   return (
     <div className="dashboard-balance-page">
-      <div className="assets-grid">
-        <h2 className="sec-head">Assets</h2>
-        <Assets />
+      <YearBar value={dataYear} onClick={setDataYear} years={10} />
+
+      <h2 className="sec-head">Assets</h2>
+      <Assets />
+      <Liabilities />
+
+      <div className="nxt-btn-wrap">
+        <Button className="nxt-btn">Next</Button>
       </div>
     </div>
   )

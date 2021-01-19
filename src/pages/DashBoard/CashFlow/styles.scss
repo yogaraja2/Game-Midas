@@ -168,15 +168,5 @@
         }
       }
     }
-
-    //------------ next btn ------------------------
-    .nxt-btn-wrap {
-      text-align: right;
-      margin-top: 18px;
-
-      .nxt-btn {
-        @include button;
-      }
-    }
   }
 }
