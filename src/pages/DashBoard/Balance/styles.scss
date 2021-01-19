@@ -2,10 +2,14 @@
 
 .dashboard-main {
   .dashboard-balance-page {
-    padding: 36px;
+    padding: 0 36px 36px;
 
     @include w600 {
-      padding: 36px 24px;
+      padding: 0 36px 24px;
+    }
+
+    .year-bar-wrap {
+      margin-bottom: 24px;
     }
 
     .sec-head {
@@ -38,7 +42,7 @@
               max-width: 100px;
             }
 
-            @include w320 {
+            @include w400 {
               max-width: 70px;
             }
           }
@@ -173,6 +177,7 @@
 // -------------------- sell asset -------------------------------------
 
 .popup-dialog-container {
+  // sell dialog
   .das-bal-sell-asst-dlg {
     .body-wrap {
       @include flexCenter;
@@ -188,6 +193,100 @@
 
         @include w320 {
           width: 90%;
+        }
+      }
+    }
+  }
+
+  // buy dialog
+  .dash-buy-asset-dlg {
+    max-width: 90vw;
+    overflow: hidden;
+
+    .body-wrap {
+      padding: 24px 50px 0;
+      .asset-list-wrap {
+        @include flexCenterRow;
+        max-width: 900px;
+        overflow-x: auto;
+
+        @include w600 {
+          max-height: 65vh;
+          overflow-y: auto;
+        }
+
+        .buying-card {
+          @include flexCenter;
+
+          .buy-asset-card {
+            .asset-card {
+              border: 5px solid rgba(216, 216, 216, 0.4);
+              overflow: hidden;
+              width: 150px;
+              height: 90px;
+
+              .asset-img {
+                max-width: 120px;
+                max-height: 70px;
+              }
+
+              .asset-value {
+                .cash-icon {
+                  font-size: 0.85em;
+                }
+
+                .cash-value {
+                  font-size: 1.25em;
+                }
+              }
+
+              @include w960 {
+                height: 70px;
+                .asset-img {
+                  max-height: 40px;
+                }
+
+                .asset-value {
+                  .cash-icon {
+                    font-size: 0.73em;
+                  }
+
+                  .cash-value {
+                    font-size: 1.1em;
+                  }
+                }
+              }
+            }
+          }
+
+          .item-name {
+            font-size: 1.7em;
+            font-weight: 700;
+            margin-top: 8px;
+
+            @include w960 {
+              font-size: 1.4em;
+            }
+          }
+
+          &.selected {
+            .asset-card {
+              border: 5px solid rgba(0, 159, 253, 0.4);
+            }
+          }
+        }
+      }
+
+      .btn-wrap {
+        text-align: right;
+        margin-top: 24px;
+
+        @include w600 {
+          margin-top: 36px;
+        }
+
+        .buy-btn {
+          @include button;
         }
       }
     }

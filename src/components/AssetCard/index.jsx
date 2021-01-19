@@ -17,6 +17,16 @@ function AssetCard({
   onClick,
   onSell
 }) {
+  const handleSell = (e) => {
+    e.stopPropagation()
+    onSell && onSell()
+  }
+
+  const handleClick = (e) => {
+    e.stopPropagation()
+    onClick && onClick()
+  }
+
   return (
     <Grid
       item
@@ -28,9 +38,13 @@ function AssetCard({
         !isBlack && 'is-blue'
       )}
     >
-      <Card className="asset-card" transparent={transparent} onClick={onClick}>
+      <Card
+        className="asset-card"
+        transparent={transparent}
+        onClick={handleClick}
+      >
         {isBought && (
-          <div className="sell-sign" onClick={onSell}>
+          <div className="sell-sign" onClick={handleSell}>
             Sell
           </div>
         )}
