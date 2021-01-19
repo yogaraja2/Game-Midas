@@ -1,9 +1,30 @@
 @import '../../../mixins/common';
 
 .dashboard-main {
-  .stats-flow-card {
-    background: var(--bg-panel-card);
+  .stats-main {
     width: 100%;
-    height: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    .title {
+      text-align: center;
+      // color: #009ffd;
+      font-size: 1.4em;
+      font-weight: 700;
+    }
+
+    .score-wrap {
+      width: 100%;
+      height: 100%;
+      margin-top: 50px;
+      // background-color: aquamarine;
+      @include flexCenter;
+      align-self: center;
+      .chart-wrap {
+        width: 90%;
+      }
+    }
   }
 }
