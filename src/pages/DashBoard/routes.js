@@ -2,6 +2,7 @@ import { commonRoute } from '../../config/routes'
 import Advisor from './Advisor'
 import Balance from './Balance'
 import CashFlow from './CashFlow'
+import CashFlowInfo from './CashFlowInfo'
 import Stats from './Stats'
 
 export const dashboardRoutes = [
@@ -16,6 +17,14 @@ export const dashboardRoutes = [
       path: commonRoute.dashboard.default,
       exact: true,
       to: commonRoute.dashboard.cashFlow
+    }
+  },
+  {
+    name: 'Cash Flow',
+    props: {
+      path: commonRoute.dashboard.cashFlowInfo,
+      component: CashFlowInfo,
+      exact: true
     }
   },
   {

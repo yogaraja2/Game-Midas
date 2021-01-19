@@ -60,8 +60,13 @@ function BuyPopup({ onClose, type }) {
       onClose={onClose}
     >
       <Grid container spacing={3} className="asset-list-wrap">
-        {buyingAsset.map((i) => (
-          <BuyingCard data={i} selected={selected} handleClick={handleClick} />
+        {buyingAsset.map((i, index) => (
+          <BuyingCard
+            key={index}
+            data={i}
+            selected={selected}
+            handleClick={handleClick}
+          />
         ))}
       </Grid>
       <div className="btn-wrap">
