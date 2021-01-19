@@ -2,7 +2,7 @@ import { commonRoute } from '../../config/routes'
 import Advisor from './Advisor'
 import Balance from './Balance'
 import CashFlow from './CashFlow'
-import CashFlowInfo from './CashFlowInfo'
+import CashFlowEntry from './CashFlowEntry'
 import Stats from './Stats'
 
 export const dashboardRoutes = [
@@ -10,7 +10,7 @@ export const dashboardRoutes = [
     name: 'Cash Flow',
     props: {
       path: commonRoute.dashboard.cashFlow,
-      component: CashFlow,
+      component: CashFlowEntry,
       exact: true
     },
     redirection: {
@@ -20,10 +20,10 @@ export const dashboardRoutes = [
     }
   },
   {
-    name: 'Cash Flow',
+    name: 'Cash Flow info',
     props: {
       path: commonRoute.dashboard.cashFlowInfo,
-      component: CashFlowInfo,
+      component: CashFlow,
       exact: true
     }
   },
