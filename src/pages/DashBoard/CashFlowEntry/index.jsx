@@ -68,6 +68,7 @@ function CashFlowEntry(props) {
         props.history.push(commonRoute.dashboard.cashFlowInfo)
       })
       .catch((err) => {
+        props.history.push(commonRoute.dashboard.cashFlowInfo)
         console.error(err)
       })
   }

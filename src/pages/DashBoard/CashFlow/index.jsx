@@ -19,7 +19,12 @@ function CashFlow() {
 
   return (
     <div className="dash-cash-flow-page">
-      <YearBar value={dataYear} onClick={setDataYear} years={10} />
+      <YearBar
+        value={dataYear}
+        onClick={setDataYear}
+        years={40}
+        clickableTill={20}
+      />
 
       <div className="stat-card-wrap">
         <h2 className="sec-head stats">Year {dataYear}</h2>

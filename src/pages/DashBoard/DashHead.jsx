@@ -1,6 +1,7 @@
 import React from 'react'
 import { IconButton } from '@material-ui/core'
 import { CgMenuLeftAlt as MenuIcon } from 'react-icons/cg'
+import YearBar from '../../components/YearBar'
 
 function DashHead({ toggleMenu }) {
   return (
