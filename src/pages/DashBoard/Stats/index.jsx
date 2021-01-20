@@ -10,7 +10,8 @@ import {
     Tooltip,
     DataLabel,
     ColumnSeries,
-    SplineSeries
+    SplineSeries,
+    StripLine,
 } from '@syncfusion/ej2-react-charts'
 import { Grid } from '@material-ui/core'
 
@@ -24,58 +25,65 @@ function Stats() {
         }
         // title: 'Months',
     }
-    const [scoreyaxis, setScoreyaxis] = useState({
-        minimum: 0, maximum: 500, interval: 50, title: 'Cost', majorGridLines: { width: 0 }, labelFormat: '${value}',
+    const scoreyaxis = {
+        maximum: 5000, interval: 500, majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
-        }
-    })
+        },
+        stripLines: [{ start: 0, size: 3, sizeType: 'Pixel', color: 'rgba(167,169,171, 0.3)' }]
+    };
+
     const scoreData = [
-        { x: 'January', y: 420 },
-        { x: 'February', y: 300 },
-        { x: 'March', y: 450 },
-        { x: 'April', y: 350 },
-        { x: 'May', y: 420 },
-        { x: 'June', y: 370 },
-        { x: 'July', y: 180 },
-        { x: 'August', y: 325 },
-        { x: 'September', y: 280 },
-        { x: 'October', y: 260 },
-        { x: 'November', y: 300 },
-        { x: 'December', y: 350 },
+        { x: '1', y: 3500 },
+        { x: '2', y: 2000 },
+        { x: '3', y: -2500 },
+        { x: '4', y: 3500 },
+        { x: '5', y: 4200 },
+        { x: '6', y: 3000 },
+        { x: '7', y: -1800 },
+        { x: '8', y: 1000 },
+        { x: '9', y: 1500 },
+        { x: '10', y: -2600 },
     ]
 
-    const [networthxaxis, setNetworthxaxis] = useState({
+    const networthxaxis = {
         valueType: 'Category', majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
         },
         // title: 'weeks',
-    })
-    const [networthyaxis, setNetworthyaxis] = useState({
-        minimum: 0, maximum: 50, interval: 5, majorGridLines: { width: 0 },
+    }
+    const networthyaxis = {
+        maximum: 10000, interval: 1000, majorGridLines: { width: 0 }, labelFormat: '${value}',
         labelStyle: {
             fontWeight: "Bold"
         },
-    })
+        stripLines: [{ start: 0, size: 3, sizeType: 'Pixel', color: 'rgba(167,169,171, 0.3)' }]
+    }
     const networthData = [
-        { x: 'Monday', y: 5 },
-        { x: 'Tuesday', y: 15 },
-        { x: 'Wednesday', y: 25 },
-        { x: 'Thursday', y: 15 },
-        { x: 'Friday', y: 45 },
-        { x: 'Saturday', y: 35 },
-        { x: 'Sunday', y: 45 },
+        { x: '1', y: 5000 },
+        { x: '2', y: 4000 },
+        { x: '3', y: 3500 },
+        { x: '4', y: -2000 },
+        { x: '5', y: 4500 },
+        { x: '6', y: 3300 },
+        { x: '7', y: 3300 },
+        { x: '8', y: 1000 },
+        { x: '9', y: -1000 },
+        { x: '10', y: -750 },
     ]
     const marker = { visible: true, width: 10, height: 10 }
     const retirementData = [
-        { x: 'Monday', y: 25 },
-        { x: 'Tuesday', y: 25 },
-        { x: 'Wednesday', y: 25 },
-        { x: 'Thursday', y: 25 },
-        { x: 'Friday', y: 25 },
-        { x: 'Saturday', y: 35 },
-        { x: 'Sunday', y: 25 },
+        { x: '1', y: 7000 },
+        { x: '2', y: 4000 },
+        { x: '3', y: 2000 },
+        { x: '4', y: -2000 },
+        { x: '5', y: 5000 },
+        { x: '6', y: 3300 },
+        { x: '7', y: 3300 },
+        { x: '8', y: 1000 },
+        { x: '9', y: -1000 },
+        { x: '10', y: -750 },
     ]
 
     return (
@@ -89,7 +97,7 @@ function Stats() {
                         <h1>Score</h1>
                     </div>
                     <ChartComponent id="charts" primaryXAxis={scorexaxis} primaryYAxis={scoreyaxis} tooltip={{ enable: true }} title="Score">
-                        <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, Category]} />
+                        <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, Category, StripLine]} />
                         <SeriesCollectionDirective>
                             <SeriesDirective
                                 dataSource={scoreData}
@@ -110,24 +118,24 @@ function Stats() {
                     <div className="chart-title">
                         <h1>Net Worth</h1>
                     </div>
-                    <ChartComponent id="charts1" primaryXAxis={networthxaxis} primaryYAxis={networthyaxis} tooltip={{ enable: true, shared: true }} title="Networth">
-                        <Inject services={[SplineSeries, ColumnSeries, Legend, Tooltip, DataLabel, Category]} />
+                    <ChartComponent id="charts1" primaryXAxis={networthxaxis} primaryYAxis={networthyaxis} tooltip={{ enable: true, shared: true }} title="Networth-BreakDown">
+                        <Inject services={[SplineSeries, ColumnSeries, Legend, Tooltip, DataLabel, Category, StripLine]} />
                         <SeriesCollectionDirective>
                             <SeriesDirective
                                 dataSource={networthData}
                                 xName='x'
                                 yName='y'
-                                name='Networth'
+                                name='Retirement Savings'
                                 type='Spline'
                                 fill='#009ffd'
                                 marker={marker}
                                 width={5}
                             />
                             <SeriesDirective
-                                dataSource={networthData}
+                                dataSource={retirementData}
                                 xName='x'
                                 yName='y'
-                                name='Retirement Savings'
+                                name='Networth'
                                 type='Column'
                                 fill='orange'
                                 columnWidth={0.01}
