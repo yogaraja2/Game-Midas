@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { Grid } from '@material-ui/core'
 import Card from '../../../components/Card'
 
-function SatisfactionCard() {
+function SatisfactionCard({ data }) {
   const Score = ({ label, value, noMargin, xsfull }) => (
     <Grid
       item
@@ -23,11 +23,11 @@ function SatisfactionCard() {
   return (
     <Card className="satisfiction-card" transparent>
       <Grid container justify="space-around" className="satisfiction-grid">
-        <Score xsfull label="Housing" value={300} noMargin />
-        <Score label="Living Expenses" value={300} />
-        <Score label="Entertainment" value={-300} />
-        <Score label="Vehicle" value={300} />
-        <Score label="Retirement" value={-300} />
+        <Score xsfull label="Housing" value={data?.housePoints} noMargin />
+        <Score label="Living Expenses" value={data?.livingExpensesPoints} />
+        <Score label="Entertainment" value={data?.entertainmentPoints} />
+        <Score label="Vehicle" value={data?.vehiclePoints} />
+        <Score label="Dream" value={data?.dreamPoints} />
       </Grid>
     </Card>
   )

@@ -65,7 +65,12 @@ function CashFlowEntry(props) {
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {
-        props.history.push(commonRoute.dashboard.cashFlowInfo)
+        props.history.push({
+          pathname: commonRoute.dashboard.cashFlowInfo,
+          state: {
+            data: res.data
+          }
+        })
       })
       .catch((err) => {
         props.history.push(commonRoute.dashboard.cashFlowInfo)

@@ -39,7 +39,27 @@
   }
 
   &.Mui-disabled {
-    background: var(--disabledBtn);
+    background: var(--bg-disabled-btn);
+    color: #fff;
+  }
+}
+
+@mixin buttonSec {
+  text-transform: none;
+  font-size: 1rem;
+  padding: 4px 20px;
+  background: #898989;
+  color: #fff;
+  font-weight: bold;
+  width: 100px;
+  border-radius: 3px;
+
+  &:hover {
+    background: #aaa;
+  }
+
+  &.Mui-disabled {
+    background: var(--bg-disabled-btn);
     color: #fff;
   }
 }

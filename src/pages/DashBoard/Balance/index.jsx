@@ -16,7 +16,7 @@ function Balance() {
       <Assets />
       <Liabilities />
 
-      <div className="nxt-btn-wrap">
+      <div className="btn-wrap">
         <Button className="nxt-btn">Next</Button>
       </div>
     </div>

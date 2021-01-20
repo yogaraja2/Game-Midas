@@ -168,5 +168,15 @@
         }
       }
     }
+
+    .action-btn-wrap {
+      display: flex;
+      justify-content: space-between;
+
+      .prev-btn {
+        @include buttonSec;
+        margin-right: 24px;
+      }
+    }
   }
 }

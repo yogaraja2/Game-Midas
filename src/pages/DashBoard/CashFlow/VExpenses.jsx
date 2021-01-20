@@ -2,14 +2,14 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import Entry from './Entry'
 
-function VExpenses({ size }) {
+function VExpenses({ size, data }) {
   return (
     <Grid item {...size} className="var-exp-sec stat-data-sec">
       <div className="content-wrap m-left">
-        <Entry label="Living Expenses" value={300} />
-        <Entry label="Entertainment" value={300} />
-        <Entry label="Retirement Savings" value={300} />
-        <Entry label="Debt Repayment " value={300} />
+        <Entry label="Living Expenses" value={data?.livingExpenses} />
+        <Entry label="Entertainment" value={data?.entertainment} />
+        <Entry label="Retirement Savings" value={data?.retirementSavings} />
+        <Entry label="Debt Repayment " value={data?.deptRepayment} />
       </div>
     </Grid>
   )
