@@ -98,10 +98,11 @@ function CashFlowEntry(props) {
 
       <div className="btn-wrap">
         <Button className="info-btn" onClick={handleSubmit}>
-          <div className="btn-cont">
+          {/* <div className="btn-cont">
             <InfoIcon className="info-icon" />
             <span className="label">info</span>
-          </div>
+          </div> */}
+          Try
         </Button>
       </div>
     </div>

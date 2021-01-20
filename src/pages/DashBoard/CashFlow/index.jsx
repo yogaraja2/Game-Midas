@@ -53,9 +53,7 @@ function CashFlow(props) {
 
   const handleNext = () => {
     if (dataYear <= currentData.gameLength) {
-      if (currentData.totalTurns > dataYear) {
-        setDataYear((prev) => prev + 1)
-      } else if (currentData.totalTurns === dataYear) {
+      if (currentData.totalTurns === dataYear) {
         if (isPassed) switchToEntry()
       }
     }
@@ -66,7 +64,8 @@ function CashFlow(props) {
       <YearBar
         value={dataYear}
         onClick={setDataYear}
-        years={currentData?.gameLength}
+        // years={currentData?.gameLength}
+        years={40}
         clickableTill={currentData?.totalTurns}
       />
 
@@ -87,15 +86,17 @@ function CashFlow(props) {
         <div className="action-btn-wrap">
           <div className="btn-wrap">
             <Button className="btn prev-btn" onClick={switchToEntry}>
-              Previous
+              Back
             </Button>
           </div>
 
-          <div className="btn-wrap" onClick={handleNext}>
-            <Button disabled={!isPassed} className="btn nxt-btn">
-              Next
-            </Button>
-          </div>
+          {currentData.totalTurns === dataYear && (
+            <div className="btn-wrap" onClick={handleNext}>
+              <Button disabled={!isPassed} className="btn nxt-btn">
+                Next Turn
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
