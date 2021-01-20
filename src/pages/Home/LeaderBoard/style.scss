@@ -1,25 +1,32 @@
 @import '../../../mixins/common';
 
 .leader-board-card {
+  position: fixed !important;
+  bottom: 3vh;
   background: var(--bg-panel-card);
-  width: 85%;
-  height: 95%;
+  width: 80vw;
+  height: 80vh;
   //   margin: 50px;
   position: relative;
-  overflow: auto;
+  // overflow: auto;
   display: flex;
   flex-direction: column;
 
   .leader-board-container {
-    margin-top: 2%;
+    // margin-top: 2%;
     .top-three-players {
       display: flex;
-      height: 260px;
-      width: 80%;
-      margin-left: 10%;
-      align-items: flex-end;
+      justify-content: space-between;
+      // height: 260px;
+      // width: 80%;
+      // margin-left: 10%;
+      // align-items: flex-end;
       // background-color: #0000ff;
-      justify-content: space-around;
+      // justify-content: space-around;
+
+      .player-1 {
+        margin-top: -30px;
+      }
 
       .paper-class {
         height: 220px;
@@ -83,21 +90,19 @@
     }
 
     .other-players {
-      display: flex;
       position: relative;
-      height: 70%;
-      overflow: scroll;
       margin-top: 2%;
-      margin-left: 10%;
-      // background-color: burlywood;
       overflow: auto;
+      max-height: calc(100vh - 475px);
+      overflow: auto;
+
       .leader-board-table {
-        width: 80%;
-        height: 100%;
-        margin-left: 10%;
-        border-radius: 20px;
+        width: 100%;
+        border-radius: 15px;
         background-color: white;
+        border-collapse: collapse;
         // table-layout: fixed;
+
         .table-heading {
           position: sticky;
           .title {
@@ -112,6 +117,12 @@
             font-size: 1.3em;
             opacity: 0.9;
           }
+        }
+
+        td,
+        th {
+          padding: 12px;
+          border-bottom: 1px solid #ddd;
         }
       }
     }

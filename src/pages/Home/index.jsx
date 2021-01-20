@@ -14,10 +14,8 @@ function Home() {
         className="game-control-home"
       >
         <RouteMapper data={homeRoutes} />
-
       </Grid>
     </>
-
   )
 }
 
