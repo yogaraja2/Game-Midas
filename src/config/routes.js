@@ -13,6 +13,6 @@ export const commonRoute = {
     cashFlowInfo: '/dashBoard/cashFlow/info',
     balance: '/dashBoard/balance',
     stats: '/dashBoard/stats',
-    advisor: '/dashBoard/advisor'
+    debt: '/dashBoard/debt'
   }
 }

@@ -1,5 +1,5 @@
 import { commonRoute } from '../../config/routes'
-import Advisor from './Advisor'
+import Debt from './Debt'
 import Balance from './Balance'
 import CashFlow from './CashFlow'
 import CashFlowEntry from './CashFlowEntry'
@@ -44,10 +44,10 @@ export const dashboardRoutes = [
     }
   },
   {
-    name: 'Advisor',
+    name: 'Debt',
     props: {
-      path: commonRoute.dashboard.advisor,
-      component: Advisor,
+      path: commonRoute.dashboard.debt,
+      component: Debt,
       exact: true
     }
   }
