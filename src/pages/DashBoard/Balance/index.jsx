@@ -6,6 +6,7 @@ import './styles.scss'
 import YearBar from '../../../components/YearBar'
 import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
+import HighlightCard from '../../../components/HighlightCard'
 
 function Balance() {
   const [dataYear, setDataYear] = useState(1)
@@ -28,12 +29,30 @@ function Balance() {
         clickableTill={currentData?.currentTurn}
       />
 
-      <h2 className="sec-head">Assets</h2>
-      <Assets data={currentData?.assets} />
-      <Liabilities data={currentData?.liabilities} />
+      <div className="asset-bal-det">
+        <h2 className="sec-head">Assets</h2>
+        <Assets data={currentData?.assets} />
+        <HighlightCard
+          className="asset-tot"
+          label="Total Assets"
+          value={currentData?.assets?.totalAssets}
+        />
+      </div>
 
-      <div className="btn-wrap">
-        <Button className="nxt-btn">Next</Button>
+      <div className="liblty-bal-det">
+        <Liabilities data={currentData?.liabilities} />
+      </div>
+
+      <div className="btn-stat-wrap">
+        <HighlightCard
+          className="networth"
+          label="Net worth"
+          value={currentData?.netWorth}
+        />
+
+        <div className="btn-wrap">
+          <Button className="nxt-btn">Next</Button>
+        </div>
       </div>
     </div>
   )
