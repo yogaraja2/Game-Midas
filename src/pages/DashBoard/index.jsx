@@ -96,11 +96,16 @@ function DashBoard() {
                 id="balance"
                 {...allyProps}
               />
-              <Fields img="StatsIcon" label="STATS" id="stats" {...allyProps} />
               <Fields
                 img="AdvisorIcon"
-                label="Ask Advisor"
-                id="advisor"
+                label="Debt"
+                id="debt"
+                {...allyProps}
+              />
+              <Fields
+                img="StatsIcon"
+                label="STATS"
+                id="stats"
                 {...allyProps}
               />
             </div>

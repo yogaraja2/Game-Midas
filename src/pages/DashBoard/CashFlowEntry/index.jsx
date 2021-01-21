@@ -64,9 +64,13 @@ function CashFlowEntry(props) {
       carLoan: parseInt(values.carLoan || 0),
       studentLoan: parseInt(values.studentLoan || 0)
     }
+    console.log('params')
+    console.log(params)
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {
+        console.log('cashflow response ')
+        console.log(res)
         props.history.push({
           pathname: commonRoute.dashboard.cashFlowInfo,
           state: {
