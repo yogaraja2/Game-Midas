@@ -7,6 +7,7 @@ import Fetch from '../../../Api'
 import './style.scss'
 import { API } from '../../../config/apis'
 import { commonRoute } from '../../../config/routes'
+import SnackBar from '../../../components/SnackBar'
 
 const AvailableBal = ({ label, value }) => (
   <div className="avl-bal-entry">
@@ -18,6 +19,7 @@ const AvailableBal = ({ label, value }) => (
 )
 
 function CashFlowEntry(props) {
+  const [error, setError] = useState(null)
   const questions = [
     {
       id: 1,
@@ -77,8 +79,9 @@ function CashFlowEntry(props) {
         })
       })
       .catch((err) => {
-        console.log('cashflow error ' + err.message)
-        // props.history.push(commonRoute.dashboard.cashFlowInfo)
+        setError(
+          err.data?.error?.message || err?.response?.data?.error?.message
+        )
         console.error(err)
       })
   }
@@ -110,6 +113,13 @@ function CashFlowEntry(props) {
           Try
         </Button>
       </div>
+
+      <SnackBar
+        openDialog={!!error}
+        message={error}
+        severity="Error"
+        onclose={setError.bind(this, null)}
+      />
     </div>
   )
 }
