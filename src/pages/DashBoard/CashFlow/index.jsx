@@ -15,7 +15,7 @@ function CashFlow(props) {
   const [dataYear, setDataYear] = useState(1)
   const [isPassed, setPassed] = useState(false)
   const { state } = useLocation()
-  const currentData = state.data?.filter((f) => f.turn === dataYear)[0]
+  const currentData = state.data?.filter((f) => f.year === dataYear)[0]
 
   const statSectionSize = {
     md: 4,
@@ -35,7 +35,7 @@ function CashFlow(props) {
     if (!state.data) {
       switchToEntry()
     } else {
-      setDataYear(state.data[0].totalTurns)
+      setDataYear(state.data[0].currentTurn)
     }
   }, [state])
 
@@ -53,7 +53,7 @@ function CashFlow(props) {
 
   const handleNext = () => {
     if (dataYear <= currentData.gameLength) {
-      if (currentData.totalTurns === dataYear) {
+      if (currentData.currentTurn === dataYear) {
         if (isPassed) switchToEntry()
       }
     }
@@ -66,7 +66,7 @@ function CashFlow(props) {
         onClick={setDataYear}
         // years={currentData?.gameLength}
         years={40}
-        clickableTill={currentData?.totalTurns}
+        clickableTill={currentData?.currentTurn}
       />
 
       <div className="stat-card-wrap">
@@ -90,7 +90,7 @@ function CashFlow(props) {
             </Button>
           </div>
 
-          {currentData.totalTurns === dataYear && (
+          {currentData.currentTurn === dataYear && (
             <div className="btn-wrap" onClick={handleNext}>
               <Button disabled={!isPassed} className="btn nxt-btn">
                 Next Turn
