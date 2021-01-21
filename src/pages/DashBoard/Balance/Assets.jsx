@@ -4,7 +4,7 @@ import AssetCard from '../../../components/AssetCard'
 import SellPopup from './SellPopup'
 import BuyPopup from './BuyPopup'
 
-function Assets() {
+function Assets({ data }) {
   const [confDlg, setConfDlg] = useState({
     status: false,
     data: null,
@@ -41,7 +41,7 @@ function Assets() {
     <Grid container spacing={3} className="assets-wrap">
       <AssetCard
         img="FullLoadCar"
-        value={300000}
+        value={data?.vehicle?.price}
         isBought
         {...allyProps}
         onClick={handleClick.bind(this, 0, false)}
@@ -53,14 +53,14 @@ function Assets() {
       />
       <AssetCard
         img="Rambler"
-        value={300000}
+        value={data?.house?.price}
         isBought
         {...allyProps}
         onClick={handleClick.bind(this, 1, false)}
         onSell={handleClick.bind(this, { img: 'Rambler', name: 'House' }, true)}
       />
-      <AssetCard img="savings" value={300000} {...allyProps} />
-      <AssetCard img="retire" value={300000} {...allyProps} />
+      <AssetCard img="savings" value={data?.chekingAndSavings} {...allyProps} />
+      <AssetCard img="retire" value={data?.retirementSavings} {...allyProps} />
       {confDlg.status && confDlg.isSell && (
         <SellPopup onClose={handleDlgClose} data={confDlg.data} />
       )}
