@@ -11,6 +11,7 @@
   // overflow: auto;
   display: flex;
   flex-direction: column;
+  // background-color: #c51f7a;
 
   .leader-board-container {
     // margin-top: 2%;
@@ -53,7 +54,6 @@
               right: 12px;
               bottom: 12px;
               margin-left: 20px;
-              //   margin-top: 63px;
               img {
                 max-width: 75px;
                 max-height: 75px;
@@ -110,12 +110,13 @@
             font-weight: bold;
             color: #c51f7a;
           }
-        }
-        .table-body {
-          .table-rows {
-            text-align: center;
-            font-size: 1.3em;
-            opacity: 0.9;
+          .table-body {
+            // background-color: lawngreen;
+            .table-rows {
+              text-align: center;
+              font-size: 1.3em;
+              opacity: 0.9;
+            }
           }
         }
 

@@ -36,7 +36,7 @@ function GameControl() {
     if (selected === 'leaderboard') {
       history.push(commonRoute.leaderboard)
     } else if (selected == 'resume') {
-      history.push(commonRoute.dashboard.cashFlow)
+      history.push(commonRoute.dashboard.default)
     } else {
       history.push(commonRoute.selectAvatar)
     }
