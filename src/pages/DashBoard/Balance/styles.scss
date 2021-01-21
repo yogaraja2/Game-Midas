@@ -60,6 +60,15 @@
       }
     }
 
+    .asset-tot,
+    .networth {
+      margin-top: 28px;
+
+      @include w600 {
+        display: flex;
+      }
+    }
+
     // ---------------- liability table -----------------------------------
 
     .liabilities-wrap {
@@ -169,6 +178,18 @@
             }
           }
         }
+      }
+    }
+
+    .btn-stat-wrap {
+      @include lrPartition;
+
+      @include w600 {
+        display: block;
+      }
+
+      .btn-wrap {
+        margin-top: 28px;
       }
     }
   }
