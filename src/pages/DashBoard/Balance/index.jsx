@@ -14,7 +14,7 @@ function Balance() {
     url: API.gamePlay.balance
   })
 
-  const currentData =  data?.filter((f) => f.year === dataYear)[0]
+  const currentData = data?.filter((f) => f.year === dataYear)[0]
 
   useEffect(() => {
     !!currentData?.length && setDataYear(currentData?.currentTurn)

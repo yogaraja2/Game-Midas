@@ -11,6 +11,7 @@ export const commonRoute = {
     default: '/dashBoard',
     cashFlow: '/dashBoard/cashFlow',
     cashFlowInfo: '/dashBoard/cashFlow/info',
+    nextTurn: '/nextTurn',
     balance: '/dashBoard/balance',
     stats: '/dashBoard/stats',
     debt: '/dashBoard/debt'

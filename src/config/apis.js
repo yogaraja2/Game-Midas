@@ -1,7 +1,8 @@
 export const API = {
   gamePlay: {
     cashFlow: {
-      entry: '/cashflow'
+      entry: '/cashflow',
+      nextTurn: '/nextTurn',
     },
     balance: '/balancesheet',
     stats: '/stats'

@@ -43,14 +43,13 @@ function CashFlowEntry(props) {
   ]
 
   const [values, setValues] = useState({
-    livingExpenses: '',
-    entertainment: '',
-    retirementSavings: '',
-    creditCard: '',
-    carLoan: '',
-    studentLoan: ''
+    livingExpenses: localStorage.getItem('livingExpenses'),
+    entertainment: localStorage.getItem('entertainment'),
+    retirementSavings: localStorage.getItem('retirementSavings'),
+    creditCard: localStorage.getItem('creditCard'),
+    carLoan: localStorage.getItem('carLoan'),
+    studentLoan: localStorage.getItem('studentLoan')
   })
-
 
   const handleSubmit = () => {
     const headers = {
@@ -65,7 +64,13 @@ function CashFlowEntry(props) {
       carLoan: parseInt(values.carLoan || 0),
       studentLoan: parseInt(values.studentLoan || 0)
     }
-    
+    localStorage.setItem('livingExpenses', params.livingExpenses)
+    localStorage.setItem('entertainment', params.entertainment)
+    localStorage.setItem('retirementSavings', params.retirementSavings)
+    localStorage.setItem('creditCard', params.creditCard)
+    localStorage.setItem('carLoan', params.carLoan)
+    localStorage.setItem('studentLoan', params.studentLoan)
+
     console.log('params')
     console.log(params)
 
@@ -102,10 +107,10 @@ function CashFlowEntry(props) {
 
   return (
     <div className="dash-cash-flow-info-page">
-      <div className="avl-bal-wrap">
+      {/* <div className="avl-bal-wrap">
         <AvailableBal label="Savings Available" value={500} />
         <AvailableBal label="Income Available" value={500} />
-      </div>
+      </div> */}
 
       <div className="questions-wrap">
         {questions.map((i, index) => (

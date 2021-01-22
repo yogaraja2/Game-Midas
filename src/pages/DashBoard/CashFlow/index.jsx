@@ -10,6 +10,8 @@ import VExpenses from './VExpenses'
 import SatisfactionCard from './SatisfactionCard'
 import { useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
+import { API } from '../../../config/apis'
+import Fetch from '../../../Api'
 
 function CashFlow(props) {
   const [dataYear, setDataYear] = useState(1)
@@ -28,6 +30,7 @@ function CashFlow(props) {
   }
 
   const switchToEntry = () => {
+
     props.history.push(commonRoute.dashboard.cashFlow)
   }
 
@@ -52,11 +55,29 @@ function CashFlow(props) {
   }, [dataYear, currentData])
 
   const handleNext = () => {
-    if (dataYear <= currentData.gameLength) {
-      if (currentData.currentTurn === dataYear) {
-        if (isPassed) switchToEntry()
+
+    const token = localStorage.getItem('midasToken')
+    const auth = 'Bearer '.concat(token)
+    console.log('token ' + token)
+
+    Fetch.get(API.gamePlay.cashFlow.nextTurn, {
+      headers: {
+        Authorization: auth
       }
-    }
+    })
+      .then((res) => {
+        console.log('ok test')
+        console.log(res)
+        if (dataYear <= currentData.gameLength) {
+          if (currentData.currentTurn === dataYear) {
+            if (isPassed) switchToEntry()
+          }
+        }
+      })
+      .catch((err) => {
+        console.log('not ok')
+        console.log(err)
+      })
   }
 
   return (
