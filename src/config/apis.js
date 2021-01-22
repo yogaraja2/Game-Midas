@@ -3,6 +3,7 @@ export const API = {
     cashFlow: {
       entry: '/cashflow'
     },
-    balance: '/balancesheet'
+    balance: '/balancesheet',
+    stats: '/stats'
   }
 }

@@ -8,13 +8,13 @@ import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import API, { URL } from '../../../Api'
 
-const SelectDream = ({ label, imgUrl, cost, points, id, dreams, setDreams }) => {
+const SelectDream = ({ label, imgUrl, cost, points, name, id, dreams, setDreams }) => {
 
     const dreamHandler = () => {
-        setDreams.bind(this, id)
-        setDreams({ dream: id, cost: cost })
+        // setDreams.bind(this, id)
+        setDreams({ id: id, dreamName: name, cost: cost })
     }
-    const selected = dreams.dream === id ? 'selected' : '';
+    const selected = dreams.id === id ? 'selected' : '';
     // console.log('dreams')
     // console.log(dreams)
     return (
@@ -46,13 +46,13 @@ const SelectDream = ({ label, imgUrl, cost, points, id, dreams, setDreams }) => 
     )
 }
 
-const SelectCar = ({ label, imgUrl, cost, points, id, cars, setCars }) => {
+const SelectCar = ({ label, imgUrl, cost, points, name, id, cars, setCars }) => {
 
     const carsHandler = () => {
-        setCars.bind(this, id)
-        setCars({ car: id, cost: cost })
+        // setCars.bind(this, id)
+        setCars({ id: id, carName: name, cost: cost })
     }
-    const selected = cars.car === id ? 'selected' : ''
+    const selected = cars.id === id ? 'selected' : ''
 
     return (
         <div className='option-wrap' onClick={carsHandler}>
@@ -76,13 +76,13 @@ const SelectCar = ({ label, imgUrl, cost, points, id, cars, setCars }) => {
     )
 }
 
-const SelectHouse = ({ label, imgUrl, cost, points, id, houses, setHouses }) => {
+const SelectHouse = ({ label, imgUrl, cost, points, name, id, houses, setHouses }) => {
 
     const houseHandler = () => {
-        setHouses.bind(this, id)
-        setHouses({ house: id, cost: cost })
+        // setHouses.bind(this, id)
+        setHouses({ id: id, houseName: name, cost: cost })
     }
-    const selected = houses.house === id ? 'selected' : ''
+    const selected = houses.id === id ? 'selected' : ''
     return (
         <div className='option-wrap' onClick={houseHandler} >
             <div className="option-image">
@@ -109,15 +109,18 @@ const SelectHouse = ({ label, imgUrl, cost, points, id, houses, setHouses }) => 
 function SelectDreams() {
 
     const [dreams, setDreams] = useState({
-        dream: 'visiting',
+        id: 1,
+        dreamName: 'visiting',
         cost: 3000,
     });
     const [cars, setCars] = useState({
-        car: 'relisibleCar',
+        id: 1,
+        carName: 'relisibleCar',
         cost: 60000,
     });
     const [houses, setHouses] = useState({
-        house: 'studioApt',
+        id: 1,
+        houseName: 'studioApt',
         cost: 1200000,
     });
 
@@ -128,9 +131,9 @@ function SelectDreams() {
     const history = useHistory();
 
     const initialValues = {
-        dreams: dreams,
-        cars: cars,
-        houses: houses,
+        dream: dreams,
+        car: cars,
+        house: houses,
     }
 
     const token = localStorage.getItem('midasToken')
@@ -140,17 +143,17 @@ function SelectDreams() {
         console.log(initialValues)
         history.push(commonRoute.dashboard.default)
 
-        // API.post(URL.dreamsDetails, initialValues, {
-        //     headers: {
-        //         Authorization: auth
-        //     }
-        // })
-        //     .then((res) => {
-        //         console.log(res)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
+        API.post(URL.dreamSelection, initialValues, {
+            headers: {
+                Authorization: auth
+            }
+        })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     return (
@@ -167,7 +170,8 @@ function SelectDreams() {
                 <SelectDream
                     label="Visit Taj Mahal"
                     imgUrl={`Traveller`}
-                    id={'visiting'}
+                    id={1}
+                    name="traveller"
                     cost={3000}
                     // points={2000}
                     {...restDream}
@@ -175,7 +179,8 @@ function SelectDreams() {
                 <SelectDream
                     label="Travel To Abroad"
                     imgUrl={`Flight`}
-                    id={'flight'}
+                    id={2}
+                    name="flight"
                     cost={5000}
                     // points={2000}
                     {...restDream}
@@ -183,7 +188,8 @@ function SelectDreams() {
                 <SelectDream
                     label="Hill Station"
                     imgUrl={'HillStation'}
-                    id={'hillStation'}
+                    id={3}
+                    name="hillStation"
                     cost={6000}
                     // points={2000}
                     {...restDream}
@@ -191,7 +197,8 @@ function SelectDreams() {
                 <SelectDream
                     label="Visit Beach"
                     imgUrl={`Beach`}
-                    id={'beach'}
+                    id={4}
+                    name="beach"
                     cost={1000}
                     // points={2000}
                     {...restDream}
@@ -199,7 +206,8 @@ function SelectDreams() {
                 <SelectDream
                     label="Long Ride"
                     imgUrl={'BikeRide'}
-                    id={'bikeRide'}
+                    id={5}
+                    name="bikeRide"
                     cost={1000}
                     // points={2000}
                     {...restDream}
@@ -218,7 +226,8 @@ function SelectDreams() {
                 <SelectCar
                     label="Relisible Car"
                     imgUrl={`RelisibleCar`}
-                    id={'relisibleCar'}
+                    id={1}
+                    name="relisibleCar"
                     cost={60000}
                     // points={2000}
                     {...restCar}
@@ -226,7 +235,8 @@ function SelectDreams() {
                 <SelectCar
                     label="Economy Car"
                     imgUrl={`EconomyCar`}
-                    id={'economyCar'}
+                    id={2}
+                    name="economyCar"
                     cost={70000}
                     // points={2000}
                     {...restCar}
@@ -234,7 +244,8 @@ function SelectDreams() {
                 <SelectCar
                     label="Fully Loaded Car"
                     imgUrl={'FullLoadCar'}
-                    id={'fullLoadCar'}
+                    id={3}
+                    name="fullLoadedCar"
                     cost={80000}
                     // points={2000}
                     {...restCar}
@@ -242,7 +253,8 @@ function SelectDreams() {
                 <SelectCar
                     label="Luxury Car"
                     imgUrl={'LuxuryCar'}
-                    id={'luxuryCar'}
+                    id={4}
+                    name="luxuryCar"
                     cost={90000}
                     // points={2000}
                     {...restCar}
@@ -250,7 +262,8 @@ function SelectDreams() {
                 <SelectCar
                     label="Speedster Car"
                     imgUrl={`SpeedsterCar`}
-                    id={'speedsterCar'}
+                    id={5}
+                    name="speedsterCar"
                     cost={100000}
                     // points={2000}
                     {...restCar}
@@ -269,40 +282,45 @@ function SelectDreams() {
                 <SelectHouse
                     label="Studio Apartment"
                     imgUrl={`StudioApt`}
-                    id={'studioApt'}
-                    cost={1200000}
+                    id={1}
+                    name="studioApt"
+                    cost={120000}
                     // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
                     label="Fixer Upper"
                     imgUrl={`FixerUp`}
-                    id={'fixerUp'}
-                    cost={1300000}
+                    id={2}
+                    name="fixerUp"
+                    cost={130000}
                     // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
                     label="Rambler"
                     imgUrl={'Rambler'}
-                    id={'rambler'}
-                    cost={1400000}
+                    id={3}
+                    name="rambler"
+                    cost={140000}
                     // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
                     label="Mansion"
                     imgUrl={`Mansion`}
-                    id={'mansion'}
-                    cost={1500000}
+                    id={4}
+                    name="mansion"
+                    cost={150000}
                     // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
                     label="Chateau"
                     imgUrl={'Chateau'}
-                    id={'chateau'}
-                    cost={1600000}
+                    id={5}
+                    name="chateau"
+                    cost={160000}
                     // points={2000}
                     {...restHouse}
                 />

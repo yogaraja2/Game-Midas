@@ -51,6 +51,7 @@ function CashFlowEntry(props) {
     studentLoan: ''
   })
 
+
   const handleSubmit = () => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('midasToken')}`
@@ -64,6 +65,7 @@ function CashFlowEntry(props) {
       carLoan: parseInt(values.carLoan || 0),
       studentLoan: parseInt(values.studentLoan || 0)
     }
+    
     console.log('params')
     console.log(params)
 
@@ -71,12 +73,24 @@ function CashFlowEntry(props) {
       .then((res) => {
         console.log('cashflow response ')
         console.log(res)
-        props.history.push({
-          pathname: commonRoute.dashboard.cashFlowInfo,
-          state: {
-            data: res.data
+
+        if (res.status === 200) {
+          if (res.data.status >= 400) {
+            setError('Something went wrong !!!')
           }
-        })
+          else {
+            props.history.push({
+              pathname: commonRoute.dashboard.cashFlowInfo,
+              state: {
+                data: res.data
+              }
+            })
+          }
+
+        }
+        else {
+          setError('Something went wrong !!!')
+        }
       })
       .catch((err) => {
         setError(

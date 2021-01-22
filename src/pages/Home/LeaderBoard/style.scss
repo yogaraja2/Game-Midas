@@ -111,9 +111,8 @@
             color: #c51f7a;
           }
           .table-body {
-            // background-color: lawngreen;
             .table-rows {
-              text-align: center;
+              // text-align: center;
               font-size: 1.3em;
               opacity: 0.9;
             }
@@ -124,6 +123,7 @@
         th {
           padding: 12px;
           border-bottom: 1px solid #ddd;
+          text-align: center;
         }
       }
     }

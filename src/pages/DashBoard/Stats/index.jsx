@@ -14,8 +14,16 @@ import {
     StripLine,
 } from '@syncfusion/ej2-react-charts'
 import { Grid } from '@material-ui/core'
+import {API} from '../../../config/apis'
+import useFetch from '../../../hooks/useFetch'
 
 function Stats() {
+
+    const {data} = useFetch({
+        url: API.gamePlay.stats
+    })
+    console.log('stats data')
+    console.log(data)
 
     const scorexaxis = {
         valueType: 'Category',

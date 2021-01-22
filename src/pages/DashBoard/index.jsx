@@ -33,6 +33,7 @@ function DashBoard() {
   const toggleMenu = () => setMenu((prev) => !prev)
 
   const goToLogin = () => {
+    window.localStorage.clear();
     history.push(commonRoute.home)
   }
 
@@ -97,7 +98,7 @@ function DashBoard() {
                 {...allyProps}
               />
               <Fields
-                img="AdvisorIcon"
+                img="debtIcon"
                 label="Debt"
                 id="debt"
                 {...allyProps}

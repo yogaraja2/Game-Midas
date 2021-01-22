@@ -80,7 +80,7 @@ function CashFlow(props) {
           </Grid>
         </Card>
 
-        <h3 className="sec-head sat">Satisfaction Source</h3>
+        <h3 className="sec-head sat">Satisfaction Score</h3>
         <SatisfactionCard data={currentData?.satisfactionPoints} />
 
         <div className="action-btn-wrap">
