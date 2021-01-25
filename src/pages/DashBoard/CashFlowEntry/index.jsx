@@ -105,6 +105,10 @@ function CashFlowEntry(props) {
       })
   }
 
+  const goToSelectDream = () => {
+    props.history.push(commonRoute.selectDreams)
+  }
+
   return (
     <div className="dash-cash-flow-info-page">
       {/* <div className="avl-bal-wrap">
@@ -121,6 +125,12 @@ function CashFlowEntry(props) {
             setValues={setValues}
           />
         ))}
+      </div>
+
+      <div className="btn-wrap">
+        <Button className="info-btn" onClick={goToSelectDream}>
+          Change Dreams
+        </Button>
       </div>
 
       <div className="btn-wrap">
