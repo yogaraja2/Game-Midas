@@ -4,6 +4,7 @@ import Balance from './Balance'
 import CashFlow from './CashFlow'
 import CashFlowEntry from './CashFlowEntry'
 import Stats from './Stats'
+import UserProfile from './UserProfile'
 
 export const dashboardRoutes = [
   {
@@ -48,6 +49,14 @@ export const dashboardRoutes = [
     props: {
       path: commonRoute.dashboard.debt,
       component: Debt,
+      exact: true
+    }
+  },
+  {
+    name: 'UserProfile',
+    props: {
+      path: commonRoute.dashboard.userProfile,
+      component: UserProfile,
       exact: true
     }
   }

@@ -72,6 +72,7 @@
     // ---------------- liability table -----------------------------------
 
     .liabilities-wrap {
+      width: 500px;
       margin-top: 28px;
 
       .lblity-card {
@@ -94,7 +95,7 @@
           th {
             color: var(--primary);
             font-size: 1.75em;
-
+            
             @include w600 {
               font-size: 1.5em;
             }
@@ -104,7 +105,6 @@
         td,
         th {
           padding: 12px;
-
           &:first-child {
             .cell {
               padding-left: 24px;

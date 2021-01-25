@@ -10,6 +10,9 @@ import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
 import SnackBar from '../../../components/SnackBar'
 import API, { URL } from '../../../Api'
+import DashBoard from '../../DashBoard'
+import { setAvatarId } from '../../../action'
+import { useDispatch } from 'react-redux'
 
 const AvatarOptions = ({ label, imgUrl, id, avatar, setAvatar }) => {
     return (
@@ -64,6 +67,9 @@ const RoleOptions = ({ id, title, role, setRole }) => {
 }
 
 function SelectAvatar() {
+
+    const dispatch = useDispatch()
+
     const [avatar, setAvatar] = useState(1)
     const [income, setIncome] = useState(null)
     const [gameLength, setGameLength] = useState(10)
@@ -92,6 +98,8 @@ function SelectAvatar() {
 
     const goToSelectDream = (initialValues) => {
         console.log(initialValues)
+        dispatch(setAvatarId(avatar))
+
         if (income) {
             // console.log(income);
             API.post(URL.gameDetails, initialValues, {

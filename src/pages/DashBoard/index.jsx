@@ -9,6 +9,7 @@ import { commonRoute } from '../../config/routes'
 import DashHead from './DashHead'
 import RouteMapper from '../../utils/Router/RouteMapper'
 import { dashboardRoutes } from './routes'
+import { useSelector } from 'react-redux'
 
 const Fields = ({ id, img, label, isSelected, onClick }) => {
   return (
@@ -25,6 +26,10 @@ const Fields = ({ id, img, label, isSelected, onClick }) => {
 }
 
 function DashBoard() {
+
+  const avatarId = useSelector(state => state.selectAvatar.avatarID)
+  console.log('profile ')
+  console.log(avatarId)
   const [isMenuOpen, setMenu] = useState(false)
   const history = useHistory()
   const location = useLocation()
@@ -55,6 +60,10 @@ function DashBoard() {
     isSelected
   }
 
+  const goToUserProfile = () => {
+    history.push(commonRoute.dashboard.userProfile)
+  }
+
   return (
     <>
       <Grid container className="dashboard-root">
@@ -73,10 +82,10 @@ function DashBoard() {
             </IconButton>
 
             {/*   profile image   */}
-            <div className="profile-wrap">
+            <div className="profile-wrap" onClick={goToUserProfile}>
               <div className="user-profile">
                 <img
-                  src={require('../../assets/img/User1.svg').default}
+                  src={require(`../../assets/img/Avatar${avatarId}.svg`).default}
                   alt="profile"
                   className="user-profile-img"
                 />

@@ -5,3 +5,10 @@ export const setResponseData = (value) => {
         payload: value,
     }
 }
+
+export const setAvatarId = (value) => {
+    return {
+        type: 'SET_AVATAR_ID',
+        payload: value,
+    }
+}

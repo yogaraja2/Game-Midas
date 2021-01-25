@@ -1,0 +1,35 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .user-profile-root {
+    width: 100%;
+    background: white;
+    // position: relative;
+
+    .select-wrap {
+      display: flex;
+      flex-direction: 'row';
+      padding: 30px;
+      align-items: baseline;
+      justify-content: space-between;
+
+      .title {
+        color: 000000;
+        font-weight: bold;
+      }
+      .btn-wrap {
+        .MuiButton-root {
+          width: 80px;
+          height: 30px;
+          margin: 10px;
+          border-radius: 50px;
+          text-transform: none;
+          font-weight: 700;
+          border: 2px solid #c3c3c3;
+          color: #9b9b9b;
+        }
+      }
+      border-bottom: 0.3px solid #d9d9d9;
+    }
+  }
+}

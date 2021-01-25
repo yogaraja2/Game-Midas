@@ -14,6 +14,7 @@ export const commonRoute = {
     nextTurn: '/nextTurn',
     balance: '/dashBoard/balance',
     stats: '/dashBoard/stats',
-    debt: '/dashBoard/debt'
+    debt: '/dashBoard/debt',
+    userProfile: '/dashBoard/userProfile'
   }
 }
