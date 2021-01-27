@@ -2,8 +2,13 @@ import React from 'react'
 import { IconButton } from '@material-ui/core'
 import { CgMenuLeftAlt as MenuIcon } from 'react-icons/cg'
 import YearBar from '../../components/YearBar'
+import HighlightCard from '../../components/HighlightCard'
+import { useSelector } from 'react-redux'
 
 function DashHead({ toggleMenu }) {
+
+  const netWorth = useSelector(state => state.dashboard.netWorth)
+
   return (
     <div className="dashboard-header">
       <div className="left-part">
@@ -20,14 +25,19 @@ function DashHead({ toggleMenu }) {
       </div>
 
       <div className="right-part">
-        {/* <div className="total-cash">
+        <div className="total-cash">
           <img
             src={require('../../assets/img/doller 2.svg').default}
             alt="Coin"
             className="cash-icon"
           />
-          <span className="cash-value">$10000</span>
-        </div> */}
+          <span className="cash-value">${netWorth}</span>
+        </div>
+        {/* <HighlightCard
+          className="net-worth"
+          label="NetWorth"
+          value={10000}
+        /> */}
       </div>
     </div>
   )

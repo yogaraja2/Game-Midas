@@ -19,3 +19,10 @@ export const setCurrentTurn = (value) => {
         payload: value,
     }
 }
+
+export const setNetworth = (value) => {
+    return {
+        type: 'SET_NETWORTH',
+        payload: value,
+    }
+}

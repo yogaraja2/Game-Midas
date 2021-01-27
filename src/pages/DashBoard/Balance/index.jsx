@@ -7,8 +7,12 @@ import YearBar from '../../../components/YearBar'
 import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
 import HighlightCard from '../../../components/HighlightCard'
+import { setNetworth } from '../../../action'
+import { useDispatch } from 'react-redux'
 
 function Balance() {
+
+  const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(1)
   const { data } = useFetch({
     url: API.gamePlay.balance
@@ -17,6 +21,7 @@ function Balance() {
   const currentData = data?.filter((f) => f.year === dataYear)[0]
 
   useEffect(() => {
+    dispatch(setNetworth(currentData?.netWorth))
     !!currentData?.length && setDataYear(currentData?.currentTurn)
   }, [currentData])
 
@@ -41,19 +46,27 @@ function Balance() {
 
       <div className="liblty-bal-det">
         <Liabilities data={currentData?.liabilities} />
+        <HighlightCard
+          className="liability-tot"
+          label="Total Liabilities"
+          value={currentData?.liabilities}
+        />
       </div>
 
-      <div className="btn-stat-wrap">
+      <div className="netWorth-tot">
         <HighlightCard
           className="networth"
-          label="Net worth"
+          label="Networth"
           value={currentData?.netWorth}
         />
+      </div>
 
+      {/* <div className="btn-stat-wrap">
         <div className="btn-wrap">
           <Button className="nxt-btn">Next</Button>
         </div>
-      </div>
+      </div> */}
+
     </div>
   )
 }

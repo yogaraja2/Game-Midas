@@ -28,8 +28,8 @@ const Fields = ({ id, img, label, isSelected, onClick }) => {
 function DashBoard() {
 
   const avatarId = useSelector(state => state.selectAvatar.avatarID)
-  console.log('profile ')
-  console.log(avatarId)
+  const [viewProfile, setViewProfile] = useState(false)
+
   const [isMenuOpen, setMenu] = useState(false)
   const history = useHistory()
   const location = useLocation()
@@ -47,9 +47,11 @@ function DashBoard() {
       history.push(commonRoute.dashboard[selected])
   }
 
+
   //check if the menu icon is the current path
   const isSelected = (id) => {
     if (currentPath?.includes(id)) {
+      setViewProfile(false)
       return true
     }
     return false
@@ -61,6 +63,7 @@ function DashBoard() {
   }
 
   const goToUserProfile = () => {
+    setViewProfile(true)
     history.push(commonRoute.dashboard.userProfile)
   }
 
@@ -82,7 +85,7 @@ function DashBoard() {
             </IconButton>
 
             {/*   profile image   */}
-            <div className="profile-wrap" onClick={goToUserProfile}>
+            <div className={clsx('profile-wrap', viewProfile && 'selected')} onClick={goToUserProfile}>
               <div className="user-profile">
                 <img
                   src={require(`../../assets/img/Avatar${avatarId}.svg`).default}

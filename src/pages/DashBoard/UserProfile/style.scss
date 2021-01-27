@@ -2,9 +2,13 @@
 
 .dashboard-main {
   .user-profile-root {
-    width: 100%;
+    width: 80%;
     background: white;
-    // position: relative;
+    position: relative;
+    margin: 10% auto;
+    // right: 20px;
+    bottom: 50px;
+    border-radius: 20px;
 
     .select-wrap {
       display: flex;
@@ -18,18 +22,31 @@
         font-weight: bold;
       }
       .btn-wrap {
-        .MuiButton-root {
+        div {
+          display: inline-block;
           width: 80px;
-          height: 30px;
+          padding: 5px;
           margin: 10px;
           border-radius: 50px;
           text-transform: none;
+          text-align: center;
           font-weight: 700;
           border: 2px solid #c3c3c3;
           color: #9b9b9b;
+          cursor: pointer;
+
+          &.selected {
+            border: 2px solid #009ffd;
+            color: #009ffd;
+          }
         }
       }
       border-bottom: 0.3px solid #d9d9d9;
     }
   }
 }
+
+// .selected {
+//   border: 2px solid #009ffd;
+//   color: #009ffd;
+// }

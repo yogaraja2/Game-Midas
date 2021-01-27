@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function CashFlow(props) {
 
-  const currentTurn = useSelector(state => state.currentTurn.currentTurn)
+  const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(currentTurn)
   const [isPassed, setPassed] = useState(false)
@@ -48,11 +48,11 @@ function CashFlow(props) {
   }, [state])
 
   useEffect(() => {
-
+    dispatch(setCurrentTurn(dataYear))
     const score = Object.values(currentData?.satisfactionPoints)
     let flag = true
     for (let i of score) {
-      if (i <= 0) {
+      if (i <= 1) {
         flag = false
         break
       }
@@ -76,7 +76,6 @@ function CashFlow(props) {
         console.log(res)
         if (dataYear <= currentData.gameLength) {
           if (currentData.currentTurn === dataYear) {
-            dispatch(setCurrentTurn(dataYear))
             if (isPassed) switchToEntry()
           }
         }

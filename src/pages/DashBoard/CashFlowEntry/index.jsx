@@ -21,7 +21,7 @@ const AvailableBal = ({ label, value }) => (
 
 function CashFlowEntry(props) {
 
-  const currentTurn = useSelector(state => state.currentTurn.currentTurn)
+  const currentTurn = useSelector(state => state.dashboard.currentTurn)
 
   const [error, setError] = useState(null)
   const questions = [

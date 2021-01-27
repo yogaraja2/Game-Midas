@@ -79,7 +79,7 @@ function Liabilities({ data }) {
 
           <tfoot>
             <Entry
-              label="Total Assets"
+              label="Total"
               balance={data?.totalLiabilities}
               // payment={300}
             />

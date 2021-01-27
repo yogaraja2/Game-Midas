@@ -61,7 +61,8 @@
     }
 
     .asset-tot,
-    .networth {
+    .liability-tot,
+    .netWorth-tot {
       margin-top: 28px;
 
       @include w600 {
@@ -95,7 +96,7 @@
           th {
             color: var(--primary);
             font-size: 1.75em;
-            
+
             @include w600 {
               font-size: 1.5em;
             }

@@ -141,7 +141,7 @@ function Signup() {
                 message: validationErr.name
               },
               pattern: {
-                value: /^[A-Za-z]*$/,
+                value: /^[A-Za-z0-9]*$/,
                 message: validationErr.name
               }
             }}
@@ -190,7 +190,7 @@ function Signup() {
                 message: validationErr.passwordLength
               },
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/,
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
                 message: validationErr.passwordValidation
               }
             }}
@@ -219,7 +219,7 @@ function Signup() {
                 message: validationErr.passwordLength
               },
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/,
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
                 message: validationErr.passwordValidation
               }
             }}

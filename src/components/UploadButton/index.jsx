@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
     uploadBtn: {
         border: '2px solid #009FFD',
         borderRadius: '50px',
-        width: '80px', height: '30px',
+        width: '90px', height: '35px',
+        marginRight: '10px',
         color: '#009FFD',
         fontWeight: '700',
         textTransform: 'none'
