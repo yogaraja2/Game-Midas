@@ -66,11 +66,11 @@
 
     .income-wrap {
       margin: 20px;
-      .MuiOutlinedInput-root{
+      .MuiOutlinedInput-root {
         width: 250px;
         margin-top: 10px;
         margin-left: 35px;
-        .MuiInputBase-input{
+        .MuiInputBase-input {
           font-size: large;
         }
       }
@@ -132,12 +132,23 @@
     }
 
     .btn-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
       position: relative;
-      float: right;
-      bottom: 20px;
-      right: 70px;
-      .nxt-btn {
+      // top: 30px;
+      // bottom: 30px;
+      justify-content: space-between;
+
+      .btn {
+        margin: 20px;
         @include button;
+        // background-color: rgb(29, 114, 54);
+      }
+
+      @include w320 {
+        position: static;
+        margin-top: 16px;
       }
     }
   }

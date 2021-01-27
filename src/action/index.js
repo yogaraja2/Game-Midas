@@ -12,3 +12,10 @@ export const setAvatarId = (value) => {
         payload: value,
     }
 }
+
+export const setCurrentTurn = (value) => {
+    return {
+        type: 'SET_CURRENT_TURN',
+        payload: value,
+    }
+}

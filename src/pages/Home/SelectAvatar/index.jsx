@@ -10,7 +10,6 @@ import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
 import SnackBar from '../../../components/SnackBar'
 import API, { URL } from '../../../Api'
-import DashBoard from '../../DashBoard'
 import { setAvatarId } from '../../../action'
 import { useDispatch } from 'react-redux'
 
@@ -140,6 +139,10 @@ function SelectAvatar() {
         setError(false)
     }
 
+    const goToHome = () => {
+        history.push(commonRoute.gameOptions)
+    }
+
     return (
         <Grid item xs={11} md={10} className="select-avatar-card">
             <div className="header-sec">
@@ -246,7 +249,8 @@ function SelectAvatar() {
             </div>
 
             <div className="btn-wrap">
-                <Button className="nxt-btn" onClick={() => goToSelectDream(initialValues)}>Next</Button>
+                <Button className="btn" onClick={goToHome}>Back</Button>
+                <Button className="btn" onClick={() => goToSelectDream(initialValues)}>Next</Button>
             </div>
 
             {error &&

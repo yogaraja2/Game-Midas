@@ -156,6 +156,10 @@ function SelectDreams() {
             })
     }
 
+    const goToHome = () => {
+        history.push(commonRoute.selectAvatar)
+    }
+
     return (
         <Grid item xs={12} md={10} className="select-dreams-card">
             <div className="header-sec">
@@ -327,7 +331,8 @@ function SelectDreams() {
             </Grid>
 
             <div className="btn-wrap">
-                <Button className="nxt-btn" onClick={() => goToDashboard(initialValues)}>Next</Button>
+                <Button className="btn" onClick={goToHome}>Back</Button>
+                <Button className="btn" onClick={() => goToDashboard(initialValues)}>Next</Button>
             </div>
         </Grid>
     )

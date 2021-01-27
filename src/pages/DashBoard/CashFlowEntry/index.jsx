@@ -8,6 +8,7 @@ import './style.scss'
 import { API } from '../../../config/apis'
 import { commonRoute } from '../../../config/routes'
 import SnackBar from '../../../components/SnackBar'
+import { useSelector } from 'react-redux'
 
 const AvailableBal = ({ label, value }) => (
   <div className="avl-bal-entry">
@@ -19,6 +20,9 @@ const AvailableBal = ({ label, value }) => (
 )
 
 function CashFlowEntry(props) {
+
+  const currentTurn = useSelector(state => state.currentTurn.currentTurn)
+
   const [error, setError] = useState(null)
   const questions = [
     {
@@ -109,12 +113,18 @@ function CashFlowEntry(props) {
     props.history.push(commonRoute.selectDreams)
   }
 
+  const [year, setYear] = useState(1)
+
   return (
     <div className="dash-cash-flow-info-page">
       {/* <div className="avl-bal-wrap">
         <AvailableBal label="Savings Available" value={500} />
         <AvailableBal label="Income Available" value={500} />
       </div> */}
+
+      <div className="turn-wrap">
+        <h2 className="current-turn">Turn {currentTurn}</h2>
+      </div>
 
       <div className="questions-wrap">
         {questions.map((i, index) => (
@@ -128,7 +138,7 @@ function CashFlowEntry(props) {
       </div>
 
       <div className="btn-wrap">
-        <Button className="info-btn" onClick={goToSelectDream}>
+        <Button className="dreams-btn" onClick={goToSelectDream}>
           Change Dreams
         </Button>
       </div>

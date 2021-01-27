@@ -12,9 +12,14 @@ import { useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
+import { setCurrentTurn } from '../../../action'
+import { useSelector, useDispatch } from 'react-redux'
 
 function CashFlow(props) {
-  const [dataYear, setDataYear] = useState(1)
+
+  const currentTurn = useSelector(state => state.currentTurn.currentTurn)
+  const dispatch = useDispatch()
+  const [dataYear, setDataYear] = useState(currentTurn)
   const [isPassed, setPassed] = useState(false)
   const { state } = useLocation()
   const currentData = state.data?.filter((f) => f.year === dataYear)[0]
@@ -43,7 +48,8 @@ function CashFlow(props) {
   }, [state])
 
   useEffect(() => {
-    const score = Object.values(currentData.satisfactionPoints)
+
+    const score = Object.values(currentData?.satisfactionPoints)
     let flag = true
     for (let i of score) {
       if (i <= 0) {
@@ -70,6 +76,7 @@ function CashFlow(props) {
         console.log(res)
         if (dataYear <= currentData.gameLength) {
           if (currentData.currentTurn === dataYear) {
+            dispatch(setCurrentTurn(dataYear))
             if (isPassed) switchToEntry()
           }
         }
@@ -111,7 +118,7 @@ function CashFlow(props) {
             </Button>
           </div>
 
-          {currentData.currentTurn === dataYear && (
+          {currentData?.currentTurn === dataYear && (
             <div className="btn-wrap" onClick={handleNext}>
               <Button disabled={!isPassed} className="btn nxt-btn">
                 Next Turn

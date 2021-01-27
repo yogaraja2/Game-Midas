@@ -4,6 +4,24 @@
   .dash-cash-flow-info-page {
     padding: 0 82px 36px;
 
+    .turn-wrap {
+      position: relative;
+      bottom: 20px;
+      width: 100px;
+      padding: 10px;
+      margin-inline-start: 40%;
+      border-radius: 50px;
+      text-align: center;
+      align-self: center;
+      background-color: #009ffd;
+
+      .current-turn {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+      }
+    }
+
     @include w600 {
       padding: 0 36px 36px;
     }
@@ -55,18 +73,27 @@
     }
 
     .btn-wrap {
+      position: relative;
       margin-top: 36px;
       text-align: right;
+
+      .dreams-btn {
+        margin: 10px;
+        float: left;
+        @include button;
+      }
       .info-btn {
+        float: right;
+        top: 20px;
         @include button;
 
-        .btn-cont {
-          @include flexCenterRow;
-          .label {
-            margin-left: 6px;
-            vertical-align: middle;
-          }
-        }
+        // .btn-cont {
+        //   @include flexCenterRow;
+        //   .label {
+        //     margin-left: 6px;
+        //     vertical-align: middle;
+        //   }
+        // }
       }
     }
   }

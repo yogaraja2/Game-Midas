@@ -1,7 +1,9 @@
-import { Grid, Paper } from '@material-ui/core'
+import { Grid, Paper, Button } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import './style.scss'
+import { commonRoute } from "../../../config/routes";
+import { useHistory } from 'react-router-dom'
 
 const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
   return (
@@ -48,6 +50,12 @@ const playersList = [
 ]
 
 function LeaderBoard() {
+
+  const history = useHistory()
+  const goToHome = () => {
+    history.push(commonRoute.gameOptions)
+  }
+
   return (
     <div className="leader-board-card">
       <Grid container justify="center" className="leader-board-container">
@@ -100,6 +108,9 @@ function LeaderBoard() {
             </tbody>
           </table>
         </Grid>
+        <div className="btn-wrap">
+          <Button className="back-btn" onClick={goToHome}>Back </Button>
+        </div>
       </Grid>
     </div>
   )
