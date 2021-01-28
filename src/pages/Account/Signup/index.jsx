@@ -14,6 +14,8 @@ import './style.scss'
 import API, { URL } from '../../../Api'
 import { useSelector, useDispatch } from 'react-redux'
 import { setResponseData } from '../../../action'
+// import { setResponseData } from '../../../redux/Action'
+
 
 function Signup() {
 
@@ -211,11 +213,11 @@ function Signup() {
             rules={{
               required: 'Please enter your password',
               minLength: {
-                value: 6,
+                value: 8,
                 message: validationErr.passwordLength
               },
               maxLength: {
-                value: 12,
+                value: 20,
                 message: validationErr.passwordLength
               },
               pattern: {

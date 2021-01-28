@@ -55,25 +55,25 @@ function Liabilities({ data }) {
               label="Credit Card"
               title="This is credit card"
               balance={data?.creditLoan?.balance}
-              // payment={300}
+            // payment={300}
             />
             <Entry
               label="Vehicle Loan"
               title="This is credit card"
               balance={data?.carLoan?.balance}
-              // payment={300}
+            // payment={300}
             />
             <Entry
               label="Mortgage"
               title="This is credit card"
               balance={data?.mortgageLoan?.balance}
-              // payment={300}
+            // payment={300}
             />
             <Entry
               label="Student Loan"
               title="This is credit card"
               balance={data?.studenLoan?.balance}
-              // payment={300}
+            // payment={300}
             />
           </tbody>
 
@@ -81,7 +81,7 @@ function Liabilities({ data }) {
             <Entry
               label="Total"
               balance={data?.totalLiabilities}
-              // payment={300}
+            // payment={300}
             />
           </tfoot>
         </table>

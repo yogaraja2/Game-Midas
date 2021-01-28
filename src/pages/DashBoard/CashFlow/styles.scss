@@ -53,7 +53,12 @@
     .stat-grid-wrap {
       .stat-data-sec {
         &.income-sec,
-        &.fix-exp-sec {
+        &.fix-exp-sec,
+        &.var-exp-sec {
+          h2 {
+            color: #009ffd;
+            text-align: center;
+          }
           border-right: 1px solid #ddd;
         }
 

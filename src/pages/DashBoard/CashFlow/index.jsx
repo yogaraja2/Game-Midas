@@ -12,7 +12,8 @@ import { useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-import { setCurrentTurn } from '../../../action'
+// import { setCurrentTurn } from '../../../action'
+import {setCurrentTurn} from '../../../redux/Action'
 import { useSelector, useDispatch } from 'react-redux'
 
 function CashFlow(props) {
@@ -48,7 +49,7 @@ function CashFlow(props) {
   }, [state])
 
   useEffect(() => {
-    dispatch(setCurrentTurn(dataYear))
+
     const score = Object.values(currentData?.satisfactionPoints)
     let flag = true
     for (let i of score) {
@@ -76,6 +77,7 @@ function CashFlow(props) {
         console.log(res)
         if (dataYear <= currentData.gameLength) {
           if (currentData.currentTurn === dataYear) {
+            dispatch(setCurrentTurn(dataYear + 1))
             if (isPassed) switchToEntry()
           }
         }

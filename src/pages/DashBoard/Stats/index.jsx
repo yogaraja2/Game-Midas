@@ -14,12 +14,12 @@ import {
     StripLine,
 } from '@syncfusion/ej2-react-charts'
 import { Grid } from '@material-ui/core'
-import {API} from '../../../config/apis'
+import { API } from '../../../config/apis'
 import useFetch from '../../../hooks/useFetch'
 
 function Stats() {
 
-    const {data} = useFetch({
+    const { data } = useFetch({
         url: API.gamePlay.stats
     })
     console.log('stats data')
@@ -30,29 +30,31 @@ function Stats() {
         majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
-        }
-        // title: 'Months',
+        },
+        title: 'Years',
     }
     const scoreyaxis = {
-        maximum: 5000, interval: 500, majorGridLines: { width: 0 },
+        maximum: 100000, interval: 10000, majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
         },
         stripLines: [{ start: 0, size: 3, sizeType: 'Pixel', color: 'rgba(167,169,171, 0.3)' }]
     };
 
-    const scoreData = [
-        { x: '1', y: 3500 },
-        { x: '2', y: 2000 },
-        { x: '3', y: -2500 },
-        { x: '4', y: 3500 },
-        { x: '5', y: 4200 },
-        { x: '6', y: 3000 },
-        { x: '7', y: -1800 },
-        { x: '8', y: 1000 },
-        { x: '9', y: 1500 },
-        { x: '10', y: -2600 },
-    ]
+    // const scoreData = [
+    //     { x: '1', y: 3500 },
+    //     { x: '2', y: 2000 },
+    //     { x: '3', y: -2500 },
+    //     { x: '4', y: 3500 },
+    //     { x: '5', y: 4200 },
+    //     { x: '6', y: 3000 },
+    //     { x: '7', y: -1800 },
+    //     { x: '8', y: 1000 },
+    //     { x: '9', y: 1500 },
+    //     { x: '10', y: -2600 },
+    // ]
+
+    const score = data?.score;
 
     const networthxaxis = {
         valueType: 'Category', majorGridLines: { width: 0 },
@@ -62,37 +64,41 @@ function Stats() {
         // title: 'weeks',
     }
     const networthyaxis = {
-        maximum: 10000, interval: 1000, majorGridLines: { width: 0 }, labelFormat: '${value}',
+        maximum: 1000000, interval: 100000, majorGridLines: { width: 0 }, labelFormat: '${value}',
         labelStyle: {
             fontWeight: "Bold"
         },
         stripLines: [{ start: 0, size: 3, sizeType: 'Pixel', color: 'rgba(167,169,171, 0.3)' }]
     }
-    const networthData = [
-        { x: '1', y: 5000 },
-        { x: '2', y: 4000 },
-        { x: '3', y: 3500 },
-        { x: '4', y: -2000 },
-        { x: '5', y: 4500 },
-        { x: '6', y: 3300 },
-        { x: '7', y: 3300 },
-        { x: '8', y: 1000 },
-        { x: '9', y: -1000 },
-        { x: '10', y: -750 },
-    ]
+    // const networthData = [
+    //     { x: '1', y: 5000 },
+    //     { x: '2', y: 4000 },
+    //     { x: '3', y: 3500 },
+    //     { x: '4', y: -2000 },
+    //     { x: '5', y: 4500 },
+    //     { x: '6', y: 3300 },
+    //     { x: '7', y: 3300 },
+    //     { x: '8', y: 1000 },
+    //     { x: '9', y: -1000 },
+    //     { x: '10', y: -750 },
+    // ]
+
+    const netWorth = data?.netWorth
+
+
     const marker = { visible: true, width: 10, height: 10 }
-    const retirementData = [
-        { x: '1', y: 7000 },
-        { x: '2', y: 4000 },
-        { x: '3', y: 2000 },
-        { x: '4', y: -2000 },
-        { x: '5', y: 5000 },
-        { x: '6', y: 3300 },
-        { x: '7', y: 3300 },
-        { x: '8', y: 1000 },
-        { x: '9', y: -1000 },
-        { x: '10', y: -750 },
-    ]
+    // const retirementData = [
+    //     { x: '1', y: 7000 },
+    //     { x: '2', y: 4000 },
+    //     { x: '3', y: 2000 },
+    //     { x: '4', y: -2000 },
+    //     { x: '5', y: 5000 },
+    //     { x: '6', y: 3300 },
+    //     { x: '7', y: 3300 },
+    //     { x: '8', y: 1000 },
+    //     { x: '9', y: -1000 },
+    //     { x: '10', y: -750 },
+    // ]
 
     return (
         <Grid container className="stats-main">
@@ -108,9 +114,9 @@ function Stats() {
                         <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, Category, StripLine]} />
                         <SeriesCollectionDirective>
                             <SeriesDirective
-                                dataSource={scoreData}
-                                xName='x'
-                                yName='y'
+                                dataSource={score}
+                                xName='year'
+                                yName='score'
                                 name='Score'
                                 type='Column'
                                 columnWidth={0.15}
@@ -130,9 +136,9 @@ function Stats() {
                         <Inject services={[SplineSeries, ColumnSeries, Legend, Tooltip, DataLabel, Category, StripLine]} />
                         <SeriesCollectionDirective>
                             <SeriesDirective
-                                dataSource={networthData}
-                                xName='x'
-                                yName='y'
+                                dataSource={netWorth}
+                                xName='year'
+                                yName='netWorth'
                                 name='Retirement Savings'
                                 type='Spline'
                                 fill='#009ffd'
@@ -140,9 +146,9 @@ function Stats() {
                                 width={5}
                             />
                             <SeriesDirective
-                                dataSource={retirementData}
-                                xName='x'
-                                yName='y'
+                                dataSource={netWorth}
+                                xName='year'
+                                yName='netWorth'
                                 name='Networth'
                                 type='Column'
                                 fill='orange'
@@ -154,14 +160,14 @@ function Stats() {
                 </div>
             </Grid>
             <Grid item xs={12} md={10} className="journal-wrap">
-                <div className="journal-title">
+                {/* <div className="journal-title">
                     <h1>Journal(Event Log)</h1>
                 </div>
                 <div className="summary">
                     <h1 className="summary-title">Summary of events from last 2 turns :</h1>
                     <p className="summary-details">last year I paid <span className="money">$5000</span> for amazing cruise and also bought a new phone for <span className="money">$900</span></p>
                     <p className="summary-details">last year I paid <span className="money">$4000</span> for amazing cruise and also bought a new car for <span className="money">$1200</span></p>
-                </div>
+                </div> */}
             </Grid>
         </Grid>
     )

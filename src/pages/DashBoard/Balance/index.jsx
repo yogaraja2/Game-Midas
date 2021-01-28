@@ -7,7 +7,8 @@ import YearBar from '../../../components/YearBar'
 import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
 import HighlightCard from '../../../components/HighlightCard'
-import { setNetworth } from '../../../action'
+// import { setNetworth } from '../../../action'
+import { setNetworth } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 function Balance() {
@@ -49,7 +50,7 @@ function Balance() {
         <HighlightCard
           className="liability-tot"
           label="Total Liabilities"
-          value={currentData?.liabilities}
+          value={currentData?.liabilities.totalLiabilities}
         />
       </div>
 

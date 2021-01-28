@@ -9,7 +9,8 @@ import { commonRoute } from '../../config/routes'
 import DashHead from './DashHead'
 import RouteMapper from '../../utils/Router/RouteMapper'
 import { dashboardRoutes } from './routes'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { userLogout } from '../../redux/Action'
 
 const Fields = ({ id, img, label, isSelected, onClick }) => {
   return (
@@ -30,6 +31,8 @@ function DashBoard() {
   const avatarId = useSelector(state => state.selectAvatar.avatarID)
   const [viewProfile, setViewProfile] = useState(false)
 
+  const dispatch = useDispatch()
+
   const [isMenuOpen, setMenu] = useState(false)
   const history = useHistory()
   const location = useLocation()
@@ -39,6 +42,7 @@ function DashBoard() {
 
   const goToLogin = () => {
     window.localStorage.clear();
+    dispatch(userLogout())
     history.push(commonRoute.home)
   }
 

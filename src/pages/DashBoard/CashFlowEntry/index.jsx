@@ -8,7 +8,8 @@ import './style.scss'
 import { API } from '../../../config/apis'
 import { commonRoute } from '../../../config/routes'
 import SnackBar from '../../../components/SnackBar'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCashflowValues } from '../../../redux/Action'
 
 const AvailableBal = ({ label, value }) => (
   <div className="avl-bal-entry">
@@ -22,6 +23,9 @@ const AvailableBal = ({ label, value }) => (
 function CashFlowEntry(props) {
 
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
+  const cashflowValues = useSelector(state => state.cashFlowValues)
+
+  const dispatch = useDispatch()
 
   const [error, setError] = useState(null)
   const questions = [
@@ -40,20 +44,22 @@ function CashFlowEntry(props) {
         'How much extra would you like to spend this year repaying to spend this year repaying these debts?',
       fields: [
         { id: 1, name: 'creditCard', label: 'Credit Card' },
-        { id: 2, name: 'carLoan', label: 'Car Loan' },
+        { id: 2, name: 'personalLoan', label: 'Personal Loan' },
         { id: 3, name: 'studentLoan', label: 'Student Loan' }
       ]
     }
   ]
 
-  const [values, setValues] = useState({
-    livingExpenses: localStorage.getItem('livingExpenses'),
-    entertainment: localStorage.getItem('entertainment'),
-    retirementSavings: localStorage.getItem('retirementSavings'),
-    creditCard: localStorage.getItem('creditCard'),
-    carLoan: localStorage.getItem('carLoan'),
-    studentLoan: localStorage.getItem('studentLoan')
-  })
+  // const [values, setValues] = useState({
+  //   livingExpenses: localStorage.getItem('livingExpenses'),
+  //   entertainment: localStorage.getItem('entertainment'),
+  //   retirementSavings: localStorage.getItem('retirementSavings'),
+  //   creditCard: localStorage.getItem('creditCard'),
+  //   personalLoan: localStorage.getItem('personalLoan'),
+  //   studentLoan: localStorage.getItem('studentLoan')
+  // })
+
+  const [values, setValues] = useState(cashflowValues)
 
   const handleSubmit = () => {
     const headers = {
@@ -61,19 +67,22 @@ function CashFlowEntry(props) {
     }
 
     const params = {
+      ...values,
       livingExpenses: parseInt(values.livingExpenses || 0),
       entertainment: parseInt(values.entertainment || 0),
       retirementSavings: parseInt(values.retirementSavings || 0),
-      creditCard: parseInt(values.carLoan || 0),
-      carLoan: parseInt(values.carLoan || 0),
+      creditCard: parseInt(values.creditCard || 0),
+      // personalLoan: parseInt(values.personalLoan || 0),
       studentLoan: parseInt(values.studentLoan || 0)
     }
-    localStorage.setItem('livingExpenses', params.livingExpenses)
-    localStorage.setItem('entertainment', params.entertainment)
-    localStorage.setItem('retirementSavings', params.retirementSavings)
-    localStorage.setItem('creditCard', params.creditCard)
-    localStorage.setItem('carLoan', params.carLoan)
-    localStorage.setItem('studentLoan', params.studentLoan)
+    // localStorage.setItem('livingExpenses', params.livingExpenses)
+    // localStorage.setItem('entertainment', params.entertainment)
+    // localStorage.setItem('retirementSavings', params.retirementSavings)
+    // localStorage.setItem('creditCard', params.creditCard)
+    // localStorage.setItem('personalLoan', params.personalLoan)
+    // localStorage.setItem('studentLoan', params.studentLoan)
+
+    dispatch(setCashflowValues(params))
 
     console.log('params')
     console.log(params)
@@ -105,6 +114,7 @@ function CashFlowEntry(props) {
         setError(
           err.data?.error?.message || err?.response?.data?.error?.message
         )
+        setError('Something went wrong !!!')
         console.error(err)
       })
   }
@@ -113,7 +123,7 @@ function CashFlowEntry(props) {
     props.history.push(commonRoute.selectDreams)
   }
 
-  const [year, setYear] = useState(1)
+  // const [year, setYear] = useState(1)
 
   return (
     <div className="dash-cash-flow-info-page">
@@ -138,7 +148,11 @@ function CashFlowEntry(props) {
       </div>
 
       <div className="btn-wrap">
-        <Button className="dreams-btn" onClick={goToSelectDream}>
+        <Button
+          className="dreams-btn"
+          disabled={!(currentTurn <= 1)}
+          onClick={goToSelectDream}
+        >
           Change Dreams
         </Button>
       </div>

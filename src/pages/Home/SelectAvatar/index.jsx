@@ -10,7 +10,8 @@ import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
 import SnackBar from '../../../components/SnackBar'
 import API, { URL } from '../../../Api'
-import { setAvatarId } from '../../../action'
+// import { setAvatarId } from '../../../action'
+import { setAvatarId } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 const AvatarOptions = ({ label, imgUrl, id, avatar, setAvatar }) => {

@@ -8,6 +8,7 @@ function Income({ size, data }) {
 
   return (
     <Grid item {...size} className="income-sec stat-data-sec">
+      <h2>Income</h2>
       <div className="content-wrap">
         <Entry label="Salary" value={data?.salery} />
         <Entry label="Money borrowed" value={data?.moneyBorrowed} />

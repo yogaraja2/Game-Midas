@@ -40,13 +40,14 @@ function Debt() {
                 <h2 className="sec-head stats">Year {dataYear}</h2>
                 <Card className="stat-card" transparent>
                     <Grid container className="stat-grid-wrap">
-                        <AmountToBorrow {...allyProps} />
+                        {/* <AmountToBorrow {...allyProps} /> */}
                         <LoanBalance {...allyProps} />
                         <MinimumPayment {...allyProps} />
-                    </Grid>
-                    <Grid container className="stat-grid-wrap">
                         <AmountToRepay {...allyProps} />
                     </Grid>
+                    {/* <Grid container className="stat-grid-wrap">
+                        <AmountToRepay {...allyProps} />
+                    </Grid> */}
                 </Card>
             </div>
         </div>

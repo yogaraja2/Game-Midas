@@ -21,10 +21,20 @@ function UserProfile() {
     }
     const other = { gameLength, setGameLength }
 
-    const showPopup = () => {
-        return (
-            <passwordPopup />
-        )
+    // const showPopup = () => {
+    //     return (
+    //         <passwordPopup />
+    //     )
+    // }
+
+    const [confDlg, setConfDlg] = useState(false)
+
+    const handleClick = () => {
+        setConfDlg(true)
+    }
+
+    const handleDlgClose = () => {
+        setConfDlg(false)
     }
 
     return (
@@ -60,10 +70,11 @@ function UserProfile() {
             </Grid>
             <Grid container className="select-wrap">
                 <h2 className="title">Password</h2>
-                <div className="btn-wrap" onClick={showPopup}>
+                <div className="btn-wrap" onClick={handleClick}>
                     <div>Change</div>
                 </div>
             </Grid>
+            {confDlg && (<passwordPopup onClose={handleDlgClose} />)}
         </Grid>
     )
 }

@@ -8,13 +8,19 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import allReducers from './reducers'
 
-let store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+import { store, persistor } from './redux/Store'
+import { PersistGate } from 'redux-persist/integration/react'
+
+// let store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 // store.subscribe(()=>{console.log(store.getState())})
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
+    {/* <App /> */}
   </Provider>
   , document.getElementById('root')
 );

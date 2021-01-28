@@ -1,21 +1,29 @@
 import React from 'react'
 import Popup from '../../../components/Popup'
+import { TextField } from '@material-ui/core'
 
-function passwordPopup() {
+function passwordPopup({ onClose }) {
     return (
-        <Popup>
-            <div>
-                <label htmlFor="currentPassword">Current Password</label>
-                <input type="text" name="currentPassword"></input>
-                <label htmlFor="newPassword">Enter Password</label>
-                <input type="text" name="newPassword"></input>
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input type="text" name="confirmPassword"></input>
-
-                <div>
-                    <button>Update</button>
-                </div>
+        <Popup
+            className="changePassword"
+            onClose={onClose}
+            noClose
+        >
+            <div className="password-fields-wrap">
+                <TextField
+                    label="Current Password"
+                    name="currentPassword"
+                />
+                <TextField
+                    label="New Password"
+                    name="newPassword"
+                />
+                <TextField
+                    label="Confirm Password"
+                    name="confirmPassword"
+                />
             </div>
+
         </Popup>
     )
 }

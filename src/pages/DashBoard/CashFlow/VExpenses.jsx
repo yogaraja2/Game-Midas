@@ -5,6 +5,7 @@ import Entry from './Entry'
 function VExpenses({ size, data }) {
   return (
     <Grid item {...size} className="var-exp-sec stat-data-sec">
+      <h2>Variable Expenses</h2>
       <div className="content-wrap m-left">
         <Entry label="Living Expenses" value={data?.livingExpenses} />
         <Entry label="Entertainment" value={data?.entertainment} />
