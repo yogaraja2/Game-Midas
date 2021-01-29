@@ -163,7 +163,117 @@ function SelectDreams() {
     return (
         <Grid item xs={12} md={10} className="select-dreams-card">
             <div className="header-sec">
-                <h3 className="main-head">Select Dreams</h3>
+                <h3 className="main-head">Select House</h3>
+            </div>
+            <Grid
+                container
+                justify="space-around"
+                alignContent="center"
+                className="options-selector"
+            >
+                <SelectHouse
+                    label="Studio Apartment"
+                    imgUrl={`StudioApt`}
+                    id={1}
+                    name="studioApt"
+                    cost={300000}
+                    // points={2000}
+                    {...restHouse}
+                />
+                <SelectHouse
+                    label="Fixer Upper"
+                    imgUrl={`FixerUp`}
+                    id={2}
+                    name="fixerUp"
+                    cost={500000}
+                    // points={2000}
+                    {...restHouse}
+                />
+                <SelectHouse
+                    label="Rambler"
+                    imgUrl={'Rambler'}
+                    id={3}
+                    name="rambler"
+                    cost={700000}
+                    // points={2000}
+                    {...restHouse}
+                />
+                <SelectHouse
+                    label="Mansion"
+                    imgUrl={`Mansion`}
+                    id={4}
+                    name="mansion"
+                    cost={1200000}
+                    // points={2000}
+                    {...restHouse}
+                />
+                <SelectHouse
+                    label="Chateau"
+                    imgUrl={'Chateau'}
+                    id={5}
+                    name="chateau"
+                    cost={1700000}
+                    // points={2000}
+                    {...restHouse}
+                />
+            </Grid>
+            <div className="header-sec">
+                <h3 className="main-head">Select Car</h3>
+            </div>
+            <Grid
+                container
+                justify="space-around"
+                alignContent="center"
+                className="options-selector"
+            >
+                <SelectCar
+                    label="Relisible Car"
+                    imgUrl={`RelisibleCar`}
+                    id={1}
+                    name="relisibleCar"
+                    cost={30000}
+                    // points={2000}
+                    {...restCar}
+                />
+                <SelectCar
+                    label="Economy Car"
+                    imgUrl={`EconomyCar`}
+                    id={2}
+                    name="economyCar"
+                    cost={50000}
+                    // points={2000}
+                    {...restCar}
+                />
+                <SelectCar
+                    label="Fully Loaded Car"
+                    imgUrl={'FullLoadCar'}
+                    id={3}
+                    name="fullLoadedCar"
+                    cost={70000}
+                    // points={2000}
+                    {...restCar}
+                />
+                <SelectCar
+                    label="Luxury Car"
+                    imgUrl={'LuxuryCar'}
+                    id={4}
+                    name="luxuryCar"
+                    cost={120000}
+                    // points={2000}
+                    {...restCar}
+                />
+                <SelectCar
+                    label="Speedster Car"
+                    imgUrl={`SpeedsterCar`}
+                    id={5}
+                    name="speedsterCar"
+                    cost={200000}
+                    // points={2000}
+                    {...restCar}
+                />
+            </Grid>
+            <div className="header-sec">
+                <h3 className="main-head">Select Dream</h3>
             </div>
             <Grid
                 container
@@ -218,117 +328,6 @@ function SelectDreams() {
                 />
             </Grid>
 
-            <div className="header-sec">
-                <h3 className="main-head">Cars</h3>
-            </div>
-            <Grid
-                container
-                justify="space-around"
-                alignContent="center"
-                className="options-selector"
-            >
-                <SelectCar
-                    label="Relisible Car"
-                    imgUrl={`RelisibleCar`}
-                    id={1}
-                    name="relisibleCar"
-                    cost={30000}
-                    // points={2000}
-                    {...restCar}
-                />
-                <SelectCar
-                    label="Economy Car"
-                    imgUrl={`EconomyCar`}
-                    id={2}
-                    name="economyCar"
-                    cost={50000}
-                    // points={2000}
-                    {...restCar}
-                />
-                <SelectCar
-                    label="Fully Loaded Car"
-                    imgUrl={'FullLoadCar'}
-                    id={3}
-                    name="fullLoadedCar"
-                    cost={80000}
-                    // points={2000}
-                    {...restCar}
-                />
-                <SelectCar
-                    label="Luxury Car"
-                    imgUrl={'LuxuryCar'}
-                    id={4}
-                    name="luxuryCar"
-                    cost={120000}
-                    // points={2000}
-                    {...restCar}
-                />
-                <SelectCar
-                    label="Speedster Car"
-                    imgUrl={`SpeedsterCar`}
-                    id={5}
-                    name="speedsterCar"
-                    cost={200000}
-                    // points={2000}
-                    {...restCar}
-                />
-            </Grid>
-
-            <div className="header-sec">
-                <h3 className="main-head">House</h3>
-            </div>
-            <Grid
-                container
-                justify="space-around"
-                alignContent="center"
-                className="options-selector"
-            >
-                <SelectHouse
-                    label="Studio Apartment"
-                    imgUrl={`StudioApt`}
-                    id={1}
-                    name="studioApt"
-                    cost={300000}
-                    // points={2000}
-                    {...restHouse}
-                />
-                <SelectHouse
-                    label="Fixer Upper"
-                    imgUrl={`FixerUp`}
-                    id={2}
-                    name="fixerUp"
-                    cost={500000}
-                    // points={2000}
-                    {...restHouse}
-                />
-                <SelectHouse
-                    label="Rambler"
-                    imgUrl={'Rambler'}
-                    id={3}
-                    name="rambler"
-                    cost={800000}
-                    // points={2000}
-                    {...restHouse}
-                />
-                <SelectHouse
-                    label="Mansion"
-                    imgUrl={`Mansion`}
-                    id={4}
-                    name="mansion"
-                    cost={1200000}
-                    // points={2000}
-                    {...restHouse}
-                />
-                <SelectHouse
-                    label="Chateau"
-                    imgUrl={'Chateau'}
-                    id={5}
-                    name="chateau"
-                    cost={1700000}
-                    // points={2000}
-                    {...restHouse}
-                />
-            </Grid>
 
             <div className="btn-wrap">
                 <Button className="btn" onClick={goToHome}>Back</Button>

@@ -228,7 +228,7 @@ function SelectAvatar() {
 
             <div className="gameLength-wrap">
                 <div className="header-sec">
-                    <h3 className="main-head">Role</h3>
+                    <h3 className="main-head">Game Mode</h3>
                 </div>
                 <Grid container className="lenrole-button-wrap">
                     <RoleOptions
