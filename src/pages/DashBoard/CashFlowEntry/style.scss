@@ -74,17 +74,17 @@
 
     .btn-wrap {
       position: relative;
-      margin-top: 36px;
-      text-align: right;
+      margin-top: 40px;
+      text-align: center;
 
       .dreams-btn {
-        margin: 10px;
         float: left;
         @include button;
+        width: 150px;
+        padding:5px 20px;
       }
       .info-btn {
         float: right;
-        top: 20px;
         @include button;
 
         // .btn-cont {

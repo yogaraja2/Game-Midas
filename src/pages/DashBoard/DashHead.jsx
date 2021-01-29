@@ -26,12 +26,17 @@ function DashHead({ toggleMenu }) {
 
       <div className="right-part">
         <div className="total-cash">
-          <img
-            src={require('../../assets/img/doller 2.svg').default}
-            alt="Coin"
-            className="cash-icon"
-          />
-          <span className="cash-value">${netWorth}</span>
+          <div className="title-wrap">
+            <h3>NetWorth</h3>
+          </div>
+          <div className="cash-wrap">
+            <img
+              src={require('../../assets/img/doller 2.svg').default}
+              alt="Coin"
+              className="cash-icon"
+            />
+            <span className="cash-value">${netWorth}</span>
+          </div>
         </div>
         {/* <HighlightCard
           className="net-worth"

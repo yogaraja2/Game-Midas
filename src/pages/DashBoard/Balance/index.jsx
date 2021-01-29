@@ -54,13 +54,13 @@ function Balance() {
         />
       </div>
 
-      <div className="netWorth-tot">
+      {/* <div className="netWorth-tot">
         <HighlightCard
           className="networth"
           label="Networth"
           value={currentData?.netWorth}
         />
-      </div>
+      </div> */}
 
       {/* <div className="btn-stat-wrap">
         <div className="btn-wrap">

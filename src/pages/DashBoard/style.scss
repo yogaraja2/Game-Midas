@@ -175,15 +175,34 @@
 
         // revenue
         .total-cash {
-          @include flexCenterRow;
+          display: flex;
+          flex-direction: column;
+          padding:5px;
+          background-color: #009ffd;
+          border-radius: 5px;
+          @include flexCenter;
 
-          .cash-icon {
-            margin-right: 8px;
+          .title-wrap{
+            text-align: center;
+            color: white;
+            font-size: 1rem;
           }
 
-          .cash-value {
-            font-size: 1.5em;
-            font-weight: 700;
+          .cash-wrap {
+            @include flexCenterRow;
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            .cash-icon {
+              margin-right: 8px;
+              width: 25px;
+              height: 25px;
+            }
+
+            .cash-value {
+              font-size: 1.5em;
+              font-weight: 700;
+            }
           }
         }
 
