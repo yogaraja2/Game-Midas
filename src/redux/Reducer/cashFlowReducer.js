@@ -1,9 +1,9 @@
 const initialState = {
-    livingExpenses: 0,
-    entertainment: 0,
-    retirementSavings: 0,
-    creditCard: 0,
-    studentLoan: 0,
+    livingExpenses: null,
+    entertainment: null,
+    retirementSavings: null,
+    creditCard: null,
+    studentLoan: null,
 }
 
 const cashFlowReducer = (state = initialState, action) => {

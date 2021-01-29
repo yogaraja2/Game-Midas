@@ -185,7 +185,7 @@ function SelectDreams() {
                     imgUrl={`Flight`}
                     id={2}
                     name="flight"
-                    cost={20000}
+                    cost={25000}
                     // points={2000}
                     {...restDream}
                 />
@@ -194,7 +194,7 @@ function SelectDreams() {
                     imgUrl={'HillStation'}
                     id={3}
                     name="hillStation"
-                    cost={25000}
+                    cost={50000}
                     // points={2000}
                     {...restDream}
                 />
@@ -203,7 +203,7 @@ function SelectDreams() {
                     imgUrl={`Beach`}
                     id={4}
                     name="beach"
-                    cost={12000}
+                    cost={70000}
                     // points={2000}
                     {...restDream}
                 />
@@ -212,7 +212,7 @@ function SelectDreams() {
                     imgUrl={'BikeRide'}
                     id={5}
                     name="bikeRide"
-                    cost={10000}
+                    cost={100000}
                     // points={2000}
                     {...restDream}
                 />
@@ -232,7 +232,7 @@ function SelectDreams() {
                     imgUrl={`RelisibleCar`}
                     id={1}
                     name="relisibleCar"
-                    cost={35000}
+                    cost={30000}
                     // points={2000}
                     {...restCar}
                 />
@@ -241,7 +241,7 @@ function SelectDreams() {
                     imgUrl={`EconomyCar`}
                     id={2}
                     name="economyCar"
-                    cost={40000}
+                    cost={50000}
                     // points={2000}
                     {...restCar}
                 />
@@ -250,7 +250,7 @@ function SelectDreams() {
                     imgUrl={'FullLoadCar'}
                     id={3}
                     name="fullLoadedCar"
-                    cost={45000}
+                    cost={80000}
                     // points={2000}
                     {...restCar}
                 />
@@ -259,7 +259,7 @@ function SelectDreams() {
                     imgUrl={'LuxuryCar'}
                     id={4}
                     name="luxuryCar"
-                    cost={50000}
+                    cost={120000}
                     // points={2000}
                     {...restCar}
                 />
@@ -268,7 +268,7 @@ function SelectDreams() {
                     imgUrl={`SpeedsterCar`}
                     id={5}
                     name="speedsterCar"
-                    cost={60000}
+                    cost={200000}
                     // points={2000}
                     {...restCar}
                 />
@@ -288,7 +288,7 @@ function SelectDreams() {
                     imgUrl={`StudioApt`}
                     id={1}
                     name="studioApt"
-                    cost={120000}
+                    cost={300000}
                     // points={2000}
                     {...restHouse}
                 />
@@ -297,7 +297,7 @@ function SelectDreams() {
                     imgUrl={`FixerUp`}
                     id={2}
                     name="fixerUp"
-                    cost={150000}
+                    cost={500000}
                     // points={2000}
                     {...restHouse}
                 />
@@ -306,7 +306,7 @@ function SelectDreams() {
                     imgUrl={'Rambler'}
                     id={3}
                     name="rambler"
-                    cost={300000}
+                    cost={800000}
                     // points={2000}
                     {...restHouse}
                 />
@@ -315,7 +315,7 @@ function SelectDreams() {
                     imgUrl={`Mansion`}
                     id={4}
                     name="mansion"
-                    cost={350000}
+                    cost={1200000}
                     // points={2000}
                     {...restHouse}
                 />
@@ -324,7 +324,7 @@ function SelectDreams() {
                     imgUrl={'Chateau'}
                     id={5}
                     name="chateau"
-                    cost={400000}
+                    cost={1700000}
                     // points={2000}
                     {...restHouse}
                 />

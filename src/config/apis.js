@@ -6,6 +6,7 @@ export const API = {
       nextTurn: '/nextTurn',
     },
     balance: '/balancesheet',
+    dept: '/deptManagement',
     stats: '/stats'
   }
 }

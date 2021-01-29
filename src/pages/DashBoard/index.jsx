@@ -41,8 +41,8 @@ function DashBoard() {
   const toggleMenu = () => setMenu((prev) => !prev)
 
   const goToLogin = () => {
-    window.localStorage.clear();
     dispatch(userLogout())
+    window.localStorage.clear();
     history.push(commonRoute.home)
   }
 

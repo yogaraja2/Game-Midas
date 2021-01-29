@@ -83,7 +83,8 @@ function Stats() {
     //     { x: '10', y: -750 },
     // ]
 
-    const netWorth = data?.netWorth
+    const netWorth = data?.netWorth;
+    const retirementSavings = data?.retirementSavings;
 
 
     const marker = { visible: true, width: 10, height: 10 }
@@ -136,9 +137,9 @@ function Stats() {
                         <Inject services={[SplineSeries, ColumnSeries, Legend, Tooltip, DataLabel, Category, StripLine]} />
                         <SeriesCollectionDirective>
                             <SeriesDirective
-                                dataSource={netWorth}
+                                dataSource={retirementSavings}
                                 xName='year'
-                                yName='netWorth'
+                                yName='retirementSavings'
                                 name='Retirement Savings'
                                 type='Spline'
                                 fill='#009ffd'
