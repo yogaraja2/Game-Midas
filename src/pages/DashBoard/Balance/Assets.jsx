@@ -4,7 +4,7 @@ import AssetCard from '../../../components/AssetCard'
 import SellPopup from './SellPopup'
 import BuyPopup from './BuyPopup'
 
-function Assets({ data }) {
+function Assets({ data, isEnablesell }) {
   const [confDlg, setConfDlg] = useState({
     status: false,
     data: null,

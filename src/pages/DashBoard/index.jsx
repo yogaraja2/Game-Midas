@@ -102,6 +102,12 @@ function DashBoard() {
             {/*   menu items    */}
             <div className="field-main-wrap">
               <Fields
+                img="dashIcon"
+                label="Dashboard"
+                id="dashboard"
+                {...allyProps}
+              />
+              <Fields
                 img="CashflowIcon"
                 label="Cash Flow"
                 id="cashFlow"
