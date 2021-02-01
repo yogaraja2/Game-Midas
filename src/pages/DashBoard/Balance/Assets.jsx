@@ -43,6 +43,7 @@ function Assets({ data }) {
         img="FullLoadCar"
         value={data?.vehicle?.price}
         isBought
+        isEnablesell={isEnablesell}
         {...allyProps}
         onClick={handleClick.bind(this, 0, false)}
         onSell={handleClick.bind(
@@ -55,13 +56,14 @@ function Assets({ data }) {
         img="Rambler"
         value={data?.house?.price}
         isBought
+        isEnablesell={isEnablesell}
         {...allyProps}
         onClick={handleClick.bind(this, 1, false)}
         onSell={handleClick.bind(this, { img: 'Rambler', name: 'House' }, true)}
       />
       <AssetCard img="savings" value={data?.chekingAndSavings} {...allyProps} />
       <AssetCard img="retire" value={data?.retirementSavings} {...allyProps} />
-      {confDlg.status && confDlg.isSell && (
+      {confDlg.status && confDlg.isSell && isEnablesell && (
         <SellPopup onClose={handleDlgClose} data={confDlg.data} />
       )}
       {confDlg.status && !confDlg.isSell && (

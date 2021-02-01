@@ -15,7 +15,8 @@ function AssetCard({
   color,
   transparent,
   onClick,
-  onSell
+  onSell,
+  isEnablesell
 }) {
   const handleSell = (e) => {
     e.stopPropagation()
@@ -43,7 +44,7 @@ function AssetCard({
         transparent={transparent}
         onClick={handleClick}
       >
-        {isBought && (
+        {isBought && isEnablesell && (
           <div className="sell-sign" onClick={handleSell}>
             Sell
           </div>

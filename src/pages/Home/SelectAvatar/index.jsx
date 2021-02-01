@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Grid } from '@material-ui/core'
 import clsx from 'clsx'
 import './useStyle.scss'
@@ -71,7 +71,7 @@ function SelectAvatar() {
     const dispatch = useDispatch()
 
     const [avatar, setAvatar] = useState(1)
-    const [income, setIncome] = useState(null)
+    const [salary, setSalary] = useState(121000)
     const [gameLength, setGameLength] = useState(10)
     const [role, setRole] = useState('easy')
 
@@ -86,9 +86,20 @@ function SelectAvatar() {
 
     const history = useHistory()
 
+
+
+    const min = 40000;
+    const max = 150000;
+
+    const salaryHandler = () => {
+        const randomSalary = Math.round(Math.round((Math.random() * (max - min) + min) / 1000) * 1000);
+        setSalary(randomSalary)
+    }
+
+
     const initialValues = {
         avatarIcon: avatar,
-        income: income,
+        income: salary,
         gameLength: gameLength,
         role: role,
     }
@@ -100,7 +111,7 @@ function SelectAvatar() {
         console.log(initialValues)
         dispatch(setAvatarId(avatar))
 
-        if (income) {
+        if (salary) {
             // console.log(income);
             API.post(URL.gameDetails, initialValues, {
                 headers: {
@@ -129,9 +140,9 @@ function SelectAvatar() {
         }
     }
 
-    const handleIncomeValueChanges = (e) => {
-        setIncome(+e.target.value)
-    }
+    // const handleIncomeValueChanges = (e) => {
+    //     setIncome(+e.target.value)
+    // }
 
     function handleOnClose(reason) {
         if (reason === 'clickaway') {
@@ -187,18 +198,22 @@ function SelectAvatar() {
                 />
             </Grid>
 
-            <div className="income-wrap">
+            <Grid className="income-wrap">
                 <div className="header-sec">
-                    <h3 className="main-head">Income</h3>
+                    <h3 className="main-head">Starting Salary</h3>
                 </div>
-                <Textfield
-                    name="income"
-                    placeholder="$120000"
-                    required
-                    autoFocus
-                    onChange={(e) => handleIncomeValueChanges(e)}
-                />
-            </div>
+                <div className="salary-wraps">
+                    <div className="starting-salary">
+                        <div className="dollar-img">
+                            <img src={require(`../../../assets/img/doller 2.svg`).default} />
+                        </div>
+                        <div className="money">{salary}</div>
+                    </div>
+                    <div className="change-salary" onClick={salaryHandler}>
+                        Change Salary
+                    </div>
+                </div>
+            </Grid>
 
             <div className="gameLength-wrap">
                 <div className="header-sec">

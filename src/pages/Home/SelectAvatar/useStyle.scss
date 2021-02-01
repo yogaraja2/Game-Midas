@@ -66,12 +66,53 @@
 
     .income-wrap {
       margin: 20px;
-      .MuiOutlinedInput-root {
-        width: 250px;
+
+      .salary-wraps {
+        display: flex;
+        flex-direction: row;
         margin-top: 10px;
         margin-left: 35px;
-        .MuiInputBase-input {
-          font-size: large;
+        .starting-salary {
+          display: flex;
+          width: 150px;
+          padding: 5px;
+          background: white;
+          border: 2px solid var(--primary);
+          color: #747d8c;
+          font-size: x-large;
+          font-weight: bold;
+          align-items: center;
+          border-radius: 5px;
+
+          .dollar-img {
+            img {
+              width: 22px;
+              height: 20px;
+            }
+          }
+          .money {
+            margin-left: 5px;
+          }
+        }
+
+        .change-salary {
+          background: var(--primary);
+          color: white;
+          width: 80px;
+          text-align: center;
+          align-self: flex-end;
+          border-radius: 5px;
+          cursor: pointer;
+          padding: 10px;
+          font-weight: 500;
+          margin-left: 20px;
+
+          @include w320 {
+            padding: 5px;
+          }
+          @include w400 {
+            padding: 5px;
+          }
         }
       }
     }

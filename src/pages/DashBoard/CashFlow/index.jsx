@@ -13,7 +13,7 @@ import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
 // import { setCurrentTurn } from '../../../action'
-import {setCurrentTurn} from '../../../redux/Action'
+import { setCurrentTurn } from '../../../redux/Action'
 import { useSelector, useDispatch } from 'react-redux'
 
 function CashFlow(props) {
@@ -21,7 +21,7 @@ function CashFlow(props) {
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(currentTurn)
-  const [isPassed, setPassed] = useState(false)
+  // const [isPassed, setPassed] = useState(false)
   const { state } = useLocation()
   const currentData = state.data?.filter((f) => f.year === dataYear)[0]
 
@@ -48,18 +48,18 @@ function CashFlow(props) {
     }
   }, [state])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const score = Object.values(currentData?.satisfactionPoints)
-    let flag = true
-    for (let i of score) {
-      if (i <= 1) {
-        flag = false
-        break
-      }
-    }
-    setPassed(flag)
-  }, [dataYear, currentData])
+  //   const score = Object.values(currentData?.satisfactionPoints)
+  //   let flag = true
+  //   for (let i of score) {
+  //     if (i <= 1) {
+  //       flag = false
+  //       break
+  //     }
+  //   }
+  //   setPassed(flag)
+  // }, [dataYear, currentData])
 
   const handleNext = () => {
 
@@ -78,7 +78,8 @@ function CashFlow(props) {
         if (dataYear <= currentData.gameLength) {
           if (currentData.currentTurn === dataYear) {
             dispatch(setCurrentTurn(dataYear + 1))
-            if (isPassed) switchToEntry()
+            switchToEntry()
+            // if (isPassed) switchToEntry()
           }
         }
       })
@@ -93,8 +94,8 @@ function CashFlow(props) {
       <YearBar
         value={dataYear}
         onClick={setDataYear}
-        // years={currentData?.gameLength}
-        years={40}
+        years={currentData?.gameLength}
+        // years={40}
         clickableTill={currentData?.currentTurn}
       />
 
@@ -121,7 +122,7 @@ function CashFlow(props) {
 
           {currentData?.currentTurn === dataYear && (
             <div className="btn-wrap" onClick={handleNext}>
-              <Button disabled={!isPassed} className="btn nxt-btn">
+              <Button className="btn nxt-btn">
                 Next Turn
               </Button>
             </div>
