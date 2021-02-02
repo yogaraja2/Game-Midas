@@ -104,7 +104,7 @@ function DashBoard() {
               <Fields
                 img="dashIcon"
                 label="Dashboard"
-                id="dashboard"
+                id="mainDash"
                 {...allyProps}
               />
               <Fields

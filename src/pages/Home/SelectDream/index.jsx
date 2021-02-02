@@ -141,7 +141,7 @@ function SelectDreams() {
 
     const goToDashboard = (initialValues) => {
         console.log(initialValues)
-        history.push(commonRoute.dashboard.default)
+        history.push(commonRoute.dashboard.mainDash)
 
         API.post(URL.dreamSelection, initialValues, {
             headers: {

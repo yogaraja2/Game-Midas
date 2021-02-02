@@ -9,6 +9,7 @@ export const commonRoute = {
 
   dashboard: {
     default: '/dashBoard',
+    mainDash: '/dashBoard/mainDash',
     cashFlow: '/dashBoard/cashFlow',
     cashFlowInfo: '/dashBoard/cashFlow/info',
     nextTurn: '/nextTurn',

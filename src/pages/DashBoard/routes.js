@@ -5,8 +5,22 @@ import CashFlow from './CashFlow'
 import CashFlowEntry from './CashFlowEntry'
 import Stats from './Stats'
 import UserProfile from './UserProfile'
+import MainDash from './MainDash'
 
 export const dashboardRoutes = [
+  {
+    name: 'Main Dashboard',
+    props: {
+      path: commonRoute.dashboard.mainDash,
+      component: MainDash,
+      exact: true
+    },
+    redirection: {
+      path: commonRoute.dashboard.default,
+      exact: true,
+      to: commonRoute.dashboard.MainDash
+    }
+  },
   {
     name: 'Cash Flow',
     props: {
@@ -14,11 +28,11 @@ export const dashboardRoutes = [
       component: CashFlowEntry,
       exact: true
     },
-    redirection: {
-      path: commonRoute.dashboard.default,
-      exact: true,
-      to: commonRoute.dashboard.cashFlow
-    }
+    // redirection: {
+    //   path: commonRoute.dashboard.default,
+    //   exact: true,
+    //   to: commonRoute.dashboard.cashFlow
+    // }
   },
   {
     name: 'Cash Flow info',
