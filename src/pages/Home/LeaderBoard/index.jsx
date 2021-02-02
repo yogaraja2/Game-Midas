@@ -1,9 +1,11 @@
 import { Grid, Paper, Button } from '@material-ui/core'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss'
 import { commonRoute } from "../../../config/routes";
 import { useHistory } from 'react-router-dom'
+import useFetch from '../../../hooks/useFetch'
+import API, { URL } from '../../../Api'
 
 const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
   return (
@@ -36,20 +38,43 @@ const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
   )
 }
 
-const playersList = [
-  { rank: 1, name: 'Victoria', country: 'India', score: 7548653 },
-  { rank: 2, name: 'Benjamin', country: 'USA', score: 6209475 },
-  { rank: 3, name: 'James', country: 'UK', score: 364855 },
-  { rank: 4, name: 'Dom', country: 'Srilanka', score: 304855 },
-  { rank: 5, name: 'Elisa', country: 'Russia', score: 254855 },
-  { rank: 6, name: 'Fazil', country: 'Japan', score: 204855 },
-  { rank: 7, name: 'Google', country: 'Brazil', score: 154855 },
-  { rank: 8, name: 'Hameed', country: 'Mexico', score: 104855 },
-  { rank: 9, name: 'Irin', country: 'Italy', score: 104700 },
-  { rank: 10, name: 'JackSparrow', country: 'UK', score: 54855 }
-]
+// const playersList = [
+//   { rank: 1, name: 'Victoria', country: 'India', score: 7548653 },
+//   { rank: 2, name: 'Benjamin', country: 'USA', score: 6209475 },
+//   { rank: 3, name: 'James', country: 'UK', score: 364855 },
+//   { rank: 4, name: 'Dom', country: 'Srilanka', score: 304855 },
+//   { rank: 5, name: 'Elisa', country: 'Russia', score: 254855 },
+//   { rank: 6, name: 'Fazil', country: 'Japan', score: 204855 },
+//   { rank: 7, name: 'Google', country: 'Brazil', score: 154855 },
+//   { rank: 8, name: 'Hameed', country: 'Mexico', score: 104855 },
+//   { rank: 9, name: 'Irin', country: 'Italy', score: 104700 },
+//   { rank: 10, name: 'JackSparrow', country: 'UK', score: 54855 }
+// ]
 
 function LeaderBoard() {
+
+  const [playersList, setPlayersList] = useState([])
+  const token = localStorage.getItem('midasToken')
+  const auth = 'Bearer '.concat(token)
+
+  useEffect(() => {
+    API.get(URL.leaderBoard, {
+      headers: {
+        Authorization: auth
+      }
+    })
+      .then((res) => {
+        console.log('res')
+        console.log(res)
+        const data = res?.data?.leaderboards
+        console.log('res data')
+        console.log(data)
+        setPlayersList(data)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }, [])
 
   const history = useHistory()
   const goToHome = () => {
@@ -97,10 +122,10 @@ function LeaderBoard() {
               </tr>
             </thead>
             <tbody className="table-body">
-              {playersList.map((item, index) => (
+              {playersList?.map((item, index) => (
                 <tr key={index} className="table-rows">
-                  <td>{item.rank}</td>
-                  <td>{item.name}</td>
+                  <td>{index + 1}</td>
+                  <td>{item.username}</td>
                   <td>{item.country}</td>
                   <td style={{ color: '#009ffd' }}>{item.score}</td>
                 </tr>

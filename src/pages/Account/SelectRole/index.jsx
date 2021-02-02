@@ -39,7 +39,7 @@ function SelectRole() {
     const [defaults, setDefaults] = useState(defaultValues)
 
     useEffect(() => {
-        console.log('test0')
+        
         setOrganizations(JSON.parse(localStorage.getItem('Organizations')))
         setInstructors(JSON.parse(localStorage.getItem('Instructors')))
         // console.log('organizations '+organizations)
@@ -157,8 +157,8 @@ function SelectRole() {
         setError(false)
     }
 
-    console.log('default')
-    console.log(defaults)
+    // console.log('default')
+    // console.log(defaults)
 
     return (
         <div className="role-box-sec">

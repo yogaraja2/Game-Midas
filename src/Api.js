@@ -16,4 +16,5 @@ export const URL = {
     login: 'login',
     gameDetails: 'createGame-details',
     dreamSelection: 'dreamSelection',
+    leaderBoard: 'leaderboard',
 }

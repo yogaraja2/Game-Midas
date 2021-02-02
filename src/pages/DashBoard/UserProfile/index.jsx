@@ -41,11 +41,14 @@ function UserProfile() {
         <Grid item xs={12} md={10} className="user-profile-root">
             <Grid container className="select-wrap">
                 <h2 className="title">Avatar</h2>
-                <UploadBtn
+                <div className="btn-wrap" onClick={handleClick}>
+                    <div>Change</div>
+                </div>
+                {/* <UploadBtn
                     label="Change"
                     variant="outlined"
                     component="span"  //for file uploading
-                />
+                /> */}
             </Grid>
             <Grid container className="select-wrap">
                 <h2 className="title">Game Length</h2>

@@ -22,8 +22,8 @@ function Stats() {
     const { data } = useFetch({
         url: API.gamePlay.stats
     })
-    console.log('stats data')
-    console.log(data)
+    // console.log('stats data')
+    // console.log(data)
 
     const scorexaxis = {
         valueType: 'Category',

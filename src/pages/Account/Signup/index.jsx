@@ -15,14 +15,15 @@ import API, { URL } from '../../../Api'
 import { useSelector, useDispatch } from 'react-redux'
 import { setResponseData } from '../../../action'
 // import { setResponseData } from '../../../redux/Action'
+import axios from 'axios'
 
 
 function Signup() {
 
   const ApiResponse = useSelector(state => state.signupData)
   useEffect(() => {
-    console.log('from signup')
-    console.log(ApiResponse)
+    // console.log('from signup')
+    // console.log(ApiResponse)
   }, [ApiResponse])
 
   const dispatch = useDispatch()
@@ -34,6 +35,28 @@ function Signup() {
     confirmPassword: '',
     // isAgreed: false
   }
+
+  // console.log('def')
+  // console.log(defaultValues)
+
+  const [country, setCountry] = useState('')
+  // console.log('country ' + country)
+
+  const getGeoInfo = () => {
+    axios.get('https://ipapi.co/json/')
+      .then((res) => {
+        let data = res.data;
+        setCountry(data.country_name)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+
+  useEffect(() => {
+    getGeoInfo()
+  }, [])
+
   const { register, watch, control, errors, handleSubmit } = useForm(defaultValues)
   const history = useHistory()
 
@@ -60,8 +83,21 @@ function Signup() {
       setError(true)
     }
     else {
-      // console.log('correct password')
-      API.post(URL.signup, data)
+      // console.log('sign data')
+      // console.log(data)
+
+      const reqData = {
+        username: data.username,
+        gmail: data.gmail,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        country: country
+      }
+
+      // console.log('reqdata')
+      // console.log(reqData)
+
+      API.post(URL.signup, reqData)
         .then((res) => {
           console.log('response below')
           console.log(res)

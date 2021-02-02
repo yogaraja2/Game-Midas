@@ -1,11 +1,13 @@
 @import '../../../mixins/common';
-
-  .stats-main {
+.dashboard-main {
+  .dash-main {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
     overflow: auto;
+    // background-color: yellowgreen;
 
     .title {
       text-align: center;
@@ -14,4 +16,103 @@
       font-weight: 700;
       color: #005692;
     }
+
+    .header-wrap {
+      width: 80%;
+      display: flex;
+      margin: 20px;
+      margin-bottom: 450px;
+      padding:10px 100px;
+      justify-content: space-between;
+      margin-top: -10px;
+      // background-color: white;
+      .cash-points-sec {
+        .cash-wrap,
+        .points-wrap {
+          @include flexCenterRow;
+          padding: 5px 10px;
+          border-radius: 5px;
+          .cash-icon,
+          .point-icon {
+            margin-right: 8px;
+            width: 25px;
+            height: 25px;
+          }
+          .cash-value,
+          .points {
+            font-size: 1.5em;
+            font-weight: 700;
+          }
+        }
+      }
+      .turns-sec {
+        display: flex;
+        padding: 0px 25px;
+        margin: 10px 0px;
+        background-color: #009ffd;
+        border-radius: 5px;
+        align-items: center;
+
+        .title-wrap {
+          text-align: center;
+          color: white;
+          font-size: 1rem;
+        }
+
+        .turn-count-wrap {
+          // @include flexCenterRow;
+          background-color: white;
+          padding: 5px 20px;
+          margin-left: 12px;
+          border-radius: 5px;
+
+          .turn-count {
+            font-size: 1.5em;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .body-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      position: absolute;
+    }
+
+    .footer-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 20px;
+      .view-leaderboard {
+        width: 150px;
+        background: #009ffd;
+        color: white;
+        padding: 18px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: larger;
+        cursor: pointer;
+        .leaderboard-btn {
+        }
+      }
+      .next-turn-wrap {
+        // background: cornflowerblue;
+        .nxt-turn-btn {
+          width: 275px;
+          background-color: #fe8025;
+          border-radius: 5px;
+          @include flexCenter;
+          cursor: pointer;
+          // align-items: center;
+          img {
+            align-self: center;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
   }
+}
