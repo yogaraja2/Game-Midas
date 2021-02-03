@@ -39,7 +39,7 @@ function SelectRole() {
     const [defaults, setDefaults] = useState(defaultValues)
 
     useEffect(() => {
-        
+
         setOrganizations(JSON.parse(localStorage.getItem('Organizations')))
         setInstructors(JSON.parse(localStorage.getItem('Instructors')))
         // console.log('organizations '+organizations)
@@ -151,8 +151,11 @@ function SelectRole() {
         if (reason === 'clickaway') {
             return
         }
-        if (response?.status === 200) {
+        if (response?.status === 200 && (defaults.role === 'Individual' || defaults.role === 'Student')) {
             history.push(commonRoute.gameOptions)
+        }
+        else if (response?.status === 200 && (defaults.role === 'Instructor')) {
+            history.push(commonRoute.instructorLogin)
         }
         setError(false)
     }

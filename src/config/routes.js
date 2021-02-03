@@ -17,5 +17,13 @@ export const commonRoute = {
     stats: '/dashBoard/stats',
     debt: '/dashBoard/debt',
     userProfile: '/dashBoard/userProfile'
+  },
+
+  instructorLogin: {
+    default: '/instructor',
+    instructorHome: '/instructor/home',
+    studentsLeaderboard: '/instructor/studentsLeaderboard',
+    studentsList: '/instructor/studentsList',
+    studentStats: '/instructor/studentStats',
   }
 }

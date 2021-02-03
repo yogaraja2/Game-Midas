@@ -2,6 +2,7 @@ import { commonRoute } from './config/routes'
 import Home from './pages/Home'
 import Account from './pages/Account'
 import DashBoard from './pages/DashBoard'
+import InstructorLogin from './pages/InstructorLogin'
 
 export const mainRoute = [
   {
@@ -59,6 +60,13 @@ export const mainRoute = [
     props: {
       path: commonRoute.dashboard.default,
       component: DashBoard
+    }
+  },
+  {
+    name: 'InstructorLogin',
+    props: {
+      path: commonRoute.instructorLogin.default,
+      component: InstructorLogin
     }
   }
 ]
