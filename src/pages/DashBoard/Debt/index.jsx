@@ -10,6 +10,9 @@ import AmountToRepay from './AmountToRepay'
 
 import { API } from '../../../config/apis'
 import useFetch from '../../../hooks/useFetch'
+import { setDebtApiData } from '../../../redux/Action'
+import { useDispatch } from 'react-redux'
+
 
 function Debt() {
     const [dataYear, setDataYear] = useState(1)
@@ -17,6 +20,9 @@ function Debt() {
     const { data } = useFetch({
         url: API.gamePlay.dept
     })
+
+    const dispatch = useDispatch()
+    dispatch(setDebtApiData(data))
     // console.log('debt data')
     // console.log(data)
 
@@ -31,7 +37,7 @@ function Debt() {
         sm: 6,
         xs: 12
     }
-    
+
     const allyProps = {
         size: statSectionSize,
     }

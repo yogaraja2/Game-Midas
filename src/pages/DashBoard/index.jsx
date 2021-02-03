@@ -28,7 +28,7 @@ const Fields = ({ id, img, label, isSelected, onClick }) => {
 
 function DashBoard() {
 
-  const avatarId = useSelector(state => state.selectAvatar.avatarID)
+  const avatarId = useSelector(state => state.selectAvatar.avatarIcon)
   const [viewProfile, setViewProfile] = useState(false)
 
   const dispatch = useDispatch()

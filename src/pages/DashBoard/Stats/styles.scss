@@ -13,7 +13,7 @@
       // color: #009ffd;
       font-size: 1.4em;
       font-weight: 700;
-      color: #005692;
+      color: var(--primary);
     }
 
     .score-wrap {
@@ -26,7 +26,7 @@
       .chart-wrap {
         width: 90%;
         .chart-title {
-          color: #005692;
+          color: var(--primary);
         }
       }
     }
@@ -40,11 +40,11 @@
       align-self: center;
       .journal-title {
         text-align: center;
-        color: #005692;
+        color: var(--primary);
       }
       .summary {
         .summary-title {
-          color: #005692;
+          color: var(--primary);
         }
         .summary-details {
           margin-top: 20px;

@@ -25,7 +25,7 @@ function DashHead({ toggleMenu }) {
       </div>
 
       <div className="right-part">
-        <div className="total-cash">
+        {/* <div className="total-cash">
           <div className="title-wrap">
             <h3>NetWorth</h3>
           </div>
@@ -37,7 +37,7 @@ function DashHead({ toggleMenu }) {
             />
             <span className="cash-value">${netWorth}</span>
           </div>
-        </div>
+        </div> */}
         {/* <HighlightCard
           className="net-worth"
           label="NetWorth"

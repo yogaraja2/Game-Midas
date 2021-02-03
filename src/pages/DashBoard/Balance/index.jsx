@@ -8,7 +8,7 @@ import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
 import HighlightCard from '../../../components/HighlightCard'
 // import { setNetworth } from '../../../action'
-import { setNetworth } from '../../../redux/Action'
+import { setNetworth, setBalanceApiData } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 function Balance() {
@@ -18,7 +18,7 @@ function Balance() {
   const { data } = useFetch({
     url: API.gamePlay.balance
   })
-
+  dispatch(setBalanceApiData(data))
   const currentData = data?.filter((f) => f.year === dataYear)[0]
 
   useEffect(() => {
@@ -47,20 +47,20 @@ function Balance() {
 
       <div className="liblty-bal-det">
         <Liabilities data={currentData?.liabilities} />
-        <HighlightCard
+        {/* <HighlightCard
           className="liability-tot"
           label="Total Liabilities"
           value={currentData?.liabilities.totalLiabilities}
-        />
+        /> */}
       </div>
 
-      {/* <div className="netWorth-tot">
+      <div className="netWorth-tot">
         <HighlightCard
           className="networth"
           label="Networth"
           value={currentData?.netWorth}
         />
-      </div> */}
+      </div>
 
       {/* <div className="btn-stat-wrap">
         <div className="btn-wrap">

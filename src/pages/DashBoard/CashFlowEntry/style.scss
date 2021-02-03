@@ -72,6 +72,37 @@
       }
     }
 
+    .events-wrap {
+      margin-top: 30px;
+
+      .event-btn {
+        @include button;
+        cursor: pointer;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .add-event-wrap {
+        display: none;
+        .add-event {
+          margin-top: 5px;
+          display: flex;
+          flex-direction: row;
+
+          .event-name {
+            width: 200px;
+          }
+          .event-cost {
+            width: 100px;
+          }
+        }
+
+        &.show-events {
+          display: block;
+        }
+      }
+    }
+
     .btn-wrap {
       position: relative;
       margin-top: 40px;
@@ -81,7 +112,7 @@
         float: left;
         @include button;
         width: 150px;
-        padding:5px 20px;
+        padding: 5px 20px;
       }
       .info-btn {
         float: right;

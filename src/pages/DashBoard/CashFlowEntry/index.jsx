@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import GameCoin from '../../../components/GameCoin'
 import Question from './Question'
+import Events from './Events'
 import { AiOutlineInfoCircle as InfoIcon } from 'react-icons/ai'
 import { Button } from '@material-ui/core'
 import Fetch from '../../../Api'
@@ -8,8 +9,9 @@ import './style.scss'
 import { API } from '../../../config/apis'
 import { commonRoute } from '../../../config/routes'
 import SnackBar from '../../../components/SnackBar'
+import Textfield from '../../../components/Textfield'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCashflowValues } from '../../../redux/Action'
+import { setCashflowValues, setCashFlowApiData } from '../../../redux/Action'
 
 const AvailableBal = ({ label, value }) => (
   <div className="avl-bal-entry">
@@ -44,20 +46,11 @@ function CashFlowEntry(props) {
         'How much extra would you like to spend this year repaying to spend this year repaying these debts?',
       fields: [
         { id: 1, name: 'creditCard', label: 'Credit Card' },
-        { id: 2, name: 'personalLoan', label: 'Personal Loan' },
+        { id: 2, name: 'carLoan', label: 'Car Loan' },
         { id: 3, name: 'studentLoan', label: 'Student Loan' }
       ]
     }
   ]
-
-  // const [values, setValues] = useState({
-  //   livingExpenses: localStorage.getItem('livingExpenses'),
-  //   entertainment: localStorage.getItem('entertainment'),
-  //   retirementSavings: localStorage.getItem('retirementSavings'),
-  //   creditCard: localStorage.getItem('creditCard'),
-  //   personalLoan: localStorage.getItem('personalLoan'),
-  //   studentLoan: localStorage.getItem('studentLoan')
-  // })
 
   const [values, setValues] = useState(cashflowValues)
 
@@ -72,15 +65,9 @@ function CashFlowEntry(props) {
       entertainment: parseInt(values.entertainment || 0),
       retirementSavings: parseInt(values.retirementSavings || 0),
       creditCard: parseInt(values.creditCard || 0),
-      // personalLoan: parseInt(values.personalLoan || 0),
+      // carLoan: parseInt(values.carLoan || 0),
       studentLoan: parseInt(values.studentLoan || 0)
     }
-    // localStorage.setItem('livingExpenses', params.livingExpenses)
-    // localStorage.setItem('entertainment', params.entertainment)
-    // localStorage.setItem('retirementSavings', params.retirementSavings)
-    // localStorage.setItem('creditCard', params.creditCard)
-    // localStorage.setItem('personalLoan', params.personalLoan)
-    // localStorage.setItem('studentLoan', params.studentLoan)
 
     dispatch(setCashflowValues(params))
 
@@ -93,8 +80,10 @@ function CashFlowEntry(props) {
         console.log(res)
 
         if (res.status === 200) {
+          dispatch(setCashFlowApiData(res.data))
           if (res.data.status >= 400) {
-            setError('Something went wrong !!!')
+            // setError('Something went wrong !!!')
+            setError(res.data.message)
           }
           else {
             props.history.push({
@@ -123,7 +112,7 @@ function CashFlowEntry(props) {
     props.history.push(commonRoute.selectDreams)
   }
 
-  // const [year, setYear] = useState(1)
+  const [events, setEvents] = useState(false)
 
   return (
     <div className="dash-cash-flow-info-page">
@@ -145,6 +134,11 @@ function CashFlowEntry(props) {
             setValues={setValues}
           />
         ))}
+      </div>
+
+      <div className="events-wrap">
+        <div className="event-btn" onClick={() => setEvents(!events)}>Add Events</div>
+        {<Events isEnable={events} />}
       </div>
 
       <div className="btn-wrap">

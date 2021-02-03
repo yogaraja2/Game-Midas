@@ -1,16 +1,11 @@
 
-// const initialState = {
-//     avatarID: 1
-// }
 const initialState = null;
 
-const avatarReducer = (state = initialState, action) => {
-
+const CashflowApiReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case 'SET_AVATAR_ID':
+        case 'SET_CASHFLOW_DATA':
             return state = action.payload
-
         case 'USER_LOGOUT':
             return state = initialState
 
@@ -18,4 +13,4 @@ const avatarReducer = (state = initialState, action) => {
     }
 }
 
-export default avatarReducer
+export default CashflowApiReducer

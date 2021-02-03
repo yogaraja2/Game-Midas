@@ -64,17 +64,21 @@ function LeaderBoard() {
       }
     })
       .then((res) => {
-        console.log('res')
-        console.log(res)
+        // console.log('res')
+        // console.log(res)
         const data = res?.data?.leaderboards
-        console.log('res data')
-        console.log(data)
+        // console.log('res data')
+        // console.log(data)
         setPlayersList(data)
       })
       .catch((err) => {
         console.log(err.message)
       })
   }, [])
+
+  const topThree = playersList?.filter((item, index) => index < 3)
+  // console.log('top 3')
+  // console.log(topThree)
 
   const history = useHistory()
   const goToHome = () => {
@@ -86,25 +90,25 @@ function LeaderBoard() {
       <Grid container justify="center" className="leader-board-container">
         <Grid item xs={12} md={10} lg={8} className="top-three-players">
           <Players
-            label="Benjamin"
+            label={topThree[1]?.username}
             imgUrl={`User1`}
-            points={`6209475`}
+            points={topThree[1]?.score}
             id={'2'}
             place={'secondPlace'}
             bgClr={'#8DB596'}
           />
           <Players
-            label="Victoria"
+            label={topThree[0]?.username}
             imgUrl={`user2`}
-            points={`7548653`}
+            points={topThree[0]?.score}
             id={'1'}
             place={'firstPlace'}
             bgClr={'#F05454'}
           />
           <Players
-            label="James"
+            label={topThree[2]?.username}
             imgUrl={`user3`}
-            points={'364855'}
+            points={topThree[2]?.score}
             id={'3'}
             place={'thirdPlace'}
             bgClr={'#5352ED'}

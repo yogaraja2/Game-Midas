@@ -34,7 +34,7 @@ function Stats() {
         title: 'Years',
     }
     const scoreyaxis = {
-        maximum: 100000, interval: 10000, majorGridLines: { width: 0 },
+        maximum: 25000, interval: 2000, majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
         },
@@ -64,7 +64,7 @@ function Stats() {
         // title: 'weeks',
     }
     const networthyaxis = {
-        maximum: 1000000, interval: 100000, majorGridLines: { width: 0 }, labelFormat: '${value}',
+        maximum: 100000, interval: 10000, majorGridLines: { width: 0 }, labelFormat: '${value}',
         labelStyle: {
             fontWeight: "Bold"
         },
@@ -103,9 +103,9 @@ function Stats() {
 
     return (
         <Grid container className="stats-main">
-            <div className="title">
+            {/* <div className="title">
                 <h1>Game Stats</h1>
-            </div>
+            </div> */}
             <Grid item xs={12} md={10} className="score-wrap">
                 <div className="chart-wrap">
                     <div className="chart-title">
@@ -160,16 +160,16 @@ function Stats() {
                     </ChartComponent>
                 </div>
             </Grid>
-            <Grid item xs={12} md={10} className="journal-wrap">
-                {/* <div className="journal-title">
+            {/* <Grid item xs={12} md={10} className="journal-wrap">
+                <div className="journal-title">
                     <h1>Journal(Event Log)</h1>
                 </div>
                 <div className="summary">
                     <h1 className="summary-title">Summary of events from last 2 turns :</h1>
                     <p className="summary-details">last year I paid <span className="money">$5000</span> for amazing cruise and also bought a new phone for <span className="money">$900</span></p>
                     <p className="summary-details">last year I paid <span className="money">$4000</span> for amazing cruise and also bought a new car for <span className="money">$1200</span></p>
-                </div> */}
-            </Grid>
+                </div>
+            </Grid> */}
         </Grid>
     )
 }

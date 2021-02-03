@@ -22,11 +22,11 @@ const Entry = ({ label, title, balance, payment }) => {
           <GameCoin className="balance" value={balance} color="#5f5f5f" />
         </div>
       </td>
-      {/* <td className="col col-center">
+      <td className="col col-center">
         <div className="pymnt-wrap cell">
           <GameCoin className="payment" value={payment} color="#5f5f5f" />
         </div>
-      </td> */}
+      </td>
     </tr>
   )
 }
@@ -44,9 +44,9 @@ function Liabilities({ data }) {
               <th>
                 <div className="head">Balance</div>
               </th>
-              {/* <th>
+              <th>
                 <div className="head">Payment</div>
-              </th> */}
+              </th>
             </tr>
           </thead>
 
@@ -55,25 +55,25 @@ function Liabilities({ data }) {
               label="Credit Card"
               title="This is credit card"
               balance={data?.creditLoan?.balance}
-            // payment={300}
+              payment={data?.creditLoan?.payment}
             />
             <Entry
               label="Vehicle Loan"
               title="This is credit card"
               balance={data?.carLoan?.balance}
-            // payment={300}
+              payment={data?.carLoan?.payment}
             />
             <Entry
               label="Mortgage"
               title="This is credit card"
               balance={data?.mortgageLoan?.balance}
-            // payment={300}
+              payment={data?.mortgageLoan?.payment}
             />
             <Entry
               label="Student Loan"
               title="This is credit card"
               balance={data?.studenLoan?.balance}
-            // payment={300}
+              payment={data?.studenLoan?.payment}
             />
           </tbody>
 
@@ -81,7 +81,7 @@ function Liabilities({ data }) {
             <Entry
               label="Total"
               balance={data?.totalLiabilities}
-            // payment={300}
+              payment={data?.deptRepayment}
             />
           </tfoot>
         </table>

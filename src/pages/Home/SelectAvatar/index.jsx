@@ -109,7 +109,7 @@ function SelectAvatar() {
 
     const goToSelectDream = (initialValues) => {
         console.log(initialValues)
-        dispatch(setAvatarId(avatar))
+        dispatch(setAvatarId(initialValues))
 
         if (salary) {
             // console.log(income);
