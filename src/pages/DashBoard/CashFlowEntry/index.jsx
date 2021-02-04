@@ -12,6 +12,7 @@ import SnackBar from '../../../components/SnackBar'
 import Textfield from '../../../components/Textfield'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCashflowValues, setCashFlowApiData } from '../../../redux/Action'
+import { TextField } from '@material-ui/core'
 
 const AvailableBal = ({ label, value }) => (
   <div className="avl-bal-entry">
@@ -112,7 +113,27 @@ function CashFlowEntry(props) {
     props.history.push(commonRoute.selectDreams)
   }
 
-  const [events, setEvents] = useState(false)
+  const [count, setCount] = useState(1)
+
+  const [eventObj, seteventObj] = useState({
+    eventName: '', eventCost: ''
+  })
+
+  const [eventCollection, setEventCollection] = useState([
+    { eventName: '', eventCost: '' }
+  ])
+
+  const addEvents = () => {
+    if (count === 1) {
+      eventCollection.splice(0, 1)
+    }
+    setEventCollection([...eventCollection, eventObj])
+    setCount(count + 1)
+    seteventObj({ eventName: '', eventCost: '' })
+  }
+
+  console.log('eve')
+  console.log(eventCollection)
 
   return (
     <div className="dash-cash-flow-info-page">
@@ -136,9 +157,34 @@ function CashFlowEntry(props) {
         ))}
       </div>
 
+
       <div className="events-wrap">
-        <div className="event-btn" onClick={() => setEvents(!events)}>Add Events</div>
-        {<Events isEnable={events} />}
+        <p className="question">How much would you like to spend for various elective events this year on ? </p>
+        {eventCollection.map((item, index) => (
+          <div key={index} className="event-wrap">
+            {/* <Events eventCollection={eventCollection[index]} /> */}
+            <TextField
+              className="eve-name-qus-field"
+              id={index}
+              label={"Event Name"}
+              name={"eventName"}
+              value={eventObj.eventName}
+              // onChange={(e) => [...eventCollection, { eventName: e.target.value }]}
+              onChange={(e) => (seteventObj({ ...eventObj, eventName: e.target.value }))}
+            />
+            <TextField
+              className="eve-cost-qus-field"
+              id={index}
+              label={"Event Cost"}
+              name={"eventCost"}
+              type="number"
+              value={eventObj.eventCost}
+              onChange={(e) => (seteventObj({ ...eventObj, eventCost: e.target.value }))}
+            />
+          </div>
+        ))}
+        {/* <div className="add-eve-btn" onClick={addEvents}>Add</div> */}
+        <Button className="add-eve-btn" onClick={addEvents} disabled={count > 4}>Add</Button>
       </div>
 
       <div className="btn-wrap">
@@ -146,20 +192,19 @@ function CashFlowEntry(props) {
           className="dreams-btn"
           disabled={!(currentTurn <= 1)}
           onClick={goToSelectDream}
-        >
-          Change Dreams
-        </Button>
+        >Change Dreams</Button>
+        <Button className="info-btn" onClick={handleSubmit}>Try</Button>
       </div>
 
-      <div className="btn-wrap">
+      {/* <div className="btn-wrap">
         <Button className="info-btn" onClick={handleSubmit}>
-          {/* <div className="btn-cont">
+          <div className="btn-cont">
             <InfoIcon className="info-icon" />
             <span className="label">info</span>
-          </div> */}
+          </div>
           Try
         </Button>
-      </div>
+      </div> */}
 
       <SnackBar
         openDialog={!!error}

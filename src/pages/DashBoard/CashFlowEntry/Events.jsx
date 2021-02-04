@@ -1,31 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Textfield from '../../../components/Textfield'
 import clsx from 'clsx'
+import { TextField } from '@material-ui/core'
 
-const EventField = () => {
+
+function Events({ eventName, eventCost, eventCollection }) {
+
+    const handleEveChange = (e) => {
+
+        // const { name, value } = e.target
+
+        // setValues((prev) => ({
+        //     ...prev,
+        //     [name]: value
+        // }))
+    }
+
+    const handleChange = (e) => {
+
+        // const { name, value } = e.target
+
+        // setValues((prev) => ({
+        //     ...prev,
+        //     [name]: value
+        // }))
+    }
+
     return (
-        <div className="add-event">
-            <Textfield
-                className="event-name"
-                placeholder="Event Name"
+        <>
+            <TextField
+                className="eve-name-qus-field"
+                label={"Event Name"}
+                name={"eventName"}
+                value={eventName}
+                onChange={(e) => handleChange(e)}
             />
-            <Textfield
-                className="event-cost"
-                placeholder="$ cost"
+            <TextField
+                className="eve-cost-qus-field"
+                label={"Event Cost"}
+                name={"eventCost"}
+                value={eventCost}
+                onChange={(e) => handleChange(e)}
             />
-        </div>
-    )
-}
-
-function Events({ isEnable }) {
-
-    return (
-        <div className={clsx("add-event-wrap", isEnable && "show-events")}>
-            <EventField />
-            <EventField />
-            <EventField />
-            <EventField />
-        </div>
+        </>
     )
 }
 

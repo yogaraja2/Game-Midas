@@ -58,12 +58,18 @@
 
         .question {
           font-size: 1.5em;
+          font-weight: bold;
         }
 
         .field-wrap {
           display: flex;
           flex-direction: column;
           max-width: 284px;
+
+          .MuiInputBase-input {
+            font-weight: bold;
+            font-size: larger;
+          }
 
           .qus-field {
             margin: 8px 0 0;
@@ -74,38 +80,48 @@
 
     .events-wrap {
       margin-top: 30px;
-
-      .event-btn {
-        @include button;
-        cursor: pointer;
-        padding: 10px;
-        text-align: center;
+      @include w960 {
+        margin-top: 36px;
       }
 
-      .add-event-wrap {
-        display: none;
-        .add-event {
-          margin-top: 5px;
-          display: flex;
-          flex-direction: row;
+      .question {
+        font-weight: bold;
+        font-size: 1.5em;
+      }
 
-          .event-name {
-            width: 200px;
-          }
-          .event-cost {
-            width: 100px;
-          }
-        }
+      .event-wrap {
+        display: flex;
+        flex-direction: row;
 
-        &.show-events {
-          display: block;
+        .eve-name-qus-field {
+          min-width: 200px;
         }
+        .eve-cost-qus-field {
+          max-width: 284px;
+          margin-left: 10px;
+        }
+      }
+      .add-eve-btn {
+        // display: inline-block;
+        // margin-top: 10px;
+        // background-color: var(--primary);
+        // color: white;
+        // padding: 5px 15px;
+        // text-align: center;
+        // border-radius: 5px;
+        // height: 20px;
+        // align-self: flex-end;
+        // cursor: pointer;
+        @include button;
+        padding: 0px;
+        margin-top: 10px;
+        width: 30px;
       }
     }
 
     .btn-wrap {
       position: relative;
-      margin-top: 40px;
+      margin: 40px 0px;
       text-align: center;
 
       .dreams-btn {
