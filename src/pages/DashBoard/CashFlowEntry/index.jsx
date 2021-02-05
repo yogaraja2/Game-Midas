@@ -115,21 +115,29 @@ function CashFlowEntry(props) {
 
   const [count, setCount] = useState(1)
 
-  const [eventObj, seteventObj] = useState({
-    eventName: '', eventCost: ''
-  })
+  // const [eventObj, seteventObj] = useState({
+  //   eventName: '', eventCost: ''
+  // })
 
   const [eventCollection, setEventCollection] = useState([
     { eventName: '', eventCost: '' }
   ])
 
   const addEvents = () => {
-    if (count === 1) {
-      eventCollection.splice(0, 1)
-    }
-    setEventCollection([...eventCollection, eventObj])
+    // if (count === 1) {
+    //   eventCollection.splice(0, 1)
+    // }
+    
+    setEventCollection([...eventCollection, { eventName: '', eventCost: '' }])
     setCount(count + 1)
-    seteventObj({ eventName: '', eventCost: '' })
+    // seteventObj({ eventName: '', eventCost: '' })
+  }
+
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target
+    eventCollection[index][name] = value;
+    console.log(`handleInputChange ${e}`)
+    console.log(name)
   }
 
   console.log('eve')
@@ -168,9 +176,9 @@ function CashFlowEntry(props) {
               id={index}
               label={"Event Name"}
               name={"eventName"}
-              value={eventObj.eventName}
+              value={item.eventName}
               // onChange={(e) => [...eventCollection, { eventName: e.target.value }]}
-              onChange={(e) => (seteventObj({ ...eventObj, eventName: e.target.value }))}
+              onChange={(e) => handleInputChange(e,index)}
             />
             <TextField
               className="eve-cost-qus-field"
@@ -178,13 +186,13 @@ function CashFlowEntry(props) {
               label={"Event Cost"}
               name={"eventCost"}
               type="number"
-              value={eventObj.eventCost}
-              onChange={(e) => (seteventObj({ ...eventObj, eventCost: e.target.value }))}
+              value={item.eventCost}
+              onChange={(e) => handleInputChange(e,index)}
             />
           </div>
         ))}
         {/* <div className="add-eve-btn" onClick={addEvents}>Add</div> */}
-        <Button className="add-eve-btn" onClick={addEvents} disabled={count > 4}>Add</Button>
+        <Button className="add-eve-btn" onClick={addEvents} disabled={count > 3}>Add</Button>
       </div>
 
       <div className="btn-wrap">
