@@ -10,6 +10,8 @@ import cashFlowReducer from './cashFlowReducer'
 import CashflowApiReducer from './CashflowApiReducer'
 import BalanceApiReducer from './BalanceApiReducer'
 import DebtApiReducer from './DebtApiReducer'
+import EventsReducer from './EventsReducer'
+import EventCountReducer from './EventCountReducer'
 
 export const rootReducers = combineReducers({
     signupData: signupReducer,
@@ -19,12 +21,14 @@ export const rootReducers = combineReducers({
     cashFlowData: CashflowApiReducer,
     balancesheetData: BalanceApiReducer,
     debtData: DebtApiReducer,
+    events: EventsReducer,
+    eventCount: EventCountReducer,
 })
 
 const configStorage = {
     key: 'root',
     storage,
-    whitelist: ['selectAvatar', 'dashboard', 'cashFlowValues']
+    whitelist: ['selectAvatar', 'dashboard', 'cashFlowValues', 'events', 'eventCount']
 }
 
 export default persistReducer(configStorage, rootReducers);

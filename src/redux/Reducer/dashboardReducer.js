@@ -2,6 +2,8 @@
 const initialState = {
     currentTurn: 1,
     netWorth: 0,
+    surplusAmt: 0,
+    savingsAmt: 0
 }
 
 const dashboardReducer = (state = initialState, action) => {
@@ -13,6 +15,12 @@ const dashboardReducer = (state = initialState, action) => {
 
         case 'SET_NETWORTH':
             return { ...state, netWorth: action.payload }
+
+        case 'SET_SURPLUS_AMT':
+            return { ...state, surplusAmt: action.payload }
+
+        case 'SET_SAVINGS_AMT':
+            return { ...state, savingsAmt: action.payload }
 
         case 'USER_LOGOUT':
             return state = initialState

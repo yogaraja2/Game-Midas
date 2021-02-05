@@ -28,7 +28,7 @@ const Fields = ({ id, img, label, isSelected, onClick }) => {
 
 function DashBoard() {
 
-  const avatarId = useSelector(state => state.selectAvatar.avatarIcon)
+  const avatarId = useSelector(state => state.selectAvatar.avatarIcon) || 1
   const [viewProfile, setViewProfile] = useState(false)
 
   const dispatch = useDispatch()
@@ -119,12 +119,12 @@ function DashBoard() {
                 id="balance"
                 {...allyProps}
               />
-              <Fields
+              {/* <Fields
                 img="debtIcon"
                 label="Debt"
                 id="debt"
                 {...allyProps}
-              />
+              /> */}
               <Fields
                 img="StatsIcon"
                 label="STATS"

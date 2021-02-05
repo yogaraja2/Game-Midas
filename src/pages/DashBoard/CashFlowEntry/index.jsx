@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GameCoin from '../../../components/GameCoin'
 import Question from './Question'
 import Events from './Events'
@@ -11,7 +11,7 @@ import { commonRoute } from '../../../config/routes'
 import SnackBar from '../../../components/SnackBar'
 import Textfield from '../../../components/Textfield'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCashflowValues, setCashFlowApiData } from '../../../redux/Action'
+import { setCashflowValues, setCashFlowApiData, setEventsCost, setEventCount } from '../../../redux/Action'
 import { TextField } from '@material-ui/core'
 
 const AvailableBal = ({ label, value }) => (
@@ -27,6 +27,12 @@ function CashFlowEntry(props) {
 
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const cashflowValues = useSelector(state => state.cashFlowValues)
+
+  const surplusAmt = useSelector(state => state.dashboard.surplusAmt)
+  const savingAmt = useSelector(state => state.dashboard.savingsAmt)
+
+  const eventState = useSelector(state => state.events)
+  const eventCount = useSelector(state => state.eventCount)
 
   const dispatch = useDispatch()
 
@@ -55,6 +61,31 @@ function CashFlowEntry(props) {
 
   const [values, setValues] = useState(cashflowValues)
 
+  const goToSelectDream = () => {
+    props.history.push(commonRoute.selectDreams)
+  }
+
+  const [count, setCount] = useState(eventCount)
+
+  const [events, setEvents] = useState(eventState)
+
+  const addEvents = () => {
+    setEvents([...events, { eventName: '', eventCost: '' }])
+    setCount(count + 1)
+    dispatch(setEventCount(count))
+  }
+
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const eventField = [...events];
+    eventField[index][name] = value;
+    setEvents(eventField)
+    dispatch(setEventsCost(events))
+  }
+
+  console.log('eve')
+  console.log(events)
+
   const handleSubmit = () => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('midasToken')}`
@@ -67,10 +98,12 @@ function CashFlowEntry(props) {
       retirementSavings: parseInt(values.retirementSavings || 0),
       creditCard: parseInt(values.creditCard || 0),
       // carLoan: parseInt(values.carLoan || 0),
-      studentLoan: parseInt(values.studentLoan || 0)
+      studentLoan: parseInt(values.studentLoan || 0),
+      events
     }
 
     dispatch(setCashflowValues(params))
+    // dispatch(setEventCount(1))
 
     console.log('params')
     console.log(params)
@@ -109,46 +142,12 @@ function CashFlowEntry(props) {
       })
   }
 
-  const goToSelectDream = () => {
-    props.history.push(commonRoute.selectDreams)
-  }
-
-  const [count, setCount] = useState(1)
-
-  // const [eventObj, seteventObj] = useState({
-  //   eventName: '', eventCost: ''
-  // })
-
-  const [eventCollection, setEventCollection] = useState([
-    { eventName: '', eventCost: '' }
-  ])
-
-  const addEvents = () => {
-    // if (count === 1) {
-    //   eventCollection.splice(0, 1)
-    // }
-    
-    setEventCollection([...eventCollection, { eventName: '', eventCost: '' }])
-    setCount(count + 1)
-    // seteventObj({ eventName: '', eventCost: '' })
-  }
-
-  const handleInputChange = (e, index) => {
-    const { name, value } = e.target
-    eventCollection[index][name] = value;
-    console.log(`handleInputChange ${e}`)
-    console.log(name)
-  }
-
-  console.log('eve')
-  console.log(eventCollection)
-
   return (
     <div className="dash-cash-flow-info-page">
-      {/* <div className="avl-bal-wrap">
-        <AvailableBal label="Savings Available" value={500} />
-        <AvailableBal label="Income Available" value={500} />
-      </div> */}
+      <div className="avl-bal-wrap">
+        <AvailableBal label="Income Available" value={surplusAmt < 0 ? 0 : surplusAmt} />
+        <AvailableBal label="Savings Available" value={savingAmt < 0 ? 0 : savingAmt} />
+      </div>
 
       <div className="turn-wrap">
         <h2 className="current-turn">Turn {currentTurn}</h2>
@@ -168,30 +167,29 @@ function CashFlowEntry(props) {
 
       <div className="events-wrap">
         <p className="question">How much would you like to spend for various elective events this year on ? </p>
-        {eventCollection.map((item, index) => (
+        {events.map((item, index) => (
           <div key={index} className="event-wrap">
-            {/* <Events eventCollection={eventCollection[index]} /> */}
             <TextField
               className="eve-name-qus-field"
               id={index}
-              label={"Event Name"}
-              name={"eventName"}
+              label="Event Name"
+              name="eventName"
+              autoComplete="off"
               value={item.eventName}
-              // onChange={(e) => [...eventCollection, { eventName: e.target.value }]}
-              onChange={(e) => handleInputChange(e,index)}
+              onChange={(e) => handleInputChange(e, index)}
             />
             <TextField
               className="eve-cost-qus-field"
               id={index}
-              label={"Event Cost"}
-              name={"eventCost"}
+              label="Event Cost"
+              name="eventCost"
+              autoComplete="off"
               type="number"
               value={item.eventCost}
-              onChange={(e) => handleInputChange(e,index)}
+              onChange={(e) => handleInputChange(e, index)}
             />
           </div>
         ))}
-        {/* <div className="add-eve-btn" onClick={addEvents}>Add</div> */}
         <Button className="add-eve-btn" onClick={addEvents} disabled={count > 3}>Add</Button>
       </div>
 

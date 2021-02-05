@@ -6,16 +6,6 @@ import { TextField } from '@material-ui/core'
 
 function Events({ eventName, eventCost, eventCollection }) {
 
-    const handleEveChange = (e) => {
-
-        // const { name, value } = e.target
-
-        // setValues((prev) => ({
-        //     ...prev,
-        //     [name]: value
-        // }))
-    }
-
     const handleChange = (e) => {
 
         // const { name, value } = e.target

@@ -13,8 +13,9 @@ import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
 // import { setCurrentTurn } from '../../../action'
-import { setCurrentTurn } from '../../../redux/Action'
+import { setCurrentTurn, setSurplusAmt, setSavingsAmt } from '../../../redux/Action'
 import { useSelector, useDispatch } from 'react-redux'
+
 
 function CashFlow(props) {
 
@@ -48,6 +49,12 @@ function CashFlow(props) {
     }
   }, [state])
 
+  useEffect(() => {
+    dispatch(setSurplusAmt(currentData?.userExpenses?.savingsAvailable))
+    dispatch(setSavingsAmt(currentData?.userExpenses?.totalSavings))
+  }, [currentData?.userExpenses])
+
+  // { <CashFlowEntry data={currentData?.userExpenses} /> }
   // useEffect(() => {
 
   //   const score = Object.values(currentData?.satisfactionPoints)
@@ -109,6 +116,7 @@ function CashFlow(props) {
             <StatTotal {...allyProps} />
           </Grid>
         </Card>
+
 
         <h3 className="sec-head sat">Satisfaction Score</h3>
         <SatisfactionCard data={currentData?.satisfactionPoints} />

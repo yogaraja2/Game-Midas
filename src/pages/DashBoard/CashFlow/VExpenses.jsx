@@ -10,6 +10,7 @@ function VExpenses({ size, data }) {
         <Entry label="Living Expenses" value={data?.livingExpenses} />
         <Entry label="Entertainment" value={data?.entertainment} />
         <Entry label="Retirement Savings" value={data?.retirementSavings} />
+        <Entry label="Events Expenses" value={data?.randomEvents} />
         <Entry label="Debt Repayment " value={data?.deptRepayment} />
       </div>
     </Grid>

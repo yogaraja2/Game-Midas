@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.scss'
 import {
     ChartComponent,
@@ -24,6 +24,11 @@ function Stats() {
     })
     // console.log('stats data')
     // console.log(data)
+
+    useEffect(() => {
+        document.getElementById("charts_ChartBorder").setAttribute("opacity", "0.5")
+        document.getElementById("charts1_ChartBorder").setAttribute("opacity", "0.5")
+    })
 
     const scorexaxis = {
         valueType: 'Category',

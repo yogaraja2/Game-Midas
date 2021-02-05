@@ -27,6 +27,20 @@ export const setNetworth = (value) => {
     }
 }
 
+export const setSurplusAmt = (value) => {
+    return {
+        type: 'SET_SURPLUS_AMT',
+        payload: value,
+    }
+}
+
+export const setSavingsAmt = (value) => {
+    return {
+        type: 'SET_SAVINGS_AMT',
+        payload: value,
+    }
+}
+
 export const setCashflowValues = (value) => {
     return {
         type: 'SET_CASHFLOW_VALUES',
@@ -34,9 +48,17 @@ export const setCashflowValues = (value) => {
     }
 }
 
-export const userLogout = () => {
+export const setEventsCost = (value) => {
     return {
-        type: 'USER_LOGOUT'
+        type: 'SET_EVENTS_COST',
+        payload: value,
+    }
+}
+
+export const setEventCount = (value) => {
+    return {
+        type: 'SET_EVENT_COUNT',
+        payload: value,
     }
 }
 
@@ -58,5 +80,11 @@ export const setDebtApiData = (value) => {
     return {
         type: 'SET_DEBT_DATA',
         payload: value,
+    }
+}
+
+export const userLogout = () => {
+    return {
+        type: 'USER_LOGOUT'
     }
 }
