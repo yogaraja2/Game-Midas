@@ -1,7 +1,7 @@
 @import '../../../mixins/common';
 @import '../../../mixins/responsive';
 
-.instructor-login {
+.schoolAdmin-login {
   .home-option-card {
     background: var(--bg-panel-card);
     @include flexCenter;

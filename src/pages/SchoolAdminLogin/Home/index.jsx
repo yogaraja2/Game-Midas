@@ -34,9 +34,9 @@ function Home() {
 
     const clickHandler = () => {
         if (selected === 'leaderboard') {
-            history.push(commonRoute.instructorLogin.studentsLeaderboard)
+            history.push(commonRoute.schoolAdminLogin.studentsLeaderboard)
         } else {
-            history.push(commonRoute.instructorLogin.studentsList)
+            history.push(commonRoute.schoolAdminLogin.instructorsList)
         }
     }
 
@@ -55,7 +55,7 @@ function Home() {
                     {...allyProps}
                 />
                 <Options
-                    label="Students List"
+                    label="Instructors List"
                     imgUrl={`Students`}
                     id="students"
                     {...allyProps}

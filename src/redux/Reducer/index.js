@@ -12,6 +12,7 @@ import BalanceApiReducer from './BalanceApiReducer'
 import DebtApiReducer from './DebtApiReducer'
 import EventsReducer from './EventsReducer'
 import EventCountReducer from './EventCountReducer'
+import DreamsReducer from './DreamsReducer'
 
 export const rootReducers = combineReducers({
     signupData: signupReducer,
@@ -23,12 +24,13 @@ export const rootReducers = combineReducers({
     debtData: DebtApiReducer,
     events: EventsReducer,
     eventCount: EventCountReducer,
+    dreams: DreamsReducer,
 })
 
 const configStorage = {
     key: 'root',
     storage,
-    whitelist: ['selectAvatar', 'dashboard', 'cashFlowValues', 'events', 'eventCount']
+    whitelist: ['selectAvatar', 'dashboard', 'cashFlowValues', 'events', 'eventCount', 'dreams']
 }
 
 export default persistReducer(configStorage, rootReducers);

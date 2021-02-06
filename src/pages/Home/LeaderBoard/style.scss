@@ -6,7 +6,6 @@
   background: var(--bg-panel-card);
   width: 80vw;
   height: 80vh;
-  //   margin: 50px;
   position: relative;
   // overflow: auto;
   display: flex;
@@ -14,16 +13,9 @@
   // background-color: #c51f7a;
 
   .leader-board-container {
-    // margin-top: 2%;
     .top-three-players {
       display: flex;
       justify-content: space-between;
-      // height: 260px;
-      // width: 80%;
-      // margin-left: 10%;
-      // align-items: flex-end;
-      // background-color: #0000ff;
-      // justify-content: space-around;
 
       .player-1 {
         margin-top: -30px;

@@ -8,11 +8,14 @@ import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import API, { URL } from '../../../Api'
 
+import { setDream } from '../../../redux/Action'
+import { useDispatch } from 'react-redux'
+
 const SelectDream = ({ label, imgUrl, cost, points, name, id, dreams, setDreams }) => {
 
     const dreamHandler = () => {
         // setDreams.bind(this, id)
-        setDreams({ id: id, dreamName: name, cost: cost })
+        setDreams({ id: id, dreamName: imgUrl, cost: cost })
     }
     const selected = dreams.id === id ? 'selected' : '';
     // console.log('dreams')
@@ -50,7 +53,7 @@ const SelectCar = ({ label, imgUrl, cost, points, name, id, cars, setCars }) => 
 
     const carsHandler = () => {
         // setCars.bind(this, id)
-        setCars({ id: id, carName: name, cost: cost })
+        setCars({ id: id, carName: imgUrl, cost: cost })
     }
     const selected = cars.id === id ? 'selected' : ''
 
@@ -80,7 +83,7 @@ const SelectHouse = ({ label, imgUrl, cost, points, name, id, houses, setHouses 
 
     const houseHandler = () => {
         // setHouses.bind(this, id)
-        setHouses({ id: id, houseName: name, cost: cost })
+        setHouses({ id: id, houseName: imgUrl, cost: cost })
     }
     const selected = houses.id === id ? 'selected' : ''
     return (
@@ -108,19 +111,21 @@ const SelectHouse = ({ label, imgUrl, cost, points, name, id, houses, setHouses 
 
 function SelectDreams() {
 
+    const dispatch = useDispatch()
+
     const [dreams, setDreams] = useState({
         id: 1,
-        dreamName: 'visiting',
+        dreamName: 'Traveller',
         cost: 3000,
     });
     const [cars, setCars] = useState({
         id: 1,
-        carName: 'relisibleCar',
+        carName: 'RelisibleCar',
         cost: 5000,
     });
     const [houses, setHouses] = useState({
         id: 1,
-        houseName: 'studioApt',
+        houseName: 'StudioApt',
         cost: 100000,
     });
 
@@ -140,7 +145,9 @@ function SelectDreams() {
     const auth = 'Bearer '.concat(token)
 
     const goToDashboard = (initialValues) => {
+        
         console.log(initialValues)
+        dispatch(setDream(initialValues))
         history.push(commonRoute.dashboard.mainDash)
 
         API.post(URL.dreamSelection, initialValues, {

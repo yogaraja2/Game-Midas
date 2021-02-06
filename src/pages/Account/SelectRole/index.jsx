@@ -126,12 +126,8 @@ function SelectRole() {
             })
             .catch((err) => {
                 setMessage(err.message)
-                // setDefaultValues({})
                 setCount(true)
             })
-        // .finally(() => {
-        //     setDefaultValues({})
-        // })
     }
 
     useEffect(() => {
@@ -151,11 +147,14 @@ function SelectRole() {
         if (reason === 'clickaway') {
             return
         }
-        if (response?.status === 200 && (defaults.role === 'Individual' || defaults.role === 'Student')) {
+        if (response?.status === 200 && (response?.data?.role === 'Individual' || response?.data?.role === 'Student')) {
             history.push(commonRoute.gameOptions)
         }
-        else if (response?.status === 200 && (defaults.role === 'Instructor')) {
-            history.push(commonRoute.instructorLogin)
+        else if (response?.status === 200 && (response?.data?.role === 'Instructor')) {
+            history.push(commonRoute.instructorLogin.instructorHome)
+        }
+        else if (response?.status === 200 && (response?.data?.role === 'School_Admin')) {
+            history.push(commonRoute.schoolAdminLogin.schoolAdminHome)
         }
         setError(false)
     }

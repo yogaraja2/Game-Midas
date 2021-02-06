@@ -1,0 +1,8 @@
+@import '../../../mixins/common';
+
+.students-list-card {
+  background: var(--bg-panel-card);
+  height: 90%;
+  position: relative;
+  overflow: auto;
+}

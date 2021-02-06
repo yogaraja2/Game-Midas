@@ -130,7 +130,7 @@ function CashFlow(props) {
 
           {currentData?.currentTurn === dataYear && (
             <div className="btn-wrap" onClick={handleNext}>
-              <Button className="btn nxt-btn">
+              <Button className="btn nxt-btn" disabled={currentData?.gameLength === currentData?.currentTurn}>
                 Next Turn
               </Button>
             </div>

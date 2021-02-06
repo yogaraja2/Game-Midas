@@ -46,19 +46,6 @@ function Stats() {
         stripLines: [{ start: 0, size: 3, sizeType: 'Pixel', color: 'rgba(167,169,171, 0.3)' }]
     };
 
-    // const scoreData = [
-    //     { x: '1', y: 3500 },
-    //     { x: '2', y: 2000 },
-    //     { x: '3', y: -2500 },
-    //     { x: '4', y: 3500 },
-    //     { x: '5', y: 4200 },
-    //     { x: '6', y: 3000 },
-    //     { x: '7', y: -1800 },
-    //     { x: '8', y: 1000 },
-    //     { x: '9', y: 1500 },
-    //     { x: '10', y: -2600 },
-    // ]
-
     const score = data?.score;
 
     const networthxaxis = {
@@ -69,42 +56,18 @@ function Stats() {
         // title: 'weeks',
     }
     const networthyaxis = {
-        maximum: 100000, interval: 10000, majorGridLines: { width: 0 }, labelFormat: '${value}',
+        maximum: 500000, interval: 50000, majorGridLines: { width: 0 }, labelFormat: '${value}',
         labelStyle: {
             fontWeight: "Bold"
         },
         stripLines: [{ start: 0, size: 3, sizeType: 'Pixel', color: 'rgba(167,169,171, 0.3)' }]
     }
-    // const networthData = [
-    //     { x: '1', y: 5000 },
-    //     { x: '2', y: 4000 },
-    //     { x: '3', y: 3500 },
-    //     { x: '4', y: -2000 },
-    //     { x: '5', y: 4500 },
-    //     { x: '6', y: 3300 },
-    //     { x: '7', y: 3300 },
-    //     { x: '8', y: 1000 },
-    //     { x: '9', y: -1000 },
-    //     { x: '10', y: -750 },
-    // ]
 
     const netWorth = data?.netWorth;
     const retirementSavings = data?.retirementSavings;
 
 
     const marker = { visible: true, width: 10, height: 10 }
-    // const retirementData = [
-    //     { x: '1', y: 7000 },
-    //     { x: '2', y: 4000 },
-    //     { x: '3', y: 2000 },
-    //     { x: '4', y: -2000 },
-    //     { x: '5', y: 5000 },
-    //     { x: '6', y: 3300 },
-    //     { x: '7', y: 3300 },
-    //     { x: '8', y: 1000 },
-    //     { x: '9', y: -1000 },
-    //     { x: '10', y: -750 },
-    // ]
 
     return (
         <Grid container className="stats-main">

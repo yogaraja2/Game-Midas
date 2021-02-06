@@ -13,6 +13,13 @@ export const setAvatarId = (value) => {
     }
 }
 
+export const setDream = (value) => {
+    return {
+        type: 'SET_DREAMS',
+        payload: value,
+    }
+}
+
 export const setCurrentTurn = (value) => {
     return {
         type: 'SET_CURRENT_TURN',

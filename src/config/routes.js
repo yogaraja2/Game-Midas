@@ -25,5 +25,13 @@ export const commonRoute = {
     studentsLeaderboard: '/instructor/studentsLeaderboard',
     studentsList: '/instructor/studentsList',
     studentStats: '/instructor/studentStats',
+  },
+
+  schoolAdminLogin: {
+    default: '/schoolAdmin',
+    schoolAdminHome: '/schoolAdmin/home',
+    studentsLeaderboard: '/schoolAdmin/studentsLeaderboard',
+    instructorsList: '/schoolAdmin/instructorsList',
+    studentStats: '/schoolAdmin/studentStats',
   }
 }

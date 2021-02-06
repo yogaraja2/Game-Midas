@@ -1,6 +1,7 @@
 import { commonRoute } from "../../config/routes";
 import Home from './Home'
-
+import LeaderBoard from './LeaderBoard'
+import StudentsList from './Students'
 
 export const instructorRoutes = [
     {
@@ -15,5 +16,21 @@ export const instructorRoutes = [
             exact: true,
             to: commonRoute.instructorLogin.instructorHome
         }
+    },
+    {
+        name: "Students LeaderBoard",
+        props: {
+            path: commonRoute.instructorLogin.studentsLeaderboard,
+            component: LeaderBoard,
+            exact: true
+        },
+    },
+    {
+        name: "Students List",
+        props: {
+            path: commonRoute.instructorLogin.studentsList,
+            component: StudentsList,
+            exact: true
+        },
     },
 ]

@@ -3,8 +3,14 @@ import { Grid } from '@material-ui/core'
 import AssetCard from '../../../components/AssetCard'
 import SellPopup from './SellPopup'
 import BuyPopup from './BuyPopup'
+import { useSelector } from 'react-redux'
 
 function Assets({ data, isEnablesell }) {
+
+  const house = useSelector(state => state.dreams.house.houseName)
+  const car = useSelector(state => state.dreams.car.carName)
+
+
   const [confDlg, setConfDlg] = useState({
     status: false,
     data: null,
@@ -40,7 +46,7 @@ function Assets({ data, isEnablesell }) {
   return (
     <Grid container spacing={3} className="assets-wrap">
       <AssetCard
-        img="FullLoadCar"
+        img={car || "FullLoadCar"}
         value={data?.vehicle?.price}
         isBought
         isEnablesell={isEnablesell}
@@ -48,18 +54,18 @@ function Assets({ data, isEnablesell }) {
         onClick={handleClick.bind(this, 0, false)}
         onSell={handleClick.bind(
           this,
-          { img: 'FullLoadCar', name: 'car' },
+          { img: car, name: 'car' },
           true
         )}
       />
       <AssetCard
-        img="Rambler"
+        img={house || "Rambler"}
         value={data?.house?.price}
         isBought
         isEnablesell={isEnablesell}
         {...allyProps}
         onClick={handleClick.bind(this, 1, false)}
-        onSell={handleClick.bind(this, { img: 'Rambler', name: 'House' }, true)}
+        onSell={handleClick.bind(this, { img: house, name: 'House' }, true)}
       />
       <AssetCard img="savings" value={data?.chekingAndSavings} {...allyProps} />
       <AssetCard img="retire" value={data?.retirementSavings} {...allyProps} />
