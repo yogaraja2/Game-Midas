@@ -6,6 +6,8 @@ const BalanceApiReducer = (state = initialState, action) => {
 
         case 'SET_BALANCE_DATA':
             return state = action.payload
+        case 'SET_NEW_GAME':
+            return state = initialState
         case 'USER_LOGOUT':
             return state = initialState
 

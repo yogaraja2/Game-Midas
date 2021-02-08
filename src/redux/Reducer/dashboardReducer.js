@@ -22,6 +22,9 @@ const dashboardReducer = (state = initialState, action) => {
         case 'SET_SAVINGS_AMT':
             return { ...state, savingsAmt: action.payload }
 
+        case 'SET_NEW_GAME':
+            return state = initialState
+
         case 'USER_LOGOUT':
             return state = initialState
 

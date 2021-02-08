@@ -5,9 +5,11 @@ import pointIcon from '../../../assets/img/pointsIcon.svg'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { useSelector, useDispatch } from 'react-redux'
+import { setNewGame } from '../../../redux/Action'
 
 function MainDash() {
     const turnsLeft = useSelector(state => state.selectAvatar.gameLength)
+    const dispatch = useDispatch()
 
     const history = useHistory()
 
@@ -15,8 +17,13 @@ function MainDash() {
         history.push(commonRoute.leaderboard)
     }
 
+    const goToHomepage = () => {
+        dispatch(setNewGame())
+        history.push(commonRoute.gameOptions)
+    }
+
     const goToNextTurn = () => {
-        
+
     }
 
     return (
@@ -56,11 +63,14 @@ function MainDash() {
                 <div className="view-leaderboard" onClick={goToLeaderBoard}>
                     <div className="leaderboard-btn">View Leaderboard</div>
                 </div>
-                <div className="next-turn-wrap" onClick={goToNextTurn}>
+                <div className="view-leaderboard" onClick={goToHomepage}>
+                    <div className="leaderboard-btn">New Game</div>
+                </div>
+                {/* <div className="next-turn-wrap" onClick={goToNextTurn}>
                     <div className="nxt-turn-btn">
                         <img src={require('../../../assets/img/nexTurn.svg').default} />
                     </div>
-                </div>
+                </div> */}
             </div>
 
         </Grid>

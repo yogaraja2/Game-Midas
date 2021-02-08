@@ -18,7 +18,7 @@ const AvailableBal = ({ label, value }) => (
   <div className="avl-bal-entry">
     <span className="label">{label}</span>
     <span className="value-wrap">
-      <GameCoin value={value} />
+      <GameCoin value={value} weight="bold" />
     </span>
   </div>
 )

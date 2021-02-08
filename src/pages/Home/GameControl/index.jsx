@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Grid } from '@material-ui/core'
 import { commonRoute } from '../../../config/routes'
 import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import './style.scss'
+import { useSelector } from 'react-redux'
 
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
   return (
@@ -29,6 +30,11 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 function GameControl() {
   const [selected, setSelected] = useState('new')
   const [isLogged, setIsLogged] = useState(false)
+  const currentTurn = useSelector(state => state.dashboard.currentTurn)
+
+  useEffect(() => {
+    currentTurn > 1 && setIsLogged(true)
+  }, [])
 
   const allyProps = { selected, setSelected }
   const history = useHistory()
@@ -37,14 +43,12 @@ function GameControl() {
     if (selected === 'leaderboard') {
       history.push(commonRoute.leaderboard)
     } else if (selected == 'new') {
-      // setIsLogged(true)
-      // console.log('click '+isLogged)
       history.push(commonRoute.selectAvatar)
     } else {
       history.push(commonRoute.dashboard.mainDash)
     }
   }
-  console.log('first=> ' + isLogged)
+  
   return (
     <Grid item xs={11} md={10} className="game-option-card">
       <Grid

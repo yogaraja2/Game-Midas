@@ -13,8 +13,8 @@ import { getOriginPath } from '../../../utils/commonFunctions'
 import './style.scss'
 import API, { URL } from '../../../Api'
 import { useSelector, useDispatch } from 'react-redux'
-import { setResponseData } from '../../../action'
-// import { setResponseData } from '../../../redux/Action'
+// import { setResponseData } from '../../../action'
+import { setResponseData } from '../../../redux/Action'
 import axios from 'axios'
 
 

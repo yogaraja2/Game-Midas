@@ -20,6 +20,9 @@ const cashFlowReducer = (state = initialState, action) => {
                 studentLoan: action.payload.studentLoan
             }
 
+        case 'SET_NEW_GAME':
+            return state = initialState
+
         case 'USER_LOGOUT':
             return state = initialState
 

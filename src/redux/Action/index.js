@@ -1,3 +1,8 @@
+export const setNewGame = () =>{
+    return{
+        type: 'SET_NEW_GAME'
+    }
+}
 
 export const setResponseData = (value) => {
     return {

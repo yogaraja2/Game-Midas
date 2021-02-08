@@ -12,6 +12,8 @@ const EventsReducer = (state = initialState, action) => {
             return state = action.payload
         case 'USER_LOGOUT':
             return state = initialState
+        case 'SET_NEW_GAME':
+            return state = initialState
 
         default: return state
     }

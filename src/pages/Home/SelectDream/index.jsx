@@ -9,7 +9,7 @@ import { commonRoute } from '../../../config/routes'
 import API, { URL } from '../../../Api'
 
 import { setDream } from '../../../redux/Action'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const SelectDream = ({ label, imgUrl, cost, points, name, id, dreams, setDreams }) => {
 
@@ -111,23 +111,14 @@ const SelectHouse = ({ label, imgUrl, cost, points, name, id, houses, setHouses 
 
 function SelectDreams() {
 
+    const dreamsCollection = useSelector(state => state.dreams)
+    console.log(dreamsCollection)
+
     const dispatch = useDispatch()
 
-    const [dreams, setDreams] = useState({
-        id: 1,
-        dreamName: 'Traveller',
-        cost: 3000,
-    });
-    const [cars, setCars] = useState({
-        id: 1,
-        carName: 'RelisibleCar',
-        cost: 5000,
-    });
-    const [houses, setHouses] = useState({
-        id: 1,
-        houseName: 'StudioApt',
-        cost: 100000,
-    });
+    const [dreams, setDreams] = useState(dreamsCollection.dream);
+    const [cars, setCars] = useState(dreamsCollection.car);
+    const [houses, setHouses] = useState(dreamsCollection.house);
 
     const restDream = { dreams, setDreams }
     const restCar = { cars, setCars }
@@ -145,7 +136,7 @@ function SelectDreams() {
     const auth = 'Bearer '.concat(token)
 
     const goToDashboard = (initialValues) => {
-        
+
         console.log(initialValues)
         dispatch(setDream(initialValues))
         history.push(commonRoute.dashboard.mainDash)

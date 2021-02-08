@@ -10,7 +10,8 @@ const avatarReducer = (state = initialState, action) => {
 
         case 'SET_AVATAR_ID':
             return state = action.payload
-
+        case 'SET_NEW_GAME':
+            return state = initialState
         case 'USER_LOGOUT':
             return state = initialState
 
