@@ -28,6 +28,7 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 
 function GameControl() {
   const [selected, setSelected] = useState('new')
+  const [isLogged, setIsLogged] = useState(false)
 
   const allyProps = { selected, setSelected }
   const history = useHistory()
@@ -35,13 +36,15 @@ function GameControl() {
   const clickHandler = () => {
     if (selected === 'leaderboard') {
       history.push(commonRoute.leaderboard)
-    } else if (selected == 'resume') {
-      history.push(commonRoute.dashboard.default)
-    } else {
+    } else if (selected == 'new') {
+      // setIsLogged(true)
+      // console.log('click '+isLogged)
       history.push(commonRoute.selectAvatar)
+    } else {
+      history.push(commonRoute.dashboard.mainDash)
     }
   }
-
+  console.log('first=> ' + isLogged)
   return (
     <Grid item xs={11} md={10} className="game-option-card">
       <Grid
@@ -57,7 +60,7 @@ function GameControl() {
           {...allyProps}
         />
         <Options label="New" imgUrl={`New`} id="new" {...allyProps} />
-        <Options label="Resume" imgUrl={'Resume'} id="resume" {...allyProps} />
+        {isLogged && (<Options label="Resume" imgUrl={'Resume'} id="resume" {...allyProps} />)}
       </Grid>
       <div className="btn-wrap">
         <Button className="nxt-btn" onClick={clickHandler}>

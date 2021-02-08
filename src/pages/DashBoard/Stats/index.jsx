@@ -39,7 +39,9 @@ function Stats() {
         title: 'Years',
     }
     const scoreyaxis = {
-        maximum: 25000, interval: 2000, majorGridLines: { width: 0 },
+        //maximum: 25000, interval: 2000, 
+       // rangePadding: 'Round',
+        majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
         },
@@ -56,7 +58,8 @@ function Stats() {
         // title: 'weeks',
     }
     const networthyaxis = {
-        maximum: 500000, interval: 50000, majorGridLines: { width: 0 }, labelFormat: '${value}',
+        // maximum: 500000, interval: 50000,
+     majorGridLines: { width: 0 }, labelFormat: '${value}',
         labelStyle: {
             fontWeight: "Bold"
         },
