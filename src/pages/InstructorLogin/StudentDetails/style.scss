@@ -5,4 +5,18 @@
   height: 90%;
   position: relative;
   overflow: auto;
+
+  .stu-detail-wrap {
+    width: 80%;
+    margin: 0px auto;
+    height: 80%;
+    background: white;
+
+    div {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 20px;
+      padding: 50px;
+    }
+  }
 }

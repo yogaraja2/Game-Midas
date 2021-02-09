@@ -1,5 +1,5 @@
-export const setNewGame = () =>{
-    return{
+export const setNewGame = () => {
+    return {
         type: 'SET_NEW_GAME'
     }
 }
@@ -94,6 +94,17 @@ export const setDebtApiData = (value) => {
         payload: value,
     }
 }
+
+export const setStudentDetail = (value) => {
+    return {
+        type: 'SET_STUDENT_DETAIL',
+        payload: value,
+    }
+}
+
+
+
+
 
 export const userLogout = () => {
     return {
