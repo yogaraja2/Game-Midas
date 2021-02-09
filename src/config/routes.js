@@ -32,6 +32,7 @@ export const commonRoute = {
     schoolAdminHome: '/schoolAdmin/home',
     studentsLeaderboard: '/schoolAdmin/studentsLeaderboard',
     instructorsList: '/schoolAdmin/instructorsList',
+    studentsList: '/schoolAdmin/studentsList',
     studentStats: '/schoolAdmin/studentStats',
   }
 }

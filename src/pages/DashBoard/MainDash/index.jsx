@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import './styles.scss'
 import { Grid } from '@material-ui/core'
 import pointIcon from '../../../assets/img/pointsIcon.svg'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { useSelector, useDispatch } from 'react-redux'
 import { setNewGame } from '../../../redux/Action'
+import { API } from '../../../config/apis'
+import Fetch from '../../../Api'
+import { setCurrentTurn } from '../../../redux/Action'
 
 function MainDash() {
-    const turnsLeft = useSelector(state => state.selectAvatar.gameLength)
+
+    const gameLength = useSelector(state => state.selectAvatar.gameLength)
+    const currentTurn = useSelector(state => state.dashboard.currentTurn)
+
+    const turnsLeft = gameLength - currentTurn;
     const dispatch = useDispatch()
 
     const history = useHistory()
@@ -18,12 +25,48 @@ function MainDash() {
     }
 
     const goToHomepage = () => {
-        dispatch(setNewGame())
-        history.push(commonRoute.gameOptions)
+        const token = localStorage.getItem('midasToken')
+        const auth = 'Bearer '.concat(token)
+        console.log('token ' + token)
+
+        Fetch.get(API.gamePlay.cashFlow.newGame, {
+            headers: {
+                Authorization: auth
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                if (res.status === 200) {
+                    dispatch(setNewGame())
+                    history.push(commonRoute.gameOptions)
+                }
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+
     }
 
     const goToNextTurn = () => {
+        const token = localStorage.getItem('midasToken')
+        const auth = 'Bearer '.concat(token)
+        console.log('token ' + token)
 
+        Fetch.get(API.gamePlay.cashFlow.nextTurn, {
+            headers: {
+                Authorization: auth
+            }
+        })
+            .then((res) => {
+                console.log(res)
+                if (res.status === 200) {
+                    dispatch(setCurrentTurn(currentTurn + 1))
+                    history.push(commonRoute.dashboard.cashFlow)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     return (
@@ -66,11 +109,11 @@ function MainDash() {
                 <div className="view-leaderboard" onClick={goToHomepage}>
                     <div className="leaderboard-btn">New Game</div>
                 </div>
-                {/* <div className="next-turn-wrap" onClick={goToNextTurn}>
+                <div className="next-turn-wrap" onClick={goToNextTurn}>
                     <div className="nxt-turn-btn">
                         <img src={require('../../../assets/img/nexTurn.svg').default} />
                     </div>
-                </div> */}
+                </div>
             </div>
 
         </Grid>

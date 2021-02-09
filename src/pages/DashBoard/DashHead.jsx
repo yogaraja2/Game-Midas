@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 function DashHead({ toggleMenu }) {
 
-  const netWorth = useSelector(state => state.dashboard.netWorth)
+  const savingsAmt = useSelector(state => state.dashboard.savingsAmt)
 
   return (
     <div className="dashboard-header">
@@ -25,6 +25,14 @@ function DashHead({ toggleMenu }) {
       </div>
 
       <div className="right-part">
+        <div className="cash-wrap">
+          <img
+            src={require('../../assets/img/doller 2.svg').default}
+            alt="Coin"
+            className="cash-icon"
+          />
+          <span className="cash-value">${savingsAmt}</span>
+        </div>
         {/* <div className="total-cash">
           <div className="title-wrap">
             <h3>NetWorth</h3>

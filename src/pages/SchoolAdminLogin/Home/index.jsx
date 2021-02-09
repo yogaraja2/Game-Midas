@@ -27,7 +27,7 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 }
 
 function Home() {
-    const [selected, setSelected] = useState('students')
+    const [selected, setSelected] = useState('instructors')
 
     const allyProps = { selected, setSelected }
     const history = useHistory()
@@ -57,7 +57,7 @@ function Home() {
                 <Options
                     label="Instructors List"
                     imgUrl={`Students`}
-                    id="students"
+                    id="instructors"
                     {...allyProps}
                 />
 

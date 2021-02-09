@@ -12,7 +12,6 @@ import { useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-// import { setCurrentTurn } from '../../../action'
 import { setCurrentTurn, setSurplusAmt, setSavingsAmt } from '../../../redux/Action'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -37,7 +36,6 @@ function CashFlow(props) {
   }
 
   const switchToEntry = () => {
-
     props.history.push(commonRoute.dashboard.cashFlow)
   }
 
@@ -54,46 +52,37 @@ function CashFlow(props) {
     dispatch(setSavingsAmt(currentData?.userExpenses?.totalSavings))
   }, [currentData?.userExpenses])
 
-  // { <CashFlowEntry data={currentData?.userExpenses} /> }
-  // useEffect(() => {
 
-  //   const score = Object.values(currentData?.satisfactionPoints)
-  //   let flag = true
-  //   for (let i of score) {
-  //     if (i <= 1) {
-  //       flag = false
-  //       break
+  // const handleNext = () => {
+  //   const token = localStorage.getItem('midasToken')
+  //   const auth = 'Bearer '.concat(token)
+  //   console.log('token ' + token)
+
+  //   Fetch.get(API.gamePlay.cashFlow.nextTurn, {
+  //     headers: {
+  //       Authorization: auth
   //     }
-  //   }
-  //   setPassed(flag)
-  // }, [dataYear, currentData])
+  //   })
+  //     .then((res) => {
+  //       // console.log('ok test')
+  //       console.log(res)
+  //       if (dataYear <= currentData.gameLength) {
+  //         if (currentData.currentTurn === dataYear) {
+  //           dispatch(setCurrentTurn(dataYear + 1))
+  //           // switchToEntry()
+  //           props.history.push(commonRoute.dashboard.mainDash)
+  //           // if (isPassed) switchToEntry()
+  //         }
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       // console.log('not ok')
+  //       console.log(err)
+  //     })
+  // }
 
-  const handleNext = () => {
-
-    const token = localStorage.getItem('midasToken')
-    const auth = 'Bearer '.concat(token)
-    console.log('token ' + token)
-
-    Fetch.get(API.gamePlay.cashFlow.nextTurn, {
-      headers: {
-        Authorization: auth
-      }
-    })
-      .then((res) => {
-        console.log('ok test')
-        console.log(res)
-        if (dataYear <= currentData.gameLength) {
-          if (currentData.currentTurn === dataYear) {
-            dispatch(setCurrentTurn(dataYear + 1))
-            switchToEntry()
-            // if (isPassed) switchToEntry()
-          }
-        }
-      })
-      .catch((err) => {
-        console.log('not ok')
-        console.log(err)
-      })
+  const goToDashboard = () => {
+    props.history.push(commonRoute.dashboard.mainDash)
   }
 
   return (
@@ -127,14 +116,20 @@ function CashFlow(props) {
               Back
             </Button>
           </div>
+          <div className="btn-wrap" onClick={goToDashboard}>
+            <Button className="btn nxt-btn">
+              Dashboard
+            </Button>
+          </div>
 
-          {currentData?.currentTurn === dataYear && (
+          {/* {currentData?.currentTurn === dataYear && (
             <div className="btn-wrap" onClick={handleNext}>
               <Button className="btn nxt-btn" disabled={currentData?.gameLength === currentData?.currentTurn}>
                 Next Turn
               </Button>
             </div>
-          )}
+          )} */}
+          
         </div>
       </div>
     </div>

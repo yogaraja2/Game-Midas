@@ -54,7 +54,9 @@ function CashFlowEntry(props) {
       fields: [
         { id: 1, name: 'creditCard', label: 'Credit Card' },
         { id: 2, name: 'carLoan', label: 'Car Loan' },
-        { id: 3, name: 'studentLoan', label: 'Student Loan' }
+        { id: 3, name: 'studentLoan', label: 'Student Loan' },
+        { id: 4, name: 'mortgage', label: 'Mortgage' },
+        { id: 5, name: 'personalLoan', label: 'Personal Loan' }
       ]
     }
   ]
@@ -97,21 +99,22 @@ function CashFlowEntry(props) {
       entertainment: parseInt(values.entertainment || 0),
       retirementSavings: parseInt(values.retirementSavings || 0),
       creditCard: parseInt(values.creditCard || 0),
-      // carLoan: parseInt(values.carLoan || 0),
+      carLoan: parseInt(values.carLoan || 0),
       studentLoan: parseInt(values.studentLoan || 0),
+      mortgage: parseInt(values.mortgage || 0),
+      personalLoan: parseInt(values.personalLoan || 0),
       events
     }
 
     dispatch(setCashflowValues(params))
-    // dispatch(setEventCount(1))
 
-    console.log('params')
-    console.log(params)
+    // console.log('params')
+    // console.log(params)
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {
-        console.log('cashflow response ')
-        console.log(res)
+        // console.log('cashflow response ')
+        // console.log(res)
 
         if (res.status === 200) {
           dispatch(setCashFlowApiData(res.data))

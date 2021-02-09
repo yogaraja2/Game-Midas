@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 
 function StudentDetails() {
-    const studentDetail = useSelector(state => state?.studentDetail)
+    const studentDetail = useSelector(state => state.studentDetail)
     return (
         <Grid item xs={12} md={10} className="student-details-card">
             <div className="title">

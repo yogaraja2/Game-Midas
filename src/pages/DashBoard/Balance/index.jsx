@@ -9,12 +9,13 @@ import { API } from '../../../config/apis'
 import HighlightCard from '../../../components/HighlightCard'
 // import { setNetworth } from '../../../action'
 import { setNetworth, setBalanceApiData } from '../../../redux/Action'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 
 function Balance() {
-
+  
+  const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const dispatch = useDispatch()
-  const [dataYear, setDataYear] = useState(1)
+  const [dataYear, setDataYear] = useState(currentTurn)
   const { data } = useFetch({
     url: API.gamePlay.balance
   })

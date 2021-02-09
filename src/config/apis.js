@@ -4,6 +4,7 @@ export const API = {
     cashFlow: {
       entry: '/cashflow',
       nextTurn: '/nextTurn',
+      newGame: 'newGame',
     },
     balance: '/balancesheet',
     dept: '/deptManagement',

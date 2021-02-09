@@ -3,7 +3,10 @@ const initialState = {
     entertainment: null,
     retirementSavings: null,
     creditCard: null,
+    carLoan: null,
     studentLoan: null,
+    mortgage: null,
+    personalLoan: null
 }
 
 const cashFlowReducer = (state = initialState, action) => {
@@ -17,7 +20,10 @@ const cashFlowReducer = (state = initialState, action) => {
                 entertainment: action.payload.entertainment,
                 retirementSavings: action.payload.retirementSavings,
                 creditCard: action.payload.creditCard,
-                studentLoan: action.payload.studentLoan
+                carLoan: action.payload.carLoan,
+                studentLoan: action.payload.studentLoan,
+                mortgage: action.payload.mortgage,
+                personalLoan: action.payload.personalLoan
             }
 
         case 'SET_NEW_GAME':

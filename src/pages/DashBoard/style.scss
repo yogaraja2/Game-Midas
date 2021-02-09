@@ -173,39 +173,37 @@
         .m-logo {
           height: 50px;
         }
-
         // revenue
-        .total-cash {
-          display: flex;
-          flex-direction: column;
-          padding: 5px;
-          background-color: #009ffd;
+        .cash-wrap {
+          @include flexCenterRow;
+          padding: 5px 10px;
           border-radius: 5px;
-          @include flexCenter;
-
-          .title-wrap {
-            text-align: center;
-            color: white;
-            font-size: 1rem;
+          .cash-icon {
+            margin-right: 8px;
+            width: 25px;
+            height: 25px;
           }
 
-          .cash-wrap {
-            @include flexCenterRow;
-            background-color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            .cash-icon {
-              margin-right: 8px;
-              width: 25px;
-              height: 25px;
-            }
-
-            .cash-value {
-              font-size: 1.5em;
-              font-weight: 700;
-            }
+          .cash-value {
+            font-size: 1.5em;
+            font-weight: 700;
           }
         }
+
+        // .total-cash {
+        //   display: flex;
+        //   flex-direction: column;
+        //   padding: 5px;
+        //   background-color: #009ffd;
+        //   border-radius: 5px;
+        //   @include flexCenter;
+
+        //   .title-wrap {
+        //     text-align: center;
+        //     color: white;
+        //     font-size: 1rem;
+        //   }
+        // }
 
         @include w600 {
           padding: 24px;

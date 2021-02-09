@@ -156,11 +156,13 @@
         &.neg-sat .value {
           background: rgba(255, 71, 87, 0.1);
           color: var(--error);
+          font-weight: bold;
         }
 
         &.pve-sat .value {
           background: rgba(46, 213, 115, 0.1);
           color: var(--success);
+          font-weight: bold;
         }
 
         .label {
@@ -178,9 +180,15 @@
       display: flex;
       justify-content: space-between;
 
-      .prev-btn {
-        @include buttonSec;
-        margin-right: 24px;
+      .btn-wrap {
+        .prev-btn {
+          @include button;
+          margin-right: 24px;
+        }
+        .nxt-btn {
+          width: 150px;
+          padding:6px 3px;
+        }
       }
     }
   }

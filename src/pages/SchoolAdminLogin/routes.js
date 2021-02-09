@@ -1,6 +1,9 @@
 import { commonRoute } from "../../config/routes";
 import Home from './Home'
 import LeaderBoard from './LeaderBoard'
+import InstructorsList from './InstructorsList'
+import StudentsList from './StudentsList'
+import StudentDetails from './StudentDetails'
 
 
 export const schoolAdminRoutes = [
@@ -24,10 +27,29 @@ export const schoolAdminRoutes = [
             component: LeaderBoard,
             exact: true
         },
-        redirection: {
-            path: commonRoute.home,
-            exact: true,
-            to: commonRoute.schoolAdminLogin.studentsLeaderboard
-        }
+    },
+    {
+        name: "Instructors List",
+        props: {
+            path: commonRoute.schoolAdminLogin.instructorsList,
+            component: InstructorsList,
+            exact: true
+        },
+    },
+    {
+        name: "Students List",
+        props: {
+            path: commonRoute.schoolAdminLogin.studentsList,
+            component: StudentsList,
+            exact: true
+        },
+    },
+    {
+        name: "Student Detail",
+        props: {
+            path: commonRoute.schoolAdminLogin.studentStats,
+            component: StudentDetails,
+            exact: true
+        },
     },
 ]

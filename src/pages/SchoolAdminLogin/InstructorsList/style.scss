@@ -1,6 +1,6 @@
 @import '../../../mixins/common';
 
-.students-list-card {
+.instructors-list-card {
   background: var(--bg-panel-card);
   height: 90%;
   position: relative;
@@ -12,7 +12,7 @@
     margin: 10px 20px;
   }
 
-  .students-list-wrap {
+  .instructors-list-wrap {
     width: 80%;
     margin: 3% auto;
     background: white;
@@ -22,7 +22,7 @@
       margin: 3% auto;
     }
 
-    .student-field-wrap {
+    .instructor-field-wrap {
       padding: 10px;
       cursor: pointer;
       display: flex;
