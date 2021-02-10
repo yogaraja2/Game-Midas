@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.scss'
 import { Grid } from '@material-ui/core'
 import pointIcon from '../../../assets/img/pointsIcon.svg'
@@ -12,10 +12,33 @@ import { setCurrentTurn } from '../../../redux/Action'
 
 function MainDash() {
 
+    const [details, setDetails] = useState(null)
+
+    const token = localStorage.getItem('midasToken')
+    const auth = 'Bearer '.concat(token)
+
+    useEffect(() => {
+        Fetch.get(API.gamePlay.mainDashboard, {
+            headers: {
+                Authorization: auth
+            }
+        })
+            .then(res => {
+                console.log('test')
+                console.log(res)
+                setDetails(res.data)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }, [])
+
+
+
     const gameLength = useSelector(state => state.selectAvatar.gameLength)
     const currentTurn = useSelector(state => state.dashboard.currentTurn)
 
-    const turnsLeft = gameLength - currentTurn;
+    const turnsLeft = gameLength - currentTurn + 1;
     const dispatch = useDispatch()
 
     const history = useHistory()
@@ -24,33 +47,7 @@ function MainDash() {
         history.push(commonRoute.leaderboard)
     }
 
-    const goToHomepage = () => {
-        const token = localStorage.getItem('midasToken')
-        const auth = 'Bearer '.concat(token)
-        console.log('token ' + token)
-
-        Fetch.get(API.gamePlay.cashFlow.newGame, {
-            headers: {
-                Authorization: auth
-            }
-        })
-            .then(res => {
-                console.log(res.data)
-                if (res.status === 200) {
-                    dispatch(setNewGame())
-                    history.push(commonRoute.gameOptions)
-                }
-            })
-            .catch(err => {
-                console.log(err.message)
-            })
-
-    }
-
     const goToNextTurn = () => {
-        const token = localStorage.getItem('midasToken')
-        const auth = 'Bearer '.concat(token)
-        console.log('token ' + token)
 
         Fetch.get(API.gamePlay.cashFlow.nextTurn, {
             headers: {
@@ -71,24 +68,10 @@ function MainDash() {
 
     return (
         <Grid container className="dash-main">
-            {/* <div className="title">
-                <h1>Main Dashboard</h1>
-            </div> */}
             <div className="header-wrap">
-                <div className="cash-points-sec">
-                    <div className="cash-wrap">
-                        <img
-                            src={require('../../../assets/img/doller 2.svg').default}
-                            alt="Coin"
-                            className="cash-icon"
-                        />
-                        <span className="cash-value">${50000}</span>
-                    </div>
-                    <div className="points-wrap">
-                        <img src={pointIcon} alt='points' className="point-icon" />
-                        <span className="points">{10000}</span>
-                    </div>
-
+                <div className="points-wrap">
+                    <img src={pointIcon} alt='points' className="point-icon" />
+                    <span className="points">{details?.totalScore}</span>
                 </div>
                 <div className="turns-sec">
                     <div className="title-wrap">
@@ -99,23 +82,44 @@ function MainDash() {
                     </div>
                 </div>
             </div>
-            {/* <div className="body-wrap">
-
-            </div> */}
+            <div className="body-wrap">
+                <div className="field-wrap">
+                    <div className="head-line">Username</div>
+                    <div className="content">{details?.name}</div>
+                </div>
+                <div className="field-wrap">
+                    <div className="head-line">Rank</div>
+                    <div className="content">{details?.leaderBoardRank}</div>
+                </div>
+                <div className="field-wrap">
+                    <div className="head-line">Score</div>
+                    <div className="content">{details?.totalScore}</div>
+                </div>
+                <div className="field-wrap">
+                    <div className="head-line">Cash Available</div>
+                    <div className="content">${55000}</div>
+                </div>
+                <div className="field-wrap">
+                    <div className="head-line">Retirement Savings</div>
+                    <div className="content">${details?.retirementSavings}</div>
+                </div>
+                <div className="field-wrap">
+                    <div className="head-line">Networth</div>
+                    <div className="content">${details?.networth}</div>
+                </div>
+            </div>
             <div className="footer-wrap">
-                <div className="view-leaderboard" onClick={goToLeaderBoard}>
+                <div className="btn-wrap" onClick={goToLeaderBoard}>
                     <div className="leaderboard-btn">View Leaderboard</div>
                 </div>
-                <div className="view-leaderboard" onClick={goToHomepage}>
-                    <div className="leaderboard-btn">New Game</div>
-                </div>
-                <div className="next-turn-wrap" onClick={goToNextTurn}>
+
+                <div className="btn-wrap" onClick={goToNextTurn}>
                     <div className="nxt-turn-btn">
                         <img src={require('../../../assets/img/nexTurn.svg').default} />
+                        <span>NextTurn</span>
                     </div>
                 </div>
             </div>
-
         </Grid>
     )
 }

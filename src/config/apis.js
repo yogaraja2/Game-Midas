@@ -1,6 +1,7 @@
 export const API = {
   gamePlay: {
     userProfile: '/userProfile',
+    mainDashboard: '/viewDetails',
     cashFlow: {
       entry: '/cashflow',
       nextTurn: '/nextTurn',

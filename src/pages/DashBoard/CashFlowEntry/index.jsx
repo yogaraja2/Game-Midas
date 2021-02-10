@@ -147,10 +147,10 @@ function CashFlowEntry(props) {
 
   return (
     <div className="dash-cash-flow-info-page">
-      <div className="avl-bal-wrap">
+      {/* <div className="avl-bal-wrap">
         <AvailableBal label="Income Available" value={surplusAmt < 0 ? 0 : surplusAmt} />
         <AvailableBal label="Savings Available" value={savingAmt < 0 ? 0 : savingAmt} />
-      </div>
+      </div> */}
 
       <div className="turn-wrap">
         <h2 className="current-turn">Turn {currentTurn}</h2>

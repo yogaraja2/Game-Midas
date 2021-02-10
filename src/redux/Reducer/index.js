@@ -14,6 +14,8 @@ import EventsReducer from './EventsReducer'
 import EventCountReducer from './EventCountReducer'
 import DreamsReducer from './DreamsReducer'
 import StudentDetailReducer from './StudentDetailReducer'
+import OrganizationReducer from './OrganizationReducer'
+import InstructorReducer from './InstructorReducer'
 
 export const rootReducers = combineReducers({
     signupData: signupReducer,
@@ -27,12 +29,16 @@ export const rootReducers = combineReducers({
     eventCount: EventCountReducer,
     dreams: DreamsReducer,
     studentDetail: StudentDetailReducer,
+    organizations: OrganizationReducer,
+    instructors: InstructorReducer,
 })
 
 const configStorage = {
     key: 'root',
     storage,
     whitelist: [
+        'organizations',
+        'instructors',
         'selectAvatar',
         'dashboard',
         'cashFlowValues',

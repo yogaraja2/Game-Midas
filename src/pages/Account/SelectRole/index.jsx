@@ -12,6 +12,12 @@ import SnackBar from '../../../components/SnackBar'
 function SelectRole() {
     // useSelector hook is used for get state from reducers. a.k.a: Receiver page
     // const getApiData = useSelector(state => state.signupData)
+
+    const organizations = useSelector(state => state.organizations)
+    const instructors = useSelector(state => state.instructors)
+    // console.log(organizations)
+    // console.log(instructors)
+
     const roleOptions = [
         { id: 'Individual', value: 'Individual' },
         { id: 'Student', value: 'Student' },
@@ -25,9 +31,6 @@ function SelectRole() {
         { id: 3, value: '3 Year' },
     ]
 
-    const [organizations, setOrganizations] = useState([])
-    const [instructors, setInstructors] = useState([])
-
     const defaultValues = {
         role: null,
         organizationId: null,
@@ -40,10 +43,6 @@ function SelectRole() {
 
     useEffect(() => {
 
-        setOrganizations(JSON.parse(localStorage.getItem('Organizations')))
-        setInstructors(JSON.parse(localStorage.getItem('Instructors')))
-        // console.log('organizations '+organizations)
-        // console.log('Instructors '+instructors)
         if (defaults.role === 'Individual') {
             setDefaults({
                 ...defaults,
@@ -105,8 +104,8 @@ function SelectRole() {
     const auth = 'Bearer '.concat(token)
 
     const onSubmitHandler = (values) => {
-        console.log('entry')
-        console.log(values)
+        // console.log('entry')
+        // console.log(values)
 
         API.post(URL.userprofile, values, {
             headers: {
@@ -114,8 +113,8 @@ function SelectRole() {
             }
         })
             .then((res) => {
-                console.log('res entry')
-                console.log(res)
+                // console.log('res entry')
+                // console.log(res)
                 const { data } = res;
                 setResponse(res)
                 setCount(true)
@@ -158,9 +157,6 @@ function SelectRole() {
         }
         setError(false)
     }
-
-    // console.log('default')
-    // console.log(defaults)
 
     return (
         <div className="role-box-sec">

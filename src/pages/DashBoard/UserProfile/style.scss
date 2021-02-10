@@ -3,45 +3,65 @@
 .dashboard-main {
   .user-profile-root {
     width: 80%;
-    background: white;
     position: relative;
-    margin: 10% auto;
+    margin: auto;
     // right: 20px;
-    bottom: 50px;
-    border-radius: 20px;
+    // bottom: 50px;
 
-    .select-wrap {
-      display: flex;
-      flex-direction: 'row';
-      padding: 30px;
-      align-items: baseline;
-      justify-content: space-between;
+    .select-wrap-card {
+      border-radius: 20px;
+      background: white;
+      .select-wrap {
+        display: flex;
+        flex-direction: 'row';
+        padding: 30px;
+        align-items: baseline;
+        justify-content: space-between;
 
-      .title {
-        color: 000000;
-        font-weight: bold;
-      }
-      .btn-wrap {
-        div {
-          display: inline-block;
-          width: 80px;
-          padding: 5px;
-          margin: 10px;
-          border-radius: 50px;
-          text-transform: none;
-          text-align: center;
-          font-weight: 700;
-          border: 2px solid #c3c3c3;
-          color: #9b9b9b;
-          cursor: pointer;
+        .title {
+          color: 000000;
+          font-weight: bold;
+        }
+        .btn-wrap {
+          div {
+            display: inline-block;
+            width: 80px;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 50px;
+            text-transform: none;
+            text-align: center;
+            font-weight: 700;
+            border: 2px solid #c3c3c3;
+            color: #9b9b9b;
+            cursor: pointer;
 
-          &.selected {
-            border: 2px solid #009ffd;
-            color: #009ffd;
+            &.selected {
+              border: 2px solid #009ffd;
+              color: #009ffd;
+            }
           }
         }
+        border-bottom: 0.3px solid #d9d9d9;
       }
-      border-bottom: 0.3px solid #d9d9d9;
+    }
+    .nav-btn-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      top: 50px;
+      bottom: 30px;
+      justify-content: space-between;
+
+      .btn {
+        // margin: 20px;
+        @include button;
+        // background-color: rgb(29, 114, 54);
+      }
+      @include w320 {
+        position: static;
+        margin-top: 16px;
+      }
     }
   }
 }
@@ -49,7 +69,6 @@
 // --------- Password Popup ---------- //
 
 .popup-dialog-container {
-  
   .changePassword {
     .body-wrap {
       @include flexCenter;

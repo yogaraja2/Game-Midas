@@ -13,8 +13,7 @@ import { getOriginPath } from '../../../utils/commonFunctions'
 import './style.scss'
 import API, { URL } from '../../../Api'
 import { useSelector, useDispatch } from 'react-redux'
-// import { setResponseData } from '../../../action'
-import { setResponseData } from '../../../redux/Action'
+import { setResponseData, setOrganizations, setInstructors } from '../../../redux/Action'
 import axios from 'axios'
 
 
@@ -22,8 +21,6 @@ function Signup() {
 
   const ApiResponse = useSelector(state => state.signupData)
   useEffect(() => {
-    // console.log('from signup')
-    // console.log(ApiResponse)
   }, [ApiResponse])
 
   const dispatch = useDispatch()
@@ -35,9 +32,6 @@ function Signup() {
     confirmPassword: '',
     // isAgreed: false
   }
-
-  // console.log('def')
-  // console.log(defaultValues)
 
   const [country, setCountry] = useState('')
   // console.log('country ' + country)
@@ -83,8 +77,6 @@ function Signup() {
       setError(true)
     }
     else {
-      // console.log('sign data')
-      // console.log(data)
 
       const reqData = {
         username: data.username,
@@ -93,9 +85,6 @@ function Signup() {
         confirmPassword: data.confirmPassword,
         country: country
       }
-
-      // console.log('reqdata')
-      // console.log(reqData)
 
       API.post(URL.signup, reqData)
         .then((res) => {
@@ -108,10 +97,8 @@ function Signup() {
 
           if (data.token) {
             localStorage.setItem('midasToken', data.token)
-            localStorage.setItem('userId', data.id)
-            localStorage.setItem('userName', data.username)
-            localStorage.setItem('Organizations', JSON.stringify(data.organizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key }))),
-              localStorage.setItem('Instructors', JSON.stringify(data.instructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key })))))
+            dispatch(setOrganizations(data.organizations.map((item, index) => ({ id: item.id, value: item.organizationName, tenant_key: item.tenant_key }))))
+            dispatch(setInstructors(data.instructors.map((item, index) => ({ id: item.id, value: item.username, tenant_key: item.tenant_key }))))
             setMessage('Thanks! Your account has been created successfully')
             setDetail(data)
             setError(true)
@@ -123,7 +110,6 @@ function Signup() {
           else if (data.status) {
             setError(true)
             setMessage(data.message)
-            // setMessage("Testing")
           }
         })
         .catch((err) => {

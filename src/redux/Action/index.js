@@ -11,6 +11,20 @@ export const setResponseData = (value) => {
     }
 }
 
+export const setOrganizations = (value) => {
+    return {
+        type: 'SET_ORGANIZATIONS',
+        payload: value
+    }
+}
+
+export const setInstructors = (value) => {
+    return {
+        type: 'SET_INSTRUCTORS',
+        payload: value
+    }
+}
+
 export const setAvatarId = (value) => {
     return {
         type: 'SET_AVATAR_ID',
