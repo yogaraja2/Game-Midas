@@ -57,5 +57,17 @@
         }
       }
     }
+
+    .btn-stat-wrap {
+      // @include lrPartition;
+
+      @include w600 {
+        display: block;
+      }
+
+      .btn-wrap {
+        margin: 28px;
+      }
+    }
   }
 }

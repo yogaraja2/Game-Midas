@@ -13,9 +13,13 @@ import {
     SplineSeries,
     StripLine,
 } from '@syncfusion/ej2-react-charts'
-import { Grid } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import { API } from '../../../config/apis'
 import useFetch from '../../../hooks/useFetch'
+import { useHistory } from 'react-router-dom'
+import { commonRoute } from '../../../config/routes'
+
+
 
 function Stats() {
 
@@ -40,7 +44,7 @@ function Stats() {
     }
     const scoreyaxis = {
         //maximum: 25000, interval: 2000, 
-       // rangePadding: 'Round',
+        // rangePadding: 'Round',
         majorGridLines: { width: 0 },
         labelStyle: {
             fontWeight: "Bold"
@@ -59,7 +63,7 @@ function Stats() {
     }
     const networthyaxis = {
         // maximum: 500000, interval: 50000,
-     majorGridLines: { width: 0 }, labelFormat: '${value}',
+        majorGridLines: { width: 0 }, labelFormat: '${value}',
         labelStyle: {
             fontWeight: "Bold"
         },
@@ -69,8 +73,12 @@ function Stats() {
     const netWorth = data?.netWorth;
     const retirementSavings = data?.retirementSavings;
 
-
     const marker = { visible: true, width: 10, height: 10 }
+
+    const history = useHistory()
+    const goToDashboard = () => {
+        history.push(commonRoute.dashboard.mainDash)
+    }
 
     return (
         <Grid container className="stats-main">
@@ -131,6 +139,12 @@ function Stats() {
                     </ChartComponent>
                 </div>
             </Grid>
+
+            <div className="btn-stat-wrap">
+                <div className="btn-wrap" onClick={goToDashboard}>
+                    <Button className="nxt-btn">Next</Button>
+                </div>
+            </div>
             {/* <Grid item xs={12} md={10} className="journal-wrap">
                 <div className="journal-title">
                     <h1>Journal(Event Log)</h1>

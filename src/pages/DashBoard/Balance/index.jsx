@@ -7,12 +7,14 @@ import YearBar from '../../../components/YearBar'
 import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
 import HighlightCard from '../../../components/HighlightCard'
-// import { setNetworth } from '../../../action'
 import { setNetworth, setBalanceApiData } from '../../../redux/Action'
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { commonRoute } from '../../../config/routes'
+
 
 function Balance() {
-  
+
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(currentTurn)
@@ -26,6 +28,12 @@ function Balance() {
     dispatch(setNetworth(currentData?.netWorth))
     !!currentData?.length && setDataYear(currentData?.currentTurn)
   }, [currentData])
+
+  const history = useHistory()
+
+  const goToStats = () => {
+    history.push(commonRoute.dashboard.stats)
+  }
 
   return (
     <div className="dashboard-balance-page">
@@ -63,11 +71,11 @@ function Balance() {
         />
       </div>
 
-      {/* <div className="btn-stat-wrap">
-        <div className="btn-wrap">
+      <div className="btn-stat-wrap">
+        <div className="btn-wrap" onClick={goToStats}>
           <Button className="nxt-btn">Next</Button>
         </div>
-      </div> */}
+      </div>
 
     </div>
   )

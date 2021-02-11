@@ -81,8 +81,8 @@ function CashFlow(props) {
   //     })
   // }
 
-  const goToDashboard = () => {
-    props.history.push(commonRoute.dashboard.mainDash)
+  const goToBalance = () => {
+    props.history.push(commonRoute.dashboard.balance)
   }
 
   return (
@@ -112,13 +112,13 @@ function CashFlow(props) {
 
         <div className="action-btn-wrap">
           <div className="btn-wrap">
-            <Button className="btn prev-btn" onClick={switchToEntry}>
+            <Button className="btn" onClick={switchToEntry}>
               Back
             </Button>
           </div>
-          <div className="btn-wrap" onClick={goToDashboard}>
-            <Button className="btn nxt-btn">
-              Dashboard
+          <div className="btn-wrap" onClick={goToBalance}>
+            <Button className="btn">
+              Next
             </Button>
           </div>
 
@@ -129,7 +129,7 @@ function CashFlow(props) {
               </Button>
             </div>
           )} */}
-          
+
         </div>
       </div>
     </div>

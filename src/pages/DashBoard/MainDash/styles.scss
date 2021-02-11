@@ -62,7 +62,7 @@
 
     .body-wrap {
       width: 500px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 5px;
       margin-left: 50px;
 
@@ -71,18 +71,18 @@
       }
 
       .field-wrap {
-        padding: 15px;
+        padding:10px 15px;
         margin: 0px 15px;
-        border-bottom: 1px solid rgb(180, 177, 177);
+        // border-bottom: 1px solid rgb(180, 177, 177);
 
         .head-line {
-          font-size: 15px;
+          font-size: 20px;
           font-weight: bold;
           color: #6b2e0a;
         }
         .content {
-          margin-top: 10px;
-          font-size: 1.5rem;
+          // margin-top: 10px;
+          font-size: 2rem;
           font-weight: bold;
           // color: var(--primary);
         }

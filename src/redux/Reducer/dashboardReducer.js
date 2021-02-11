@@ -1,6 +1,6 @@
 
 const initialState = {
-    currentTurn: 1,
+    currentTurn: 0,
     netWorth: 0,
     surplusAmt: 0,
     savingsAmt: 0

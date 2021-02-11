@@ -38,7 +38,7 @@ function MainDash() {
     const gameLength = useSelector(state => state.selectAvatar.gameLength)
     const currentTurn = useSelector(state => state.dashboard.currentTurn)
 
-    const turnsLeft = gameLength - currentTurn + 1;
+    const turnsLeft = gameLength - currentTurn;
     const dispatch = useDispatch()
 
     const history = useHistory()
@@ -63,6 +63,24 @@ function MainDash() {
             })
             .catch((err) => {
                 console.log(err)
+            })
+    }
+
+    const goToNewGame = () => {
+        Fetch.get(API.gamePlay.cashFlow.newGame, {
+            headers: {
+                Authorization: auth
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                if (res.status === 200) {
+                    dispatch(setNewGame())
+                    history.push(commonRoute.gameOptions)
+                }
+            })
+            .catch(err => {
+                console.log(err.message)
             })
     }
 
@@ -97,7 +115,7 @@ function MainDash() {
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Cash Available</div>
-                    <div className="content">${55000}</div>
+                    <div className="content">${details?.cashAvailable}</div>
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Retirement Savings</div>
@@ -113,12 +131,18 @@ function MainDash() {
                     <div className="leaderboard-btn">View Leaderboard</div>
                 </div>
 
-                <div className="btn-wrap" onClick={goToNextTurn}>
-                    <div className="nxt-turn-btn">
-                        <img src={require('../../../assets/img/nexTurn.svg').default} />
-                        <span>NextTurn</span>
+                {currentTurn !== gameLength ? (
+                    <div className="btn-wrap" onClick={goToNextTurn}>
+                        <div className="nxt-turn-btn">
+                            <img src={require('../../../assets/img/nexTurn.svg').default} />
+                            <span>{currentTurn === 0 ? "Start" : "Next"}Turn</span>
+                        </div>
                     </div>
-                </div>
+                ) : (
+                        <div className="btn-wrap" onClick={goToNewGame}>
+                            <div className="leaderboard-btn">Start New Game</div>
+                        </div>
+                    )}
             </div>
         </Grid>
     )

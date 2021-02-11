@@ -1,7 +1,6 @@
 import { Grid } from '@material-ui/core'
 import React, { useState } from 'react'
 import './style.scss'
-import { Button } from '@material-ui/core'
 import UploadBtn from '../../../components/UploadButton'
 import clsx from 'clsx'
 import passwordPopup from './passwordPopup'
@@ -11,6 +10,16 @@ import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
 import { setNewGame } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
+import {
+    Button,
+    TextField,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
+} from '@material-ui/core'
+import PasswordDialog from './passwordDialog';
 
 function UserProfile() {
 
@@ -28,28 +37,24 @@ function UserProfile() {
     }
     const other = { gameLength, setGameLength }
 
-    // const showPopup = () => {
-    //     return (
-    //         <passwordPopup />
-    //     )
-    // }
 
-    const [confDlg, setConfDlg] = useState(false)
-
-    const handleClick = () => {
-        setConfDlg(true)
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
     }
 
-    const handleDlgClose = () => {
-        setConfDlg(false)
-    }
+
+
+
+
+
 
     const token = localStorage.getItem('midasToken')
     const auth = 'Bearer '.concat(token)
 
-    const goToMainDash = () => {
-        history.push(commonRoute.dashboard.mainDash)
-    }
     const goToNewGame = () => {
         Fetch.get(API.gamePlay.cashFlow.newGame, {
             headers: {
@@ -68,12 +73,17 @@ function UserProfile() {
             })
     }
 
+
+
+
+
+
     return (
         <Grid item xs={12} md={10} className="user-profile-root">
             <Grid item xs={12} className="select-wrap-card">
                 <Grid container className="select-wrap">
                     <h2 className="title">Avatar</h2>
-                    <div className="btn-wrap" onClick={handleClick}>
+                    <div className="btn-wrap">
                         <div>Change</div>
                     </div>
                     {/* <UploadBtn
@@ -105,17 +115,46 @@ function UserProfile() {
                 </Grid>
                 <Grid container className="select-wrap">
                     <h2 className="title">Password</h2>
-                    <div className="btn-wrap" onClick={handleClick}>
+                    <div className="btn-wrap" onClick={handleOpen}>
                         <div>Change</div>
                     </div>
                 </Grid>
             </Grid>
             <div className="nav-btn-wrap">
-                <Button className="btn" onClick={goToMainDash}>Back</Button>
-                <Button className="btn" onClick={goToNewGame}>Quit Game</Button>
+                <Button className="new-btn" onClick={goToNewGame}>New Game</Button>
+                <Button className="quit-btn" onClick={goToNewGame}>Quit Game</Button>
             </div>
 
-            {confDlg && (<passwordPopup onClose={handleDlgClose} />)}
+            {open && (
+                <Dialog open={open} onClose={handleClose} aria-labelledby="update-password">
+                    <DialogTitle id="update-password">Update Password</DialogTitle>
+                    <DialogContent>
+                        {/* <TextField
+                            label="Old Password"
+                            name="oldPassword"
+                            id="oldPassword"
+                            fullWidth
+                        /> */}
+                        <TextField
+                            label="New Password"
+                            name="newPassword"
+                            id="newPassword"
+                            fullWidth
+                        />
+                        <TextField
+                            label="Confirm Password"
+                            name="confirmPassword"
+                            id="confirmPassword"
+                            fullWidth
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Update
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            )}
         </Grid>
     )
 }

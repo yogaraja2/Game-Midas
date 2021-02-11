@@ -2,7 +2,7 @@
 
 .dashboard-main {
   .user-profile-root {
-    width: 80%;
+    width: 60%;
     position: relative;
     margin: auto;
     // right: 20px;
@@ -53,10 +53,13 @@
       bottom: 30px;
       justify-content: space-between;
 
-      .btn {
-        // margin: 20px;
+      .new-btn {
         @include button;
-        // background-color: rgb(29, 114, 54);
+        background-color: rgb(29, 114, 54);
+      }
+      .quit-btn {
+        @include button;
+        background-color: #f20001;
       }
       @include w320 {
         position: static;
