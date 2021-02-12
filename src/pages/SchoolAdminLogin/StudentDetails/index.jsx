@@ -12,12 +12,13 @@ function StudentDetails() {
             </div>
             <div className="stu-detail-wrap">
                 <div>Name : {studentDetail.name}</div>
+                <div>Rank : {studentDetail.leaderBoardRank}</div>
+                <div>Score : {studentDetail.totalScore}</div>
+                <div>Income : {studentDetail.income || 0}</div>
+                <div>Networth : {studentDetail.networth || 0}</div>
+                <div>Game Mode : {studentDetail.role || 0}</div>
+                <div>Game Length : {studentDetail.gameLength || 0}</div>
                 <div>Country : {studentDetail.country}</div>
-                <div>Score : {studentDetail.score}</div>
-                <div>Income : {10000}</div>
-                <div>Networth : {10000}</div>
-                <div>Game Mode : {"Easy"}</div>
-                <div>Game Length : {"10"}</div>
             </div>
         </Grid>
     )

@@ -11,6 +11,13 @@ export const setResponseData = (value) => {
     }
 }
 
+export const setLoginData = (value) => {
+    return {
+        type: 'SET_LOGIN_DATA',
+        payload: value,
+    }
+}
+
 export const setOrganizations = (value) => {
     return {
         type: 'SET_ORGANIZATIONS',
@@ -105,6 +112,13 @@ export const setBalanceApiData = (value) => {
 export const setDebtApiData = (value) => {
     return {
         type: 'SET_DEBT_DATA',
+        payload: value,
+    }
+}
+
+export const setStudentList = (value) => {
+    return {
+        type: 'SET_STUDENT_LIST',
         payload: value,
     }
 }

@@ -10,5 +10,11 @@ export const API = {
     balance: '/balancesheet',
     dept: '/deptManagement',
     stats: '/stats'
+  },
+
+  listApi: {
+    instructorsList: '/instructorList',
+    studentsList: 'studentList',
+    studentDetail: '/studentDetails'
   }
 }

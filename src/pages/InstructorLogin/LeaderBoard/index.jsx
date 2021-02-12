@@ -51,11 +51,7 @@ function LeaderBoard() {
             }
         })
             .then((res) => {
-                // console.log('res')
-                // console.log(res)
                 const data = res?.data?.leaderboards
-                // console.log('res data')
-                // console.log(data)
                 setPlayersList(data)
             })
             .catch((err) => {
@@ -64,9 +60,7 @@ function LeaderBoard() {
     }, [])
 
     const topThree = playersList?.filter((item, index) => index < 3)
-    // console.log('top 3')
-    // console.log(topThree)
-
+    
     const history = useHistory()
     const goToHome = () => {
         history.push(commonRoute.instructorLogin.instructorHome)

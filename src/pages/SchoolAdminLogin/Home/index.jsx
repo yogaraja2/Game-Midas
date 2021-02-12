@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import './style.scss'
 
+
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
     return (
         <div
@@ -27,6 +28,7 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 }
 
 function Home() {
+
     const [selected, setSelected] = useState('instructors')
 
     const allyProps = { selected, setSelected }

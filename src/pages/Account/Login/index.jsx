@@ -9,8 +9,12 @@ import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
 import API, { URL } from '../../../Api'
 import SnackBar from '../../../components/SnackBar'
+import { setLoginData } from '../../../redux/Action'
+import { useDispatch } from 'react-redux'
 
 function Login() {
+
+  const dispatch = useDispatch()
 
   const credentials = {
     gmail: '',
@@ -30,21 +34,16 @@ function Login() {
 
     API.post(URL.login, values)
       .then((res) => {
-        console.log('login response')
-        console.log(res)
         const { data } = res
-        console.log('login data')
-        console.log(data)
+        dispatch(setLoginData(data))
         setResponse(data)
         setCount(true)
 
         if (data.token) {
           localStorage.setItem('midasToken', data.token)
-          localStorage.setItem('userId', data.id)
-          localStorage.setItem('userName', data.username)
           setMessage('Login Successfull...')
         }
-        else if(data.status){
+        else if (data.status) {
           setMessage(data.message)
         }
       })
@@ -78,8 +77,14 @@ function Login() {
     if (reason === 'clickaway') {
       return
     }
-    if (response?.token) {
+    if (response?.role === 'Individual' || response?.role === 'Student') {
       history.push(commonRoute.gameOptions)
+    }
+    else if (response?.role === 'Instructor') {
+      history.push(commonRoute.instructorLogin.instructorHome)
+    }
+    else if (response?.role === 'School_Admin') {
+      history.push(commonRoute.schoolAdminLogin.schoolAdminHome)
     }
     setError(false)
   }

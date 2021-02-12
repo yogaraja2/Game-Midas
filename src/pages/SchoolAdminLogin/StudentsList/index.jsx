@@ -3,45 +3,35 @@ import './style.scss'
 import { Grid } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setStudentDetail } from '../../../redux/Action'
-
-const playersList = [
-    { id: 1, name: 'Victoria', country: 'India', score: 7548653 },
-    { id: 2, name: 'Benjamin', country: 'USA', score: 6209475 },
-    { id: 3, name: 'James', country: 'UK', score: 364855 },
-    { id: 4, name: 'Dom', country: 'Srilanka', score: 304855 },
-    { id: 5, name: 'Elisa', country: 'Russia', score: 254855 },
-    { id: 6, name: 'Fazil', country: 'Japan', score: 204855 },
-    { id: 7, name: 'Google', country: 'Brazil', score: 154855 },
-    { id: 8, name: 'Hameed', country: 'Mexico', score: 104855 },
-    { id: 9, name: 'Irin', country: 'Italy', score: 104700 },
-    { id: 10, name: 'JackSparrow', country: 'UK', score: 54855 },
-    { id: 1, name: 'Victoria', country: 'India', score: 7548653 },
-    { id: 2, name: 'Benjamin', country: 'USA', score: 6209475 },
-    { id: 3, name: 'James', country: 'UK', score: 364855 },
-    { id: 4, name: 'Dom', country: 'Srilanka', score: 304855 },
-    { id: 5, name: 'Elisa', country: 'Russia', score: 254855 },
-    { id: 6, name: 'Fazil', country: 'Japan', score: 204855 },
-    { id: 7, name: 'Google', country: 'Brazil', score: 154855 },
-    { id: 8, name: 'Hameed', country: 'Mexico', score: 104855 },
-    { id: 9, name: 'Irin', country: 'Italy', score: 104700 },
-    { id: 10, name: 'JackSparrow', country: 'UK', score: 54855 }
-]
-
-
-
+import PostAPI from '../../../Api'
+import { API } from '../../../config/apis'
 
 function StudentsList() {
+
+    const studentsList = useSelector(state => state.studentsList)
 
     const dispatch = useDispatch()
 
 
     const history = useHistory()
+
     const clickHandler = (item) => {
-        dispatch(setStudentDetail(item))
-        console.log(item);
-        history.push(commonRoute.schoolAdminLogin.studentStats)
+        
+        const userId = {
+            userId: item.userId
+        }
+        PostAPI.post(API.listApi.studentDetail, userId)
+            .then(res => {
+                console.log(res?.data)
+                dispatch(setStudentDetail(res?.data))
+                history.push(commonRoute.schoolAdminLogin.studentStats)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+
     }
 
 
@@ -49,13 +39,13 @@ function StudentsList() {
         <Grid item xs={12} md={10} className="students-list-card">
             <div className="title">List Of Students</div>
             <Grid container className="students-list-wrap">
-                {playersList.map((item, index) => (
+                {studentsList?.map((item, index) => (
                     <Grid item xs={12} key={index} className="student-field-wrap" onClick={() => clickHandler(item)}>
-                        <Grid item xs={12} md={10}>{item.id}</Grid>
+                        <Grid item xs={12} md={10}>{index + 1}</Grid>
                         <Grid item xs={12} md={10}>
-                            <img src={require('../../../assets/img/User1.svg').default} />
+                            <img src={require(`../../../assets/img/Avatar${item.avatarIcon * 1}.svg`).default} />
                         </Grid>
-                        <Grid item xs={12} md={10}>{item.name}</Grid>
+                        <Grid item xs={12} md={10}>{item.username}</Grid>
                         <Grid item xs={12} md={10}>{item.country}</Grid>
                         <Grid item xs={12} md={10}>{item.score}</Grid>
                     </Grid>

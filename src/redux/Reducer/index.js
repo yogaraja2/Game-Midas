@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 
 
 import signupReducer from './signupReducer'
+import LoginReducer from './LoginReducer'
 import avatarReducer from './avatarReducer'
 import dashboardReducer from './dashboardReducer'
 import cashFlowReducer from './cashFlowReducer'
@@ -13,12 +14,14 @@ import DebtApiReducer from './DebtApiReducer'
 import EventsReducer from './EventsReducer'
 import EventCountReducer from './EventCountReducer'
 import DreamsReducer from './DreamsReducer'
+import StudentsListReducer from './StudentsListReducer'
 import StudentDetailReducer from './StudentDetailReducer'
 import OrganizationReducer from './OrganizationReducer'
 import InstructorReducer from './InstructorReducer'
 
 export const rootReducers = combineReducers({
     signupData: signupReducer,
+    loginData: LoginReducer,
     selectAvatar: avatarReducer,
     dashboard: dashboardReducer,
     cashFlowValues: cashFlowReducer,
@@ -28,6 +31,7 @@ export const rootReducers = combineReducers({
     events: EventsReducer,
     eventCount: EventCountReducer,
     dreams: DreamsReducer,
+    studentsList: StudentsListReducer,
     studentDetail: StudentDetailReducer,
     organizations: OrganizationReducer,
     instructors: InstructorReducer,
@@ -37,6 +41,7 @@ const configStorage = {
     key: 'root',
     storage,
     whitelist: [
+        'loginData',
         'organizations',
         'instructors',
         'selectAvatar',
@@ -45,6 +50,7 @@ const configStorage = {
         'events',
         'eventCount',
         'dreams',
+        'studentsList',
         'studentDetail',
     ]
 }

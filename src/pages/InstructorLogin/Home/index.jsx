@@ -4,6 +4,10 @@ import { commonRoute } from '../../../config/routes'
 import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import './style.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import PostAPI from '../../../Api'
+import { API } from '../../../config/apis'
+import { setStudentList } from '../../../redux/Action'
 
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
     return (
@@ -27,6 +31,10 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 }
 
 function Home() {
+
+    const user = useSelector(state => state.loginData)
+    const dispatch = useDispatch()
+
     const [selected, setSelected] = useState('students')
 
     const allyProps = { selected, setSelected }
@@ -36,7 +44,22 @@ function Home() {
         if (selected === 'leaderboard') {
             history.push(commonRoute.instructorLogin.studentsLeaderboard)
         } else {
-            history.push(commonRoute.instructorLogin.studentsList)
+            const instructor = {
+                gmail: user.gmail
+            }
+
+            PostAPI.post(API.listApi.studentsList, instructor)
+                .then(res => {
+                    console.log(res?.data)
+                    dispatch(setStudentList(res?.data))
+                    if (res.status === 200) {
+                        history.push(commonRoute.instructorLogin.studentsList)
+                    }
+                })
+                .catch(err => {
+                    console.log(err.message)
+                })
+
         }
     }
 
