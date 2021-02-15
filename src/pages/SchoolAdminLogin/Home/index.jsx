@@ -4,7 +4,8 @@ import { commonRoute } from '../../../config/routes'
 import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import './style.scss'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { userLogout } from '../../../redux/Action'
 
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
     return (
@@ -29,6 +30,8 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 
 function Home() {
 
+    const dispatch = useDispatch()
+
     const [selected, setSelected] = useState('instructors')
 
     const allyProps = { selected, setSelected }
@@ -40,6 +43,12 @@ function Home() {
         } else {
             history.push(commonRoute.schoolAdminLogin.instructorsList)
         }
+    }
+
+    const goToLogin = () => {
+        dispatch(userLogout())
+        window.localStorage.clear();
+        history.push(commonRoute.home)
     }
 
     return (
@@ -65,6 +74,9 @@ function Home() {
 
             </Grid>
             <div className="btn-wrap">
+                <Button className="nxt-btn" onClick={goToLogin}>
+                    Singout
+                </Button>
                 <Button className="nxt-btn" onClick={clickHandler}>
                     Next
                 </Button>

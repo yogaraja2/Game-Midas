@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import PostAPI from '../../../Api'
 import { API } from '../../../config/apis'
 import { setStudentList } from '../../../redux/Action'
+import { userLogout } from '../../../redux/Action'
 
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
     return (
@@ -63,6 +64,12 @@ function Home() {
         }
     }
 
+    const goToLogin = () => {
+        dispatch(userLogout())
+        window.localStorage.clear();
+        history.push(commonRoute.home)
+    }
+
     return (
         <Grid item xs={11} md={10} className="home-option-card">
             <Grid
@@ -86,6 +93,9 @@ function Home() {
 
             </Grid>
             <div className="btn-wrap">
+                <Button className="nxt-btn" onClick={goToLogin}>
+                    Singout
+                </Button>
                 <Button className="nxt-btn" onClick={clickHandler}>
                     Next
                 </Button>

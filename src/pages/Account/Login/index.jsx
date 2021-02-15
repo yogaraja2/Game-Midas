@@ -30,11 +30,13 @@ function Login() {
   const [count, setCount] = useState(false)
 
   const handleLogin = (values) => {
-    console.log(values)
+
 
     API.post(URL.login, values)
       .then((res) => {
+
         const { data } = res
+        console.log(data)
         dispatch(setLoginData(data))
         setResponse(data)
         setCount(true)
@@ -73,12 +75,20 @@ function Login() {
 
   const allyProps = { control, error: errors }
 
-  function handleOnClose(reason) {
-    if (reason === 'clickaway') {
-      return
-    }
+  function handleOnClose() {
+    // if (reason === 'clickaway') {
+    //   return
+    // }
     if (response?.role === 'Individual' || response?.role === 'Student') {
-      history.push(commonRoute.gameOptions)
+      if (response?.pageNo === 1) {
+        history.push(commonRoute.gameOptions)
+      }
+      else if (response.pageNo === 2) {
+        history.push(commonRoute.selectAvatar)
+      }
+      else if (response.pageNo === 3) {
+        history.push(commonRoute.dashboard.mainDash)
+      }
     }
     else if (response?.role === 'Instructor') {
       history.push(commonRoute.instructorLogin.instructorHome)

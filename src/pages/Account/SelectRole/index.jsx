@@ -98,7 +98,11 @@ function SelectRole() {
 
     const onSubmitHandler = (values) => {
 
-        API.post(URL.userprofile, values, {
+        let newObj = Object.assign({ pageNo: 1 }, values)
+        // console.log('role sel')
+        // console.log(newObj)
+
+        API.post(URL.userprofile, newObj, {
             headers: {
                 Authorization: auth
             }

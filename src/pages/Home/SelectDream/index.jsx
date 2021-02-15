@@ -116,6 +116,7 @@ function SelectDreams() {
         dream: dreams,
         car: cars,
         house: houses,
+        pageNo:3,
     }
 
     const token = localStorage.getItem('midasToken')

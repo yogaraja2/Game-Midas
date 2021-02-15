@@ -18,7 +18,7 @@ function StudentsList() {
     const history = useHistory()
 
     const clickHandler = (item) => {
-        
+
         const userId = {
             userId: item.userId
         }

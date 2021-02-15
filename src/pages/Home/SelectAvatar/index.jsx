@@ -99,6 +99,7 @@ function SelectAvatar() {
         income: salary,
         gameLength: gameLength,
         role: role,
+        pageNo: 2,
     }
 
     const token = localStorage.getItem('midasToken')

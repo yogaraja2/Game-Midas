@@ -41,6 +41,7 @@ const configStorage = {
     key: 'root',
     storage,
     whitelist: [
+        'signupData',
         'loginData',
         'organizations',
         'instructors',

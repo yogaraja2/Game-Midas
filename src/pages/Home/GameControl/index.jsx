@@ -30,11 +30,18 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 function GameControl() {
   const [selected, setSelected] = useState('new')
   const [isLogged, setIsLogged] = useState(false)
-  const currentTurn = useSelector(state => state.dashboard.currentTurn)
+  // const currentTurn = useSelector(state => state.dashboard.currentTurn)
+  const pageNo = useSelector(state => state.signupData.pageNo)
 
-  useEffect(() => {
-    currentTurn > 1 && setIsLogged(true)
-  }, [])
+  // useEffect(() => {
+  //   currentTurn > 1 && setIsLogged(true)
+  // }, [])
+
+  // useEffect(() => {
+  //   if (selected === 'new') {
+  //     setIsLogged(true)
+  //   }
+  // }, [selected])
 
   const allyProps = { selected, setSelected }
   const history = useHistory()
@@ -48,7 +55,7 @@ function GameControl() {
       history.push(commonRoute.dashboard.mainDash)
     }
   }
-  
+
   return (
     <Grid item xs={11} md={10} className="game-option-card">
       <Grid
@@ -64,7 +71,7 @@ function GameControl() {
           {...allyProps}
         />
         <Options label="New" imgUrl={`New`} id="new" {...allyProps} />
-        {isLogged && (<Options label="Resume" imgUrl={'Resume'} id="resume" {...allyProps} />)}
+        {pageNo > 0 && (<Options label="Resume" imgUrl={'Resume'} id="resume" {...allyProps} />)}
       </Grid>
       <div className="btn-wrap">
         <Button className="nxt-btn" onClick={clickHandler}>

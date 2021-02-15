@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import './style.scss'
 import UploadBtn from '../../../components/UploadButton'
 import clsx from 'clsx'
-import passwordPopup from './passwordPopup'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
@@ -19,7 +18,6 @@ import {
     DialogContentText,
     DialogTitle
 } from '@material-ui/core'
-import PasswordDialog from './passwordDialog';
 
 function UserProfile() {
 
