@@ -15,8 +15,6 @@ function SelectRole() {
 
     const organizations = useSelector(state => state.organizations)
     const instructors = useSelector(state => state.instructors)
-    // console.log(organizations)
-    // console.log(instructors)
 
     const roleOptions = [
         { id: 'Individual', value: 'Individual' },
@@ -77,16 +75,11 @@ function SelectRole() {
     }, [defaults.role])
 
 
-    // console.log('org id '+organizationId)
-
     const selectedOrg = organizations.filter((item) => item.id === defaults.organizationId)
-    // console.log('selectedOrg ' + selectedOrg)
 
     let selectedInstructor = [];
     if (selectedOrg.length) {
-        // console.log('tenant ' + selectedOrg[0].tenant_key)
         selectedInstructor = instructors.filter((item) => item.tenant_key === selectedOrg[0].tenant_key)
-        // console.log('selectedInstructor ' + selectedInstructor)
     }
 
     const [message, setMessage] = useState(null)
@@ -104,8 +97,6 @@ function SelectRole() {
     const auth = 'Bearer '.concat(token)
 
     const onSubmitHandler = (values) => {
-        // console.log('entry')
-        // console.log(values)
 
         API.post(URL.userprofile, values, {
             headers: {
@@ -113,8 +104,6 @@ function SelectRole() {
             }
         })
             .then((res) => {
-                // console.log('res entry')
-                // console.log(res)
                 const { data } = res;
                 setResponse(res)
                 setCount(true)

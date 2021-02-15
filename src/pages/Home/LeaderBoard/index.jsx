@@ -38,19 +38,6 @@ const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
   )
 }
 
-// const playersList = [
-//   { rank: 1, name: 'Victoria', country: 'India', score: 7548653 },
-//   { rank: 2, name: 'Benjamin', country: 'USA', score: 6209475 },
-//   { rank: 3, name: 'James', country: 'UK', score: 364855 },
-//   { rank: 4, name: 'Dom', country: 'Srilanka', score: 304855 },
-//   { rank: 5, name: 'Elisa', country: 'Russia', score: 254855 },
-//   { rank: 6, name: 'Fazil', country: 'Japan', score: 204855 },
-//   { rank: 7, name: 'Google', country: 'Brazil', score: 154855 },
-//   { rank: 8, name: 'Hameed', country: 'Mexico', score: 104855 },
-//   { rank: 9, name: 'Irin', country: 'Italy', score: 104700 },
-//   { rank: 10, name: 'JackSparrow', country: 'UK', score: 54855 }
-// ]
-
 function LeaderBoard() {
 
   const [playersList, setPlayersList] = useState([])
@@ -64,11 +51,7 @@ function LeaderBoard() {
       }
     })
       .then((res) => {
-        // console.log('res')
-        // console.log(res)
         const data = res?.data?.leaderboards
-        // console.log('res data')
-        // console.log(data)
         setPlayersList(data)
       })
       .catch((err) => {
@@ -77,8 +60,6 @@ function LeaderBoard() {
   }, [])
 
   const topThree = playersList?.filter((item, index) => index < 3)
-  // console.log('top 3')
-  // console.log(topThree)
 
   const history = useHistory()
   const goToHome = () => {

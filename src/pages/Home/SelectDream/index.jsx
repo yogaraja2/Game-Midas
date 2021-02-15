@@ -3,23 +3,18 @@ import { Button, Grid } from '@material-ui/core'
 import clsx from 'clsx'
 import './style.scss'
 import doller from '../../../assets/img/doller 2.svg'
-import pointIcon from '../../../assets/img/pointsIcon.svg'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import API, { URL } from '../../../Api'
-
 import { setDream } from '../../../redux/Action'
 import { useDispatch, useSelector } from 'react-redux'
 
-const SelectDream = ({ label, imgUrl, cost, points, name, id, dreams, setDreams }) => {
+const SelectDream = ({ label, imgUrl, cost, name, id, dreams, setDreams }) => {
 
     const dreamHandler = () => {
-        // setDreams.bind(this, id)
         setDreams({ id: id, dreamName: imgUrl, cost: cost })
     }
     const selected = dreams.id === id ? 'selected' : '';
-    // console.log('dreams')
-    // console.log(dreams)
     return (
         <div className="option-wrap" onClick={dreamHandler}>
             <div className="option-image" >
@@ -35,13 +30,6 @@ const SelectDream = ({ label, imgUrl, cost, points, name, id, dreams, setDreams 
                             fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
                         }}>{cost}</span>
                     </div>
-                    {/* <div>
-                        <img src={pointIcon} alt={label} style={{ width: 20, height: 21, position: 'absolute' }} />
-                        <span style={{
-                            position: 'relative', fontSize: 18,
-                            fontWeight: 'bold', color: ' #747d8c', marginLeft: 30
-                        }}>{points}</span>
-                    </div> */}
                 </div>
             </div>
             <div className="option-label">{label}</div>
@@ -49,10 +37,9 @@ const SelectDream = ({ label, imgUrl, cost, points, name, id, dreams, setDreams 
     )
 }
 
-const SelectCar = ({ label, imgUrl, cost, points, name, id, cars, setCars }) => {
+const SelectCar = ({ label, imgUrl, cost, name, id, cars, setCars }) => {
 
     const carsHandler = () => {
-        // setCars.bind(this, id)
         setCars({ id: id, carName: imgUrl, cost: cost })
     }
     const selected = cars.id === id ? 'selected' : ''
@@ -79,10 +66,9 @@ const SelectCar = ({ label, imgUrl, cost, points, name, id, cars, setCars }) => 
     )
 }
 
-const SelectHouse = ({ label, imgUrl, cost, points, name, id, houses, setHouses }) => {
+const SelectHouse = ({ label, imgUrl, cost, name, id, houses, setHouses }) => {
 
     const houseHandler = () => {
-        // setHouses.bind(this, id)
         setHouses({ id: id, houseName: imgUrl, cost: cost })
     }
     const selected = houses.id === id ? 'selected' : ''
@@ -175,7 +161,6 @@ function SelectDreams() {
                     id={1}
                     name="studioApt"
                     cost={100000}
-                    // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
@@ -184,7 +169,6 @@ function SelectDreams() {
                     id={2}
                     name="fixerUp"
                     cost={170000}
-                    // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
@@ -193,7 +177,6 @@ function SelectDreams() {
                     id={3}
                     name="rambler"
                     cost={230000}
-                    // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
@@ -202,7 +185,6 @@ function SelectDreams() {
                     id={4}
                     name="mansion"
                     cost={310000}
-                    // points={2000}
                     {...restHouse}
                 />
                 <SelectHouse
@@ -211,7 +193,6 @@ function SelectDreams() {
                     id={5}
                     name="chateau"
                     cost={400000}
-                    // points={2000}
                     {...restHouse}
                 />
             </Grid>
@@ -230,7 +211,6 @@ function SelectDreams() {
                     id={1}
                     name="relisibleCar"
                     cost={5000}
-                    // points={2000}
                     {...restCar}
                 />
                 <SelectCar
@@ -239,7 +219,6 @@ function SelectDreams() {
                     id={2}
                     name="economyCar"
                     cost={12000}
-                    // points={2000}
                     {...restCar}
                 />
                 <SelectCar
@@ -248,7 +227,6 @@ function SelectDreams() {
                     id={3}
                     name="fullLoadedCar"
                     cost={20000}
-                    // points={2000}
                     {...restCar}
                 />
                 <SelectCar
@@ -257,7 +235,6 @@ function SelectDreams() {
                     id={4}
                     name="luxuryCar"
                     cost={27000}
-                    // points={2000}
                     {...restCar}
                 />
                 <SelectCar
@@ -266,7 +243,6 @@ function SelectDreams() {
                     id={5}
                     name="speedsterCar"
                     cost={35000}
-                    // points={2000}
                     {...restCar}
                 />
             </Grid>
@@ -285,7 +261,6 @@ function SelectDreams() {
                     id={1}
                     name="traveller"
                     cost={3000}
-                    // points={2000}
                     {...restDream}
                 />
                 <SelectDream
@@ -294,7 +269,6 @@ function SelectDreams() {
                     id={2}
                     name="flight"
                     cost={6000}
-                    // points={2000}
                     {...restDream}
                 />
                 <SelectDream
@@ -303,7 +277,6 @@ function SelectDreams() {
                     id={3}
                     name="hillStation"
                     cost={9000}
-                    // points={2000}
                     {...restDream}
                 />
                 <SelectDream
@@ -312,7 +285,6 @@ function SelectDreams() {
                     id={4}
                     name="beach"
                     cost={12000}
-                    // points={2000}
                     {...restDream}
                 />
                 <SelectDream
@@ -321,7 +293,6 @@ function SelectDreams() {
                     id={5}
                     name="bikeRide"
                     cost={15000}
-                    // points={2000}
                     {...restDream}
                 />
             </Grid>

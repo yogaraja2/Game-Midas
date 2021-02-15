@@ -10,7 +10,6 @@ import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
 import SnackBar from '../../../components/SnackBar'
 import API, { URL } from '../../../Api'
-// import { setAvatarId } from '../../../action'
 import { setAvatarId } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
@@ -86,8 +85,6 @@ function SelectAvatar() {
 
     const history = useHistory()
 
-
-
     const min = 40000;
     const max = 150000;
 
@@ -112,15 +109,12 @@ function SelectAvatar() {
         dispatch(setAvatarId(initialValues))
 
         if (salary) {
-            // console.log(income);
             API.post(URL.gameDetails, initialValues, {
                 headers: {
                     Authorization: auth
                 }
             })
                 .then((res) => {
-                    console.log('avatar response')
-                    console.log(res)
                     setResponse(res)
                     history.push(commonRoute.selectDreams)
                     // if (response?.status) {
@@ -128,11 +122,8 @@ function SelectAvatar() {
                     // }
                 })
                 .catch((err) => {
-                    console.log('avatar error section')
-                    console.log(err)
                     console.log(err.message)
                 })
-            // history.push(commonRoute.selectDreams);
         }
         else {
             setError(true)
