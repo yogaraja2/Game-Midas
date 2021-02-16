@@ -9,7 +9,7 @@ import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
 import API, { URL } from '../../../Api'
 import SnackBar from '../../../components/SnackBar'
-import { setLoginData } from '../../../redux/Action'
+import { setLoginData, setAvatarId, setCurrentTurn, setNetworth, setSavingsAmt, setSurplusAmt, setPageNo } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 function Login() {
@@ -76,9 +76,7 @@ function Login() {
   const allyProps = { control, error: errors }
 
   function handleOnClose() {
-    // if (reason === 'clickaway') {
-    //   return
-    // }
+    
     if (response?.role === 'Individual' || response?.role === 'Student') {
       if (response?.pageNo === 1) {
         history.push(commonRoute.gameOptions)
@@ -87,6 +85,19 @@ function Login() {
         history.push(commonRoute.selectAvatar)
       }
       else if (response.pageNo === 3) {
+
+        const avatarData = {
+          avatarIcon: response.avatarIcon,
+          income: response.income,
+          gameLength: response.gameLength,
+          gameMode: response.gameMode
+        }
+        dispatch(setAvatarId(avatarData))
+        dispatch(setCurrentTurn(response.currentTurn))
+        dispatch(setNetworth(response.networth))
+        dispatch(setSurplusAmt(response.savingsAvailable))
+        dispatch(setSavingsAmt(response.cashAvailable))
+        dispatch(setPageNo(response.pageNo))
         history.push(commonRoute.dashboard.mainDash)
       }
     }

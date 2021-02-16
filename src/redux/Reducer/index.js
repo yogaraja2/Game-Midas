@@ -18,6 +18,7 @@ import StudentsListReducer from './StudentsListReducer'
 import StudentDetailReducer from './StudentDetailReducer'
 import OrganizationReducer from './OrganizationReducer'
 import InstructorReducer from './InstructorReducer'
+import PageNoReducer from './PageNoReducer'
 
 export const rootReducers = combineReducers({
     signupData: signupReducer,
@@ -35,6 +36,7 @@ export const rootReducers = combineReducers({
     studentDetail: StudentDetailReducer,
     organizations: OrganizationReducer,
     instructors: InstructorReducer,
+    pageNo: PageNoReducer,
 })
 
 const configStorage = {
@@ -53,6 +55,7 @@ const configStorage = {
         'dreams',
         'studentsList',
         'studentDetail',
+        'pageNo'
     ]
 }
 

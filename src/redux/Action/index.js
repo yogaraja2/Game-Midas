@@ -18,6 +18,13 @@ export const setLoginData = (value) => {
     }
 }
 
+export const setPageNo = (value) => {
+    return {
+        type: 'SET_PAGE_NO',
+        payload: value,
+    }
+}
+
 export const setOrganizations = (value) => {
     return {
         type: 'SET_ORGANIZATIONS',

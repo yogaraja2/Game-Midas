@@ -11,17 +11,45 @@ function StudentDetails() {
                 Student Stats
             </div>
             <div className="stu-detail-wrap">
-                <div>Name : {studentDetail.name}</div>
-                <div>Rank : {studentDetail.leaderBoardRank}</div>
-                <div>Score : {studentDetail.totalScore}</div>
-                <div>Income : {studentDetail.income || 0}</div>
-                <div>Networth : {studentDetail.networth || 0}</div>
-                <div>Game Mode : {studentDetail.role || 0}</div>
-                <div>Game Length : {studentDetail.gameLength || 0}</div>
-                <div>Country : {studentDetail.country}</div>
+                <div className="detailed-wrap">
+                    <div className="name-wrap">
+                        <div className="heading">Name</div>
+                        <div className="value">{studentDetail.name}</div>
+                    </div>
+                    <div className="other-details">
+                        <div className="field-wrap">
+                            <div className="heading">Rank </div>
+                            <div className="value">{studentDetail.leaderBoardRank}</div>
+                        </div>
+                        <div className="field-wrap">
+                            <div className="heading">Game Mode </div>
+                            <div className="value">{studentDetail.gameMode || 0}</div>
+                        </div>
+                        <div className="field-wrap">
+                            <div className="heading">Game Length </div>
+                            <div className="value">{studentDetail.gameLength || 0}</div>
+                        </div>
+                        <div className="field-wrap">
+                            <div className="heading">Country </div>
+                            <div className="value">{studentDetail.country}</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="charts-wrap">
+
+                </div>
+                <div className="avatar-wrap">
+                    <img src={require(`../../../assets/img/Avatar${studentDetail.avatarIcon}.svg`).default} alt="user-avatar" />
+                </div>
+
             </div>
         </Grid>
     )
 }
 
 export default StudentDetails
+
+
+{/* <div>Score : {studentDetail.totalScore}</div>
+                        <div>Income : {studentDetail.income || 0}</div>
+                        <div>Networth : {studentDetail.networth || 0}</div> */}

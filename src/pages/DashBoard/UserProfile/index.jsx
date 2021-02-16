@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-import { setNewGame } from '../../../redux/Action'
+import { setNewGame, setPageNo } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 import {
     Button,
@@ -63,6 +63,7 @@ function UserProfile() {
                 console.log(res.data)
                 if (res.status === 200) {
                     dispatch(setNewGame())
+                    dispatch(setPageNo(0))
                     history.push(commonRoute.gameOptions)
                 }
             })

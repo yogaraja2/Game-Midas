@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
 import SnackBar from '../../../components/SnackBar'
 import API, { URL } from '../../../Api'
-import { setAvatarId } from '../../../redux/Action'
+import { setAvatarId,setPageNo } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 const AvatarOptions = ({ label, imgUrl, id, avatar, setAvatar }) => {
@@ -109,27 +109,24 @@ function SelectAvatar() {
         console.log(initialValues)
         dispatch(setAvatarId(initialValues))
 
-        if (salary) {
-            API.post(URL.gameDetails, initialValues, {
-                headers: {
-                    Authorization: auth
-                }
+
+        API.post(URL.gameDetails, initialValues, {
+            headers: {
+                Authorization: auth
+            }
+        })
+            .then((res) => {
+                setResponse(res)
+                dispatch(setPageNo(2))
+                history.push(commonRoute.selectDreams)
+                // if (response?.status) {
+                //     history.push(commonRoute.selectDreams)
+                // }
             })
-                .then((res) => {
-                    setResponse(res)
-                    history.push(commonRoute.selectDreams)
-                    // if (response?.status) {
-                    //     history.push(commonRoute.selectDreams)
-                    // }
-                })
-                .catch((err) => {
-                    console.log(err.message)
-                })
-        }
-        else {
-            setError(true)
-            setErrMsg('Please enter your Income...')
-        }
+            .catch((err) => {
+                console.log(err.message)
+                setErrMsg(err.message)
+            })
     }
 
     // const handleIncomeValueChanges = (e) => {

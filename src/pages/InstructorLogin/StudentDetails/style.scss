@@ -2,26 +2,72 @@
 
 .student-details-card {
   background: var(--bg-panel-card);
-  height: 100%;
+  height: 90%;
   position: relative;
   overflow: auto;
 
   .title {
     font-size: 2em;
     font-weight: bold;
-    margin: 10px 20px;
+    margin: 10px;
   }
+
   .stu-detail-wrap {
     width: 90%;
     margin: 0px auto;
     height: 85%;
     background: white;
+    display: flex;
 
-    div {
-      font-size: 2em;
-      font-weight: bold;
-      margin: 10px;
-      padding: 10px;
+    .detailed-wrap,
+    .charts-wrap,
+    .avatar-wrap {
+      margin: 0 auto;
+    }
+
+    .detailed-wrap {
+      width: 30%;
+      // background-color: rgb(232, 235, 241);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      .name-wrap,
+      .other-details {
+        background-color: rgba(0, 159, 253, 0.2);
+        border-radius: 10px;
+        padding: 30px;
+        margin: 10px;
+        .heading {
+          color: #747d8c;
+        }
+        .value {
+          font-size: 2em;
+          font-weight: bold;
+        }
+      }
+
+      .other-details {
+        .field-wrap {
+          padding: 10px;
+        }
+      }
+    }
+
+    .charts-wrap {
+      width: 40%;
+      background-color: rgb(205, 228, 228);
+    }
+
+    .avatar-wrap {
+      width: 20%;
+      margin: auto 0;
+      // background-color: darkkhaki;
+      img {
+        width: 80%;
+        height: 90%;
+        
+      }
     }
   }
 }

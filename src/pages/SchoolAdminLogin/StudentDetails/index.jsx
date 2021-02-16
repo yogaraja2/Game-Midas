@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.scss'
 import { Grid } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 

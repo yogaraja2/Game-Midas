@@ -6,7 +6,7 @@ import doller from '../../../assets/img/doller 2.svg'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import API, { URL } from '../../../Api'
-import { setDream } from '../../../redux/Action'
+import { setDream, setPageNo } from '../../../redux/Action'
 import { useDispatch, useSelector } from 'react-redux'
 
 const SelectDream = ({ label, imgUrl, cost, name, id, dreams, setDreams }) => {
@@ -116,7 +116,7 @@ function SelectDreams() {
         dream: dreams,
         car: cars,
         house: houses,
-        pageNo:3,
+        pageNo: 3,
     }
 
     const token = localStorage.getItem('midasToken')
@@ -126,7 +126,6 @@ function SelectDreams() {
 
         console.log(initialValues)
         dispatch(setDream(initialValues))
-        history.push(commonRoute.dashboard.mainDash)
 
         API.post(URL.dreamSelection, initialValues, {
             headers: {
@@ -135,6 +134,8 @@ function SelectDreams() {
         })
             .then((res) => {
                 console.log(res)
+                dispatch(setPageNo(3))
+                history.push(commonRoute.dashboard.mainDash)
             })
             .catch((err) => {
                 console.log(err)
