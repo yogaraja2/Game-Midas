@@ -55,8 +55,39 @@
     }
 
     .charts-wrap {
+      width: 100%;
+      position: relative;
       width: 40%;
-      background-color: rgb(205, 228, 228);
+      // border: 2px solid black;
+
+      .income-field,
+      .networth-field,
+      .score-field {
+        margin: 5px 20px;
+
+        .side-head {
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+        .value {
+          font-size: 1.5em;
+          font-weight: bold;
+          // padding-left: 50px;
+          color: var(--primary);
+        }
+      }
+
+      .income-field {
+        // background-color: burlywood;
+      }
+      .networth-field {
+        width: 50%;
+        // background-color: cadetblue;
+        margin-left: 50%;
+      }
+      .score-field {
+        // background-color: chocolate;
+      }
     }
 
     .avatar-wrap {
@@ -66,7 +97,6 @@
       img {
         width: 80%;
         height: 90%;
-        
       }
     }
   }
