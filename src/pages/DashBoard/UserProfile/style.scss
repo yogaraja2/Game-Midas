@@ -23,7 +23,9 @@
           font-weight: bold;
         }
         .btn-wrap {
-          div {
+          .avatar-chg-btn,
+          .pwd-chg-btn,
+          .len-fld {
             display: inline-block;
             width: 80px;
             padding: 5px;
@@ -88,6 +90,30 @@
         @include w320 {
           width: 90%;
         }
+      }
+    }
+  }
+}
+
+// avatar-selection
+.update-avatar {
+  .avatars-wrap {
+    display: flex;
+    flex-direction: row;
+
+    .avatar {
+      margin: 5px;
+      cursor: pointer;
+
+      .img-wrap {
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      &.selected {
+        border: 2px solid #009ffd;
+        border-radius: 5px;
       }
     }
   }

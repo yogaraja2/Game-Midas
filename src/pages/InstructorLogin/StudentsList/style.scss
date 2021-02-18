@@ -50,4 +50,16 @@
       }
     }
   }
+  .btn-wrap {
+    position: absolute;
+    bottom: 30px;
+    left: 70px;
+    .back-btn {
+      @include button;
+    }
+    @include w320 {
+      position: static;
+      margin-top: 16px;
+    }
+  }
 }

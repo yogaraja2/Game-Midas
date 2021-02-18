@@ -7,7 +7,7 @@ function FExpenses({ size, data }) {
     <Grid item {...size} className="fix-exp-sec stat-data-sec">
       <h2>Fixed Expenses</h2>
       <div className="content-wrap m-left">
-        <Entry label="Mortgate" value={data?.mortgage} />
+        <Entry label="Mortgage" value={data?.mortgage} />
         <Entry label="Taxes" value={data?.taxes} />
         <Entry label="Utilites" value={data?.utilities} />
         <Entry label="Auto Maintenance" value={data?.autoMaintenance} />

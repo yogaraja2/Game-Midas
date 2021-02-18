@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss'
 import UploadBtn from '../../../components/UploadButton'
 import clsx from 'clsx'
@@ -7,8 +7,8 @@ import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-import { setNewGame, setPageNo } from '../../../redux/Action'
-import { useDispatch } from 'react-redux'
+import { setNewGame, setPageNo, setAvatarId } from '../../../redux/Action'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     Button,
     TextField,
@@ -21,14 +21,15 @@ import {
 
 function UserProfile() {
 
+    const gameDetails = useSelector(state => state.selectAvatar)
+
     const dispatch = useDispatch();
     const history = useHistory();
-    const [gameLength, setGameLength] = useState(10)
+    const [gameLength, setGameLength] = useState(gameDetails.gameLength)
 
     const SelectLength = ({ id, name, gameLength, setGameLength }) => {
-
         return (
-            <div className={clsx(gameLength === id && 'selected')} onClick={setGameLength.bind(this, id)}>
+            <div className={clsx("len-fld", gameLength === id && 'selected')} onClick={setGameLength.bind(this, id)}>
                 {name}
             </div>
         )
@@ -36,17 +37,22 @@ function UserProfile() {
     const other = { gameLength, setGameLength }
 
 
-    const [open, setOpen] = useState(false)
-    const handleOpen = () => {
-        setOpen(true)
+    const [openPwd, setOpenPwd] = useState(false)
+    const handleOpenPwd = () => {
+        setOpenPwd(true)
     }
     const handleClose = () => {
-        setOpen(false)
+        setOpenPwd(false)
     }
 
 
-
-
+    const [openAvatar, setOpenAvatar] = useState(false)
+    const handleOpenAvatar = () => {
+        setOpenAvatar(true)
+    }
+    const closeAvatar = () => {
+        setOpenAvatar(false)
+    }
 
 
 
@@ -73,7 +79,33 @@ function UserProfile() {
     }
 
 
+    const [avatar, setAvatar] = useState(gameDetails.avatarIcon)
+    const restAvatar = { avatar, setAvatar }
 
+    useEffect(() => {
+
+        const newData = {
+            avatarIcon: avatar,
+            income: gameDetails.income,
+            gameLength: gameLength,
+            gameMode: gameDetails.gameMode
+        }
+
+        dispatch(setAvatarId(newData))
+    }, [avatar, gameLength])
+
+    const AvatarField = ({ id, avatar, setAvatar }) => {
+        const handleAvatar = () => {
+            setAvatar(id)
+        }
+        return (
+            <div className={clsx("avatar", avatar === id && "selected")} onClick={handleAvatar}>
+                <div className="img-wrap" >
+                    <img src={require(`../../../assets/img/Avatar${id}.svg`).default} />
+                </div>
+            </div>
+        )
+    }
 
 
 
@@ -82,8 +114,8 @@ function UserProfile() {
             <Grid item xs={12} className="select-wrap-card">
                 <Grid container className="select-wrap">
                     <h2 className="title">Avatar</h2>
-                    <div className="btn-wrap">
-                        <div>Change</div>
+                    <div className="btn-wrap" onClick={handleOpenAvatar}>
+                        <div className={clsx("avatar-chg-btn", openAvatar && "selected")} >Change</div>
                     </div>
                     {/* <UploadBtn
                     label="Change"
@@ -95,7 +127,6 @@ function UserProfile() {
                     <h2 className="title">Game Length</h2>
                     <div className="btn-wrap">
                         <SelectLength
-                            className="btn-field"
                             id={10}
                             name="Short"
                             {...other}
@@ -114,18 +145,19 @@ function UserProfile() {
                 </Grid>
                 <Grid container className="select-wrap">
                     <h2 className="title">Password</h2>
-                    <div className="btn-wrap" onClick={handleOpen}>
-                        <div>Change</div>
+                    <div className="btn-wrap" onClick={handleOpenPwd}>
+                        <div className={clsx("pwd-chg-btn", openPwd && "selected")}>Change</div>
                     </div>
                 </Grid>
             </Grid>
+
             <div className="nav-btn-wrap">
                 <Button className="new-btn" onClick={goToNewGame}>New Game</Button>
                 <Button className="quit-btn" onClick={goToNewGame}>Quit Game</Button>
             </div>
 
-            {open && (
-                <Dialog open={open} onClose={handleClose} aria-labelledby="update-password">
+            {openPwd && (
+                <Dialog open={openPwd} onClose={handleClose} aria-labelledby="update-password">
                     <DialogTitle id="update-password">Update Password</DialogTitle>
                     <DialogContent>
                         {/* <TextField
@@ -135,7 +167,7 @@ function UserProfile() {
                             fullWidth
                         /> */}
                         <TextField
-                            label="New Password"
+                            label="Enter New Password"
                             name="newPassword"
                             id="newPassword"
                             fullWidth
@@ -154,7 +186,42 @@ function UserProfile() {
                     </DialogActions>
                 </Dialog>
             )}
-        </Grid>
+
+            {openAvatar && (
+                <Dialog open={openAvatar} onClose={closeAvatar} aria-labelledby="update-avatar" className="update-avatar">
+                    <DialogTitle id="update-avatar">Choose Avatar</DialogTitle>
+                    <DialogContent className="avatars-wrap" >
+                        <AvatarField
+                            id={1}
+                            {...restAvatar}
+                        />
+                        <AvatarField
+                            id={2}
+                            {...restAvatar}
+                        />
+                        <AvatarField
+                            id={3}
+                            {...restAvatar}
+                        />
+                        <AvatarField
+                            id={4}
+                            {...restAvatar}
+                        />
+                        <AvatarField
+                            id={5}
+                            {...restAvatar}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={closeAvatar} color="primary">
+                            Ok
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            )
+            }
+
+        </Grid >
     )
 }
 

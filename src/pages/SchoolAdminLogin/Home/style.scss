@@ -79,17 +79,25 @@
       }
     }
 
-    .btn-wrap {
-      position: absolute;
-      bottom: 30px;
-      right: 70px;
-      .nxt-btn {
-        @include button;
-      }
+    .foot-sec {
+      width: 90%;
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      // background-color: rgb(156, 156, 216);
 
-      @include w320 {
-        position: static;
-        margin-top: 16px;
+      .signout-wrap,
+      .nxt-wrap {
+        position: relative;
+        .nxt-btn,
+        .signout-btn {
+          @include button;
+        }
+
+        @include w320 {
+          position: static;
+          margin-top: 16px;
+        }
       }
     }
   }

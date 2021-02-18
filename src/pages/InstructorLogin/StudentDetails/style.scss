@@ -2,7 +2,7 @@
 
 .student-details-card {
   background: var(--bg-panel-card);
-  height: 90%;
+  height: 95%;
   position: relative;
   overflow: auto;
 
@@ -15,7 +15,7 @@
   .stu-detail-wrap {
     width: 90%;
     margin: 0px auto;
-    height: 85%;
+    height: 90%;
     background: white;
     display: flex;
 
@@ -97,6 +97,20 @@
       img {
         width: 80%;
         height: 90%;
+      }
+      .btn-wrap {
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        top: 20px;
+        right: 30px;
+        .back-btn {
+          @include button;
+        }
+        @include w320 {
+          position: static;
+          margin-top: 16px;
+        }
       }
     }
   }

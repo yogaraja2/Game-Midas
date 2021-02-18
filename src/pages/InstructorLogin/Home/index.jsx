@@ -92,13 +92,17 @@ function Home() {
                 />
 
             </Grid>
-            <div className="btn-wrap">
-                <Button className="nxt-btn" onClick={goToLogin}>
-                    Singout
-                </Button>
-                <Button className="nxt-btn" onClick={clickHandler}>
-                    Next
-                </Button>
+            <div className="foot-sec">
+                <div className="signout-wrap">
+                    <Button className="signout-btn" onClick={goToLogin}>
+                        Singout
+                    </Button>
+                </div>
+                <div className="nxt-wrap">
+                    <Button className="nxt-btn" onClick={clickHandler}>
+                        Next
+                    </Button>
+                </div>
             </div>
         </Grid>
     )

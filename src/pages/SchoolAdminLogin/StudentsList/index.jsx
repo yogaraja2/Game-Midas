@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './style.scss'
-import { Grid } from '@material-ui/core'
+import { Grid,Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,6 +34,10 @@ function StudentsList() {
 
     }
 
+    const goToInstructorList = () => {
+        history.push(commonRoute.schoolAdminLogin.instructorsList)
+    }
+
 
     return (
         <Grid item xs={12} md={10} className="students-list-card">
@@ -51,6 +55,9 @@ function StudentsList() {
                     </Grid>
                 ))}
             </Grid>
+            <div className="btn-wrap">
+                <Button className="back-btn" onClick={goToInstructorList}>Back </Button>
+            </div>
         </Grid>
     )
 }

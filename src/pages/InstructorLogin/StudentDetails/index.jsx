@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.scss'
-import { Grid } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import {
     AccumulationChartComponent,
@@ -10,8 +10,13 @@ import {
     AccumulationDataLabel
 } from '@syncfusion/ej2-react-charts'
 import { ProgressBarComponent } from '@syncfusion/ej2-react-progressbar'
+import { useHistory } from 'react-router-dom'
+import { commonRoute } from '../../../config/routes'
+
 
 function StudentDetails() {
+
+    const history = useHistory()
 
     const studentDetail = useSelector(state => state?.studentDetail)
 
@@ -24,6 +29,11 @@ function StudentDetails() {
     const incomePer = studentDetail.income / 150000 * 100;
     const networthPer = studentDetail.networth / studentDetail.income * 100;
     const scorePer = studentDetail.totalScore / studentDetail.income * 100;
+
+
+    const goToStudentsList = () => {
+        history.push(commonRoute.instructorLogin.studentsList)
+    }
 
     return (
         <Grid item xs={12} md={10} className="student-details-card">
@@ -106,12 +116,16 @@ function StudentDetails() {
                         <div className="value">{studentDetail.totalScore}</div>
                     </div>
                 </div>
-                
+
                 <div className="avatar-wrap">
                     <img src={require(`../../../assets/img/Avatar${studentDetail.avatarIcon}.svg`).default} alt="user-avatar" />
+                    <div className="btn-wrap">
+                        <Button className="back-btn" onClick={goToStudentsList}>Back </Button>
+                    </div>
                 </div>
 
             </div>
+
         </Grid>
     )
 }
