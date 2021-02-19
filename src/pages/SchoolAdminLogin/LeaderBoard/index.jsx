@@ -7,33 +7,17 @@ import { useHistory } from 'react-router-dom'
 import useFetch from '../../../hooks/useFetch'
 import API, { URL } from '../../../Api'
 
-const Players = ({ label, imgUrl, points, place, id, bgClr }) => {
+const Players = ({ label, points, id }) => {
     return (
         <Paper elevation={2} className={clsx('paper-class', `player-${id}`)}>
-            <div style={{ backgroundColor: `${bgClr}` }} className="player-border">
-                <div className="player-image">
-                    <div className="image-warp">
-                        <img
-                            src={require(`../../../assets/img/${imgUrl}.svg`).default}
-                            alt={label}
-                        />
-                    </div>
-                </div>
-                <div className="player-place">
-                    <img
-                        src={require(`../../../assets/img/${id}.svg`).default}
-                        alt={place}
-                    />
-                </div>
+            <div className="player-place">
+                <img
+                    src={require(`../../../assets/img/rank${id}.svg`).default}
+                    alt={`rank${id}`}
+                />
             </div>
             <div className="player-label">{label}</div>
             <div className="player-points">{points}</div>
-            <div className="player-position">
-                <img
-                    src={require(`../../../assets/img/${place}.svg`).default}
-                    alt={place}
-                />
-            </div>
         </Paper>
     )
 }
@@ -78,27 +62,18 @@ function LeaderBoard() {
                 <Grid item xs={12} md={10} lg={8} className="top-three-players">
                     <Players
                         label={topThree[1]?.username}
-                        imgUrl={`User1`}
                         points={topThree[1]?.score}
                         id={'2'}
-                        place={'secondPlace'}
-                        bgClr={'#8DB596'}
                     />
                     <Players
                         label={topThree[0]?.username}
-                        imgUrl={`user2`}
                         points={topThree[0]?.score}
                         id={'1'}
-                        place={'firstPlace'}
-                        bgClr={'#F05454'}
                     />
                     <Players
                         label={topThree[2]?.username}
-                        imgUrl={`user3`}
                         points={topThree[2]?.score}
                         id={'3'}
-                        place={'thirdPlace'}
-                        bgClr={'#5352ED'}
                     />
                 </Grid>
 

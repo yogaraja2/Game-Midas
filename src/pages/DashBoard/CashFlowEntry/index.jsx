@@ -74,7 +74,7 @@ function CashFlowEntry(props) {
   const addEvents = () => {
     setEvents([...events, { eventName: '', eventCost: '' }])
     setCount(count + 1)
-    dispatch(setEventCount(count))
+    dispatch(setEventCount(count + 1))
   }
 
   const handleInputChange = (e, index) => {
@@ -85,8 +85,8 @@ function CashFlowEntry(props) {
     dispatch(setEventsCost(events))
   }
 
-  console.log('eve')
-  console.log(events)
+  // console.log('eve')
+  // console.log(events)
 
   const handleSubmit = () => {
     const headers = {
@@ -113,8 +113,10 @@ function CashFlowEntry(props) {
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {
-        // console.log('cashflow response ')
-        // console.log(res)
+        console.log('cashflow response ')
+        console.log(res)
+        console.log('response data')
+        console.log(res.data)
 
         if (res.status === 200) {
           dispatch(setCashFlowApiData(res.data))
@@ -193,7 +195,7 @@ function CashFlowEntry(props) {
             />
           </div>
         ))}
-        <Button className="add-eve-btn" onClick={addEvents} disabled={count > 3}>Add</Button>
+        <Button className="add-eve-btn" onClick={addEvents} disabled={!(count <= 3)}>Add</Button>
       </div>
 
       <div className="btn-wrap">
@@ -202,7 +204,11 @@ function CashFlowEntry(props) {
           disabled={!(currentTurn <= 1)}
           onClick={goToSelectDream}
         >Change Dreams</Button>
-        <Button className="info-btn" onClick={handleSubmit}>Try</Button>
+        <Button
+          className="info-btn"
+          onClick={handleSubmit}
+          disabled={currentTurn === 0}
+        >Try</Button>
       </div>
 
       {/* <div className="btn-wrap">

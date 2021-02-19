@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setNewGame } from '../../../redux/Action'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-import { setCurrentTurn, setLoginData, setResponseData, setPageNo } from '../../../redux/Action'
+import { setCurrentTurn, setEventCount, setEventsCost, setPageNo } from '../../../redux/Action'
 
 function MainDash() {
 
@@ -58,6 +58,11 @@ function MainDash() {
                 console.log(res)
                 if (res.status === 200) {
                     dispatch(setCurrentTurn(currentTurn + 1))
+                    dispatch(setEventCount(1))
+                    dispatch(setEventsCost([{
+                        eventName: '',
+                        eventCost: ''
+                    }]))
                     history.push(commonRoute.dashboard.cashFlow)
                 }
             })

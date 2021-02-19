@@ -23,6 +23,10 @@ function CashFlow(props) {
   const [dataYear, setDataYear] = useState(currentTurn)
   // const [isPassed, setPassed] = useState(false)
   const { state } = useLocation()
+  console.log('sate')
+  console.log(state)
+  console.log('sate data')
+  console.log(state.data)
   const currentData = state.data?.filter((f) => f.year === dataYear)[0]
 
   const statSectionSize = {

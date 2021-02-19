@@ -60,6 +60,12 @@
             margin-top: -10px;
           }
         }
+        .player-place {
+          width: 100%;
+          img {
+            margin: 0 70px;
+          }
+        }
         .player-label {
           font-size: 1.4em;
           font-weight: bold;
@@ -67,7 +73,7 @@
         }
 
         .player-points {
-          margin-top: 20px;
+          margin-top: 10px;
           font-size: 30px;
           font-weight: bold;
           text-align: center;
